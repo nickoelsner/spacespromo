@@ -11,10 +11,13 @@ const backgroundColors = [
   'bg-[#E47DF8]',
 ]
 
+const textColors = ['text-white', 'text-gray-900']
+
 export default function Home() {
   const [speakers, setSpeakers] = useState([])
   const [title, setTitle] = useState('')
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
+  const [textColor, setTextColor] = useState(textColors[0])
 
   return (
     <div>
@@ -48,12 +51,31 @@ export default function Home() {
                   </div>
                   <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
                 </div>
-                <h4 className="block text-sm font-medium text-gray-700">Background Color</h4>
+                <h4 className="block mb-1 text-sm font-medium text-gray-700">Background Color</h4>
                 {backgroundColors.map((color, i) => (
-                  <button key={i} className={`w-[15px] h-[15px] ${color}`} />
+                  <button
+                    key={i}
+                    className={`w-12 h-5 mr-2 ${color} ${
+                      backgroundColor === color ? 'w-14 h-6' : ''
+                    }`}
+                    onClick={() => setBackgroundColor(color)}
+                  />
                 ))}
+                <h4 className="block mb-1 text-sm font-medium text-gray-700">Text Color</h4>
+                {textColors.map((color, i) => (
+                  <button
+                    key={i}
+                    className={`w-12 h-5 mr-2 ${
+                      color === 'text-white' ? 'bg-white shadow-md' : 'bg-gray-900'
+                    } ${textColor === color ? 'w-14 h-6' : ''}`}
+                    onClick={() => setTextColor(color)}
+                  />
+                ))}
+                <h3 className="pt-8 mb-4 text-lg font-medium leading-6 text-gray-900">
+                  Image Preview
+                </h3>
                 <div className={`w-[575px] h-[323.4375px] ${backgroundColor} p-5`}>
-                  <h1 className="mb-5 text-xl font-medium text-center text-white">
+                  <h1 className={`mb-5 text-xl font-medium text-center ${textColor}`}>
                     {title || 'Title'}
                   </h1>
                   <ul className="flex flex-wrap justify-center">
@@ -64,7 +86,7 @@ export default function Home() {
                           src={`https://unavatar.io/twitter/${speaker.username}`}
                           alt=""
                         />
-                        <h3 className="text-[12px] font-medium text-white">{speaker.name}</h3>
+                        <h3 className={`text-[12px] font-medium ${textColor}`}>{speaker.name}</h3>
                       </li>
                     ))}
                   </ul>
