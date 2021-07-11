@@ -19,6 +19,10 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
       .catch((err) => console.log(err))
   }
 
+  const deleteSpeaker = (speakerId) => {
+    setSpeakers((prev) => prev.filter(({ id }) => id !== speakerId))
+  }
+
   return (
     <>
       <div className="col-span-full">
@@ -47,6 +51,12 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
         <ul className="list-reset list-unstyled list-inline list-inline-icon-left">
           {speakers.map((speaker) => (
             <li key={speaker.id} className="mb-2">
+              <button
+                className="mr-4 font-mono font-semibold text-gray-900"
+                onClick={() => deleteSpeaker(speaker.id)}
+              >
+                x
+              </button>
               <span className="font-semibold text-gray-500">@{speaker.username}</span>
             </li>
           ))}
