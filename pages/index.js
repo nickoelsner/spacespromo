@@ -97,9 +97,10 @@ export default function Home() {
                   <h1 className={`mb-5 text-xl font-medium text-center ${textColor}`}>
                     {title || 'Title'}
                   </h1>
-                  <ul className="flex flex-wrap">
+                  <div className="flex-grow" />
+                  <ul className="flex flex-wrap justify-center">
                     {speakers.map((speaker) => (
-                      <li className="flex flex-col items-center mx-2 mb-2" key={speaker.name}>
+                      <li className="flex flex-col items-center mx-2 mb-3" key={speaker.name}>
                         <img
                           className="w-[4.9rem] h-[4.9rem] mx-auto rounded-full"
                           src={`https://unavatar.io/twitter/${speaker.username}`}
@@ -109,7 +110,8 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                  {/* <div className="flex-grow" /> */}
+                  <div className="flex-grow" />
+                  <div className="flex-grow" />
                   <p className={`text-center ${textColor}`}>{dateTime}</p>
                 </div>
               </div>
