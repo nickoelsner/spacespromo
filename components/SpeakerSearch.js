@@ -29,7 +29,7 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
           <input
             id="speaker"
             name="speaker"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50text-sm"
+            className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50"
             type="text"
             placeholder="Twitter Handle"
             value={handle}
@@ -43,7 +43,7 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
           </button>
         </form>
       </div>
-      <div className="col-span-full">
+      <div className="mb-4 col-span-full">
         <ul className="list-reset list-unstyled list-inline list-inline-icon-left">
           {speakers.map((speaker) => (
             <li key={speaker.id} className="mb-2">
