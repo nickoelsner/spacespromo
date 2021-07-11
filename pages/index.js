@@ -2,8 +2,12 @@ import SpeakerSearch from '../components/SpeakerSearch'
 import { useState } from 'react'
 import Head from 'next/head'
 
+const backgroundColors = ['#5f7fff', '#B16AF7', '#8FD4B7', '#EE6A65', '#F5DC66', '#E47DF8']
+
 export default function Home() {
   const [speakers, setSpeakers] = useState([])
+  const [title, setTitle] = useState('')
+  const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
 
   return (
     <div>
@@ -29,11 +33,34 @@ export default function Home() {
                         type="text"
                         name="title"
                         id="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                         className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50text-sm"
                       />
                     </div>
                   </div>
                   <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
+                </div>
+                <h4 className="block text-sm font-medium text-gray-700">Background Color</h4>
+                {backgroundColors.map((color, i) => (
+                  <button key={i} className={`w-[15px] h-[15px] bg-[${color}]`} />
+                ))}
+                <div className={`w-[575px] h-[323.4375px] bg-[${backgroundColor}] p-5`}>
+                  <h1 className="mb-5 text-xl font-medium text-center text-white">
+                    {title || 'Title'}
+                  </h1>
+                  <ul className="flex flex-wrap justify-center">
+                    {speakers.map((speaker) => (
+                      <li className="flex flex-col items-center mx-2 mb-2" key={speaker.name}>
+                        <img
+                          className="w-[4.9rem] h-[4.9rem] mx-auto rounded-full"
+                          src={`https://unavatar.io/twitter/${speaker.username}`}
+                          alt=""
+                        />
+                        <h3 className="text-[12px] font-medium text-white">{speaker.name}</h3>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
