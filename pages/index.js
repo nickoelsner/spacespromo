@@ -2,7 +2,14 @@ import SpeakerSearch from '../components/SpeakerSearch'
 import { useState } from 'react'
 import Head from 'next/head'
 
-const backgroundColors = ['#5f7fff', '#B16AF7', '#8FD4B7', '#EE6A65', '#F5DC66', '#E47DF8']
+const backgroundColors = [
+  'bg-[#B16AF7]',
+  'bg-[#5f7fff]',
+  'bg-[#8FD4B7]',
+  'bg-[#EE6A65]',
+  'bg-[#F5DC66]',
+  'bg-[#E47DF8]',
+]
 
 export default function Home() {
   const [speakers, setSpeakers] = useState([])
@@ -43,9 +50,9 @@ export default function Home() {
                 </div>
                 <h4 className="block text-sm font-medium text-gray-700">Background Color</h4>
                 {backgroundColors.map((color, i) => (
-                  <button key={i} className={`w-[15px] h-[15px] bg-[${color}]`} />
+                  <button key={i} className={`w-[15px] h-[15px] ${color}`} />
                 ))}
-                <div className={`w-[575px] h-[323.4375px] bg-[${backgroundColor}] p-5`}>
+                <div className={`w-[575px] h-[323.4375px] ${backgroundColor} p-5`}>
                   <h1 className="mb-5 text-xl font-medium text-center text-white">
                     {title || 'Title'}
                   </h1>
