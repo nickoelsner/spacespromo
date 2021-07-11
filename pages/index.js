@@ -18,6 +18,7 @@ export default function Home() {
   const [title, setTitle] = useState('')
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
   const [textColor, setTextColor] = useState(textColors[0])
+  const [dateTime, setDateTime] = useState('')
 
   return (
     <div>
@@ -35,7 +36,7 @@ export default function Home() {
                 </h3>
                 <div className="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                   <div className="col-span-full">
-                    <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">
                       Title
                     </label>
                     <div className="mt-1">
@@ -45,7 +46,23 @@ export default function Home() {
                         id="title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50text-sm"
+                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-span-full">
+                    <label htmlFor="datetime" className="block text-sm font-medium text-gray-700">
+                      Date and Time
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        type="text"
+                        name="title"
+                        id="title"
+                        placeholder="Enter the date and time as you'd like it to appear"
+                        value={dateTime}
+                        onChange={(e) => setDateTime(e.target.value)}
+                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50"
                       />
                     </div>
                   </div>
@@ -74,11 +91,13 @@ export default function Home() {
                 <h3 className="pt-8 mb-4 text-lg font-medium leading-6 text-gray-900">
                   Image Preview
                 </h3>
-                <div className={`w-[575px] h-[323.4375px] ${backgroundColor} p-5`}>
+                <div
+                  className={`w-[575px] h-[323.4375px] ${backgroundColor} flex flex-col justify-between items-center p-5 mb-10`}
+                >
                   <h1 className={`mb-5 text-xl font-medium text-center ${textColor}`}>
                     {title || 'Title'}
                   </h1>
-                  <ul className="flex flex-wrap justify-center">
+                  <ul className="flex flex-wrap">
                     {speakers.map((speaker) => (
                       <li className="flex flex-col items-center mx-2 mb-2" key={speaker.name}>
                         <img
@@ -90,6 +109,8 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
+                  {/* <div className="flex-grow" /> */}
+                  <p className={`text-center ${textColor}`}>{dateTime}</p>
                 </div>
               </div>
             </div>
