@@ -1,7 +1,10 @@
 import SpeakerSearch from '../components/SpeakerSearch'
+import { useState } from 'react'
 import Head from 'next/head'
 
 export default function Home() {
+  const [speakers, setSpeakers] = useState([])
+
   return (
     <div>
       <Head>
@@ -10,7 +13,7 @@ export default function Home() {
       </Head>
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="max-w-xl mx-auto">
-          <form className="space-y-8 divide-y divide-gray-200">
+          <div className="space-y-8 divide-y divide-gray-200">
             <div className="space-y-8 divide-y divide-gray-200">
               <div className="pt-8">
                 <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -30,11 +33,11 @@ export default function Home() {
                       />
                     </div>
                   </div>
-                  <SpeakerSearch />
+                  <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
                 </div>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

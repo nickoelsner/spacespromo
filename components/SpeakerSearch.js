@@ -1,14 +1,20 @@
 import axios from 'axios'
 import { useState } from 'react'
 
-const SpeakerSearch = () => {
-  const [speakers, setSpeakers] = useState([])
+const SpeakerSearch = ({ speakers, setSpeakers }) => {
+  const [handle, setHandle] = useState('')
 
-  const onSearchInputChange = (e) => {
+  const onHandleChange = (e) => {
+    setHandle(e.target.value)
+  }
+
+  const onTwitterHandleSearch = (e) => {
+    e.preventDefault()
     axios
-      .get('/api/twitter_users')
+      .get(`/api/twitter_users?handle=${handle}`)
       .then((res) => {
-        setSpeakers(res.data)
+        setSpeakers((prev) => [...prev, ...res.data])
+        setHandle('')
       })
       .catch((err) => console.log(err))
   }
@@ -19,16 +25,23 @@ const SpeakerSearch = () => {
         <label htmlFor="speakers" className="block text-sm font-medium text-gray-700">
           Speakers
         </label>
-        <div className="mt-1">
+        <form onSubmit={onTwitterHandleSearch} className="flex mt-1">
           <input
-            id="speakers"
-            name="speakers"
+            id="speaker"
+            name="speaker"
             className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50text-sm"
             type="text"
             placeholder="Twitter Handle"
-            onChange={onSearchInputChange}
+            value={handle}
+            onChange={onHandleChange}
           />
-        </div>
+          <button
+            type="submit"
+            className="inline-flex items-center justify-center px-6 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Add
+          </button>
+        </form>
       </div>
       <div className="col-span-full">
         <ul className="list-reset list-unstyled list-inline list-inline-icon-left">

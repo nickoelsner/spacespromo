@@ -1,8 +1,9 @@
 export default function handler(req, res) {
   console.log(process.env.TWITTER_BEARER_TOKEN)
+  console.log('req.query.handle', req.query.handle)
   if (req.method === 'GET') {
     fetch(
-      `https://api.twitter.com/2/users/by?usernames=katherinecodes&user.fields=profile_image_url`,
+      `https://api.twitter.com/2/users/by?usernames=${req.query.handle}&user.fields=profile_image_url`,
       {
         headers: {
           'Content-Type': 'application/json',
