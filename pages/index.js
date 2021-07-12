@@ -1,6 +1,8 @@
 import SpeakerSearch from '../components/SpeakerSearch'
 import { useState } from 'react'
 import Head from 'next/head'
+import * as htmlToImage from 'html-to-image'
+const download = require('downloadjs')
 
 const backgroundColors = [
   'bg-[#B16AF7]',
@@ -19,6 +21,12 @@ export default function Home() {
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
   const [textColor, setTextColor] = useState(textColors[0])
   const [dateTime, setDateTime] = useState('')
+
+  const onSaveImage = () => {
+    htmlToImage.toPng(document.getElementById('promo-image')).then(function (dataUrl) {
+      download(dataUrl, 'my-node.png')
+    })
+  }
 
   return (
     <div>
@@ -92,6 +100,7 @@ export default function Home() {
                   Image Preview
                 </h3>
                 <div
+                  id="promo-image"
                   className={`w-[575px] h-[323.4375px] ${backgroundColor} flex flex-col justify-between items-center p-5 mb-10`}
                 >
                   <h1 className={`mb-5 text-xl font-medium text-center ${textColor}`}>
@@ -114,6 +123,7 @@ export default function Home() {
                   <div className="flex-grow" />
                   <p className={`text-center ${textColor}`}>{dateTime}</p>
                 </div>
+                <button onClick={onSaveImage}>Save Image</button>
               </div>
             </div>
           </div>
