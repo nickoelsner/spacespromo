@@ -26,14 +26,14 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
   return (
     <>
       <div className="col-span-full">
-        <label htmlFor="speakers" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="speakers" className="block text-sm font-medium text-violet-800">
           Speakers
         </label>
         <form onSubmit={onTwitterHandleSearch} className="flex mt-1">
           <input
             id="speaker"
             name="speaker"
-            className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50"
+            className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
             type="text"
             placeholder="Enter a Twitter handle to add a speaker"
             value={handle}
@@ -41,7 +41,7 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
           />
           <button
             type="submit"
-            className="inline-flex items-center justify-center px-6 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex items-center justify-center px-6 py-2 ml-3 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
           >
             Add
           </button>

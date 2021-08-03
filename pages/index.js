@@ -17,7 +17,7 @@ const backgroundColors = [
   'bg-[#E47DF8]',
   'bg-gradient-to-br from-pink-500 to-indigo-800',
   'bg-gradient-to-br from-blue-200 to-blue-700',
-  'bg-gradient-to-br from-teal-100 to-teal-400',
+  'bg-white',
 ]
 
 const textColors = ['text-white', 'text-gray-200', 'text-gray-700', 'text-gray-900']
@@ -71,7 +71,7 @@ export default function Home() {
   )
 
   return (
-    <div>
+    <div className="bg-gradient-to-t from-fuchsia-200 to-fuchsia-100">
       <Head>
         <title>Spaces Promo</title>
         <link rel="icon" href="/favicon.ico" />
@@ -81,12 +81,12 @@ export default function Home() {
           <div className="space-y-8 divide-y divide-gray-200">
             <div className="space-y-8 divide-y divide-gray-200">
               <div className="pt-8">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
+                <h3 className="text-xl font-medium leading-6 text-violet-800">
                   Twitter Space Details
                 </h3>
                 <div className="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                   <div className="col-span-full">
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="title" className="block text-sm font-medium text-violet-800">
                       Title
                     </label>
                     <div className="mt-1">
@@ -94,17 +94,18 @@ export default function Home() {
                         type="text"
                         name="title"
                         id="title"
+                        placeholder="Title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50"
+                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
                       />
                     </div>
                     <div className="">
                       <StyleDetails>
-                        <div className="text-indigo-600 ">
+                        <div className="text-violet-800">
                           <label
                             htmlFor="title-text-size"
-                            className="block text-sm font-medium text-gray-700"
+                            className="block text-sm font-medium text-violet-800"
                           >
                             Text Size
                           </label>
@@ -122,7 +123,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="col-span-full">
-                    <label htmlFor="datetime" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="datetime" className="block text-sm font-medium text-violet-800">
                       Date and Time
                     </label>
                     <div className="mt-1">
@@ -133,14 +134,14 @@ export default function Home() {
                         placeholder="Enter the date and time as you'd like it to appear"
                         value={dateTime}
                         onChange={(e) => setDateTime(e.target.value)}
-                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50"
+                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
                       />
                     </div>
                   </div>
                   <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
                 </div>
-                <h4 className="block mb-1 text-sm font-medium text-gray-700">Background Color</h4>
-                <div className="flex items-end gap-3">
+                <h4 className="block mb-2 text-sm font-medium text-violet-800">Background Color</h4>
+                <div className="flex items-end gap-3 mb-5">
                   {backgroundColors.map((color, i) => (
                     <button
                       key={i}
@@ -151,7 +152,7 @@ export default function Home() {
                     />
                   ))}
                 </div>
-                <h4 className="block mb-1 text-sm font-medium text-gray-700">Text Color</h4>
+                <h4 className="block mb-2 text-sm font-medium text-violet-800">Text Color</h4>
                 <div className="flex items-end gap-3">
                   {textColors.map((color, i) => {
                     const bgColor = color.replace(/text-/g, '')
@@ -166,7 +167,7 @@ export default function Home() {
                     )
                   })}
                 </div>
-                <h3 className="pt-8 mb-4 text-lg font-medium leading-6 text-gray-900">
+                <h3 className="pt-12 mb-4 text-lg font-medium leading-6 text-violet-800">
                   Image Preview
                 </h3>
                 <ImagePreview id="promo-image" />
