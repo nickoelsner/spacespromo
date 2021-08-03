@@ -71,7 +71,7 @@ export default function Home() {
   )
 
   return (
-    <div className="bg-gradient-to-t from-fuchsia-200 to-fuchsia-100">
+    <div className="bg-gradient-to-t from-fuchsia-200 to-fuchsia-50">
       <Head>
         <title>Spaces Promo</title>
         <link rel="icon" href="/favicon.ico" />
@@ -81,12 +81,12 @@ export default function Home() {
           <div className="space-y-8 divide-y divide-gray-200">
             <div className="space-y-8 divide-y divide-gray-200">
               <div className="pt-8">
-                <h3 className="text-xl font-medium leading-6 text-violet-800">
+                <h3 className="text-xl font-medium leading-6 text-violet-900">
                   Twitter Space Details
                 </h3>
                 <div className="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                   <div className="col-span-full">
-                    <label htmlFor="title" className="block text-sm font-medium text-violet-800">
+                    <label htmlFor="title" className="block text-sm font-medium text-violet-900">
                       Title
                     </label>
                     <div className="mt-1">
@@ -102,10 +102,10 @@ export default function Home() {
                     </div>
                     <div className="">
                       <StyleDetails>
-                        <div className="text-violet-800">
+                        <div className="text-violet-900">
                           <label
                             htmlFor="title-text-size"
-                            className="block text-sm font-medium text-violet-800"
+                            className="block text-sm font-medium text-violet-900"
                           >
                             Text Size
                           </label>
@@ -123,7 +123,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="col-span-full">
-                    <label htmlFor="datetime" className="block text-sm font-medium text-violet-800">
+                    <label htmlFor="datetime" className="block text-sm font-medium text-violet-900">
                       Date and Time
                     </label>
                     <div className="mt-1">
@@ -140,7 +140,7 @@ export default function Home() {
                   </div>
                   <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
                 </div>
-                <h4 className="block mb-2 text-sm font-medium text-violet-800">Background Color</h4>
+                <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
                 <div className="flex items-end gap-3 mb-5">
                   {backgroundColors.map((color, i) => (
                     <button
@@ -152,7 +152,7 @@ export default function Home() {
                     />
                   ))}
                 </div>
-                <h4 className="block mb-2 text-sm font-medium text-violet-800">Text Color</h4>
+                <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
                 <div className="flex items-end gap-3">
                   {textColors.map((color, i) => {
                     const bgColor = color.replace(/text-/g, '')
@@ -167,7 +167,7 @@ export default function Home() {
                     )
                   })}
                 </div>
-                <h3 className="pt-12 mb-4 text-lg font-medium leading-6 text-violet-800">
+                <h3 className="pt-12 mb-4 text-lg font-medium leading-6 text-violet-900">
                   Image Preview
                 </h3>
                 <ImagePreview id="promo-image" />
