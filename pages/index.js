@@ -21,6 +21,7 @@ const backgroundColors = [
 ]
 
 const textColors = ['text-white', 'text-gray-200', 'text-gray-700', 'text-gray-900']
+const textBgColors = ['bg-white', 'bg-gray-200', 'bg-gray-700', 'bg-gray-900']
 
 export default function Home() {
   const [speakers, setSpeakers] = useState([])
@@ -139,28 +140,32 @@ export default function Home() {
                   <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
                 </div>
                 <h4 className="block mb-1 text-sm font-medium text-gray-700">Background Color</h4>
-                {backgroundColors.map((color, i) => (
-                  <button
-                    key={i}
-                    className={`w-14 h-8 mr-2 shadow-md ${color} ${
-                      backgroundColor === color ? 'w-14 h-6' : ''
-                    }`}
-                    onClick={() => setBackgroundColor(color)}
-                  />
-                ))}
-                <h4 className="block mb-1 text-sm font-medium text-gray-700">Text Color</h4>
-                {textColors.map((color, i) => {
-                  const bgColor = color.replace(/text-/g, '')
-                  return (
+                <div className="flex items-end gap-3">
+                  {backgroundColors.map((color, i) => (
                     <button
                       key={i}
-                      className={`w-14 h-8 mr-2 shadow-md bg-${bgColor} ${
-                        textColor === color ? 'w-14 h-6' : ''
+                      className={`w-14 h-8 shadow-md rounded-sm ${color} ${
+                        backgroundColor === color ? 'transform scale-[120%]' : ''
                       }`}
-                      onClick={() => setTextColor(color)}
+                      onClick={() => setBackgroundColor(color)}
                     />
-                  )
-                })}
+                  ))}
+                </div>
+                <h4 className="block mb-1 text-sm font-medium text-gray-700">Text Color</h4>
+                <div className="flex items-end gap-3">
+                  {textColors.map((color, i) => {
+                    const bgColor = color.replace(/text-/g, '')
+                    return (
+                      <button
+                        key={i}
+                        className={`w-14 h-8 shadow-md rounded-sm bg-${bgColor} ${
+                          textColor === color ? 'transform scale-[120%]' : ''
+                        }`}
+                        onClick={() => setTextColor(color)}
+                      />
+                    )
+                  })}
+                </div>
                 <h3 className="pt-8 mb-4 text-lg font-medium leading-6 text-gray-900">
                   Image Preview
                 </h3>
