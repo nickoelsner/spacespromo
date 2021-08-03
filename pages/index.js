@@ -4,6 +4,7 @@ import Head from 'next/head'
 import * as htmlToImage from 'html-to-image'
 import { fontSize, width } from 'tailwindcss/defaultTheme'
 import RangeSlider from '../components/Slider'
+import StyleDetails from '../components/StyleDetails'
 
 const download = require('downloadjs')
 
@@ -97,35 +98,27 @@ export default function Home() {
                         className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50"
                       />
                     </div>
-                    <div className="mt-8 text-indigo-600">
-                      <label
-                        htmlFor="title-text-size"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Text Size
-                      </label>
-                      <RangeSlider
-                        setStateValue={setTitleTextSize}
-                        min={20}
-                        max={64}
-                        step={4}
-                        defaultValue={32}
-                        label="title-text-size"
-                        unit="px"
-                      />
+                    <div className="">
+                      <StyleDetails>
+                        <div className="text-indigo-600 ">
+                          <label
+                            htmlFor="title-text-size"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Text Size
+                          </label>
+                          <RangeSlider
+                            setStateValue={setTitleTextSize}
+                            min={20}
+                            max={64}
+                            step={4}
+                            defaultValue={32}
+                            label="title-text-size"
+                            unit="px"
+                          />
+                        </div>
+                      </StyleDetails>
                     </div>
-                    {/* <div>
-                      <input
-                        type="range"
-                        id="title-text-size"
-                        name="title-text-size"
-                        value={titleTextSize}
-                        min="20"
-                        max="64"
-                        onChange={(e) => setTitleTextSize(e.target.value)}
-                      />
-                      <label htmlFor="title-text-size">Text Size (px)</label>
-                    </div> */}
                   </div>
                   <div className="col-span-full">
                     <label htmlFor="datetime" className="block text-sm font-medium text-gray-700">
