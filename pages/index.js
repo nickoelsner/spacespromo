@@ -2,7 +2,9 @@ import SpeakerSearch from '../components/SpeakerSearch'
 import { useState } from 'react'
 import Head from 'next/head'
 import * as htmlToImage from 'html-to-image'
-import { width } from 'tailwindcss/defaultTheme'
+import { fontSize, width } from 'tailwindcss/defaultTheme'
+import RangeSlider from '../components/Slider'
+
 const download = require('downloadjs')
 
 const backgroundColors = [
@@ -25,6 +27,7 @@ export default function Home() {
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
   const [textColor, setTextColor] = useState(textColors[0])
   const [dateTime, setDateTime] = useState('')
+  const [titleTextSize, setTitleTextSize] = useState(32)
 
   const onSaveImage = () => {
     const style = { width: '1150px', height: '646.875px' }
@@ -40,7 +43,12 @@ export default function Home() {
       id={id}
       className={`w-[575px] h-[323.4375px] ${backgroundColor} flex flex-col justify-between items-center p-5 mb-10`}
     >
-      <h1 className={`mb-5 text-xl font-medium text-center ${textColor}`}>{title || 'Title'}</h1>
+      <h1
+        className={`mb-5 font-medium text-center leading-none ${textColor}`}
+        style={{ fontSize: titleTextSize + 'px' }}
+      >
+        {title || 'Title'}
+      </h1>
       <div className="flex-grow" />
       <ul className="flex flex-wrap justify-center">
         {speakers.map((speaker) => (
@@ -89,6 +97,35 @@ export default function Home() {
                         className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50"
                       />
                     </div>
+                    <div className="mt-8 text-indigo-600">
+                      <label
+                        htmlFor="title-text-size"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Text Size
+                      </label>
+                      <RangeSlider
+                        setStateValue={setTitleTextSize}
+                        min={20}
+                        max={64}
+                        step={4}
+                        defaultValue={32}
+                        label="title-text-size"
+                        unit="px"
+                      />
+                    </div>
+                    {/* <div>
+                      <input
+                        type="range"
+                        id="title-text-size"
+                        name="title-text-size"
+                        value={titleTextSize}
+                        min="20"
+                        max="64"
+                        onChange={(e) => setTitleTextSize(e.target.value)}
+                      />
+                      <label htmlFor="title-text-size">Text Size (px)</label>
+                    </div> */}
                   </div>
                   <div className="col-span-full">
                     <label htmlFor="datetime" className="block text-sm font-medium text-gray-700">
@@ -121,9 +158,6 @@ export default function Home() {
                 <h4 className="block mb-1 text-sm font-medium text-gray-700">Text Color</h4>
                 {textColors.map((color, i) => {
                   const bgColor = color.replace(/text-/g, '')
-                  console.log('typeOf(bgColor) :>> ', typeof bgColor)
-                  console.log('color :>> ', color)
-                  console.log('bgColor :>> ', bgColor)
                   return (
                     <button
                       key={i}
