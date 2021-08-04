@@ -17,10 +17,107 @@ const backgroundColors = [
   'bg-[#E47DF8]',
   'bg-gradient-to-br from-pink-500 to-indigo-800',
   'bg-gradient-to-br from-blue-200 to-blue-700',
-  'bg-gradient-to-br from-teal-100 to-teal-400',
+  'bg-white',
 ]
 
 const textColors = ['text-white', 'text-gray-200', 'text-gray-700', 'text-gray-900']
+const textBgColors = ['bg-white', 'bg-gray-200', 'bg-gray-700', 'bg-gray-900']
+
+const seedUsers6 = [
+  {
+    username: 'NickOelsner',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1364044816649121796/uLmGPnwy_normal.jpg',
+    id: '1364044326334918656',
+    name: 'Nick Oelsner',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1354163904213966848/4dOl8di8_normal.jpg',
+    id: '1354159191296864256',
+    name: 'Katherine Peterson',
+    username: 'katherinecodes',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1421305898379608065/0iXfDSGP_normal.jpg',
+    username: 'tanoaksam',
+    id: '1311650703052476416',
+    name: 'Sam Sycamore 🌲 ⛰',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1412761083849457664/lsGkrZIQ_normal.jpg',
+    username: 'edanbenatar',
+    id: '1262720796511940609',
+    name: 'Edan Ben-Atar 🐒',
+  },
+  {
+    name: '🌲 James Cox 🦔',
+    username: 'MemRook',
+    id: '239982740',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1402802422637117451/U-fjmCk6_normal.jpg',
+  },
+  {
+    name: 'Rocco Sangellino',
+    username: 'RoccoSangellino',
+    id: '1337808128176340992',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1388602894258114561/LYpjcAVx_normal.jpg',
+  },
+]
+const seedUsers7 = [
+  {
+    username: 'NickOelsner',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1364044816649121796/uLmGPnwy_normal.jpg',
+    id: '1364044326334918656',
+    name: 'Nick Oelsner',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1354163904213966848/4dOl8di8_normal.jpg',
+    id: '1354159191296864256',
+    name: 'Katherine Peterson',
+    username: 'katherinecodes',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1421305898379608065/0iXfDSGP_normal.jpg',
+    username: 'tanoaksam',
+    id: '1311650703052476416',
+    name: 'Sam Sycamore 🌲 ⛰',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1412761083849457664/lsGkrZIQ_normal.jpg',
+    username: 'edanbenatar',
+    id: '1262720796511940609',
+    name: 'Edan Ben-Atar 🐒',
+  },
+  {
+    name: '🌲 James Cox 🦔',
+    username: 'MemRook',
+    id: '239982740',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1402802422637117451/U-fjmCk6_normal.jpg',
+  },
+  {
+    name: 'Rocco Sangellino',
+    username: 'RoccoSangellino',
+    id: '1337808128176340992',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1388602894258114561/LYpjcAVx_normal.jpg',
+  },
+  {
+    username: 'shookcodes',
+    name: 'Sarah Shook 🎀💎',
+    id: '1212524335174311936',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1400216053280559104/WvAf6G1M_normal.jpg',
+  },
+]
 
 export default function Home() {
   const [speakers, setSpeakers] = useState([])
@@ -56,7 +153,7 @@ export default function Home() {
           <li className="flex flex-col items-center mx-2 mb-3" key={speaker.name}>
             <img
               className="w-[4.9rem] h-[4.9rem] mx-auto rounded-full"
-              src={`https://unavatar.io/twitter/${speaker.username}`}
+              src={speaker.profile_image_url.replace(/_normal/g, '')}
               alt=""
             />
             <h3 className={`text-[12px] font-medium ${textColor}`}>{speaker.name}</h3>
@@ -70,7 +167,7 @@ export default function Home() {
   )
 
   return (
-    <div>
+    <div className="h-screen bg-gray-50">
       <Head>
         <title>Spaces Promo</title>
         <link rel="icon" href="/favicon.ico" />
@@ -80,12 +177,12 @@ export default function Home() {
           <div className="space-y-8 divide-y divide-gray-200">
             <div className="space-y-8 divide-y divide-gray-200">
               <div className="pt-8">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
+                <h3 className="text-xl font-medium leading-6 text-violet-900">
                   Twitter Space Details
                 </h3>
                 <div className="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                   <div className="col-span-full">
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="title" className="block text-sm font-medium text-violet-900">
                       Title
                     </label>
                     <div className="mt-1">
@@ -93,17 +190,18 @@ export default function Home() {
                         type="text"
                         name="title"
                         id="title"
+                        placeholder="Title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50"
+                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
                       />
                     </div>
                     <div className="">
                       <StyleDetails>
-                        <div className="text-indigo-600 ">
+                        <div className="text-violet-900">
                           <label
                             htmlFor="title-text-size"
-                            className="block text-sm font-medium text-gray-700"
+                            className="block text-sm font-medium text-violet-900"
                           >
                             Text Size
                           </label>
@@ -121,47 +219,51 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="col-span-full">
-                    <label htmlFor="datetime" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="datetime" className="block text-sm font-medium text-violet-900">
                       Date and Time
                     </label>
                     <div className="mt-1">
                       <input
                         type="text"
-                        name="title"
-                        id="title"
+                        name="datetime"
+                        id="datetime"
                         placeholder="Enter the date and time as you'd like it to appear"
                         value={dateTime}
                         onChange={(e) => setDateTime(e.target.value)}
-                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-50"
+                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
                       />
                     </div>
                   </div>
                   <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
                 </div>
-                <h4 className="block mb-1 text-sm font-medium text-gray-700">Background Color</h4>
-                {backgroundColors.map((color, i) => (
-                  <button
-                    key={i}
-                    className={`w-14 h-8 mr-2 shadow-md ${color} ${
-                      backgroundColor === color ? 'w-14 h-6' : ''
-                    }`}
-                    onClick={() => setBackgroundColor(color)}
-                  />
-                ))}
-                <h4 className="block mb-1 text-sm font-medium text-gray-700">Text Color</h4>
-                {textColors.map((color, i) => {
-                  const bgColor = color.replace(/text-/g, '')
-                  return (
+                <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
+                <div className="flex items-end gap-3 mb-5">
+                  {backgroundColors.map((color, i) => (
                     <button
                       key={i}
-                      className={`w-14 h-8 mr-2 shadow-md bg-${bgColor} ${
-                        textColor === color ? 'w-14 h-6' : ''
+                      className={`w-14 h-8 shadow-md rounded-sm ${color} ${
+                        backgroundColor === color ? 'transform scale-[120%]' : ''
                       }`}
-                      onClick={() => setTextColor(color)}
+                      onClick={() => setBackgroundColor(color)}
                     />
-                  )
-                })}
-                <h3 className="pt-8 mb-4 text-lg font-medium leading-6 text-gray-900">
+                  ))}
+                </div>
+                <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
+                <div className="flex items-end gap-3">
+                  {textColors.map((color, i) => {
+                    const bgColor = color.replace(/text-/g, '')
+                    return (
+                      <button
+                        key={i}
+                        className={`w-14 h-8 shadow-md rounded-sm bg-${bgColor} ${
+                          textColor === color ? 'transform scale-[120%]' : ''
+                        }`}
+                        onClick={() => setTextColor(color)}
+                      />
+                    )
+                  })}
+                </div>
+                <h3 className="pt-12 mb-4 text-lg font-medium leading-6 text-violet-900">
                   Image Preview
                 </h3>
                 <ImagePreview id="promo-image" />
