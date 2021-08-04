@@ -128,41 +128,40 @@ export default function Home() {
   const [titleTextSize, setTitleTextSize] = useState(32)
 
   const onSaveImage = () => {
-    const style = { width: '1150px', height: '646.875px' }
-    const height = '646.875px'
-    const width = '1150px'
-    htmlToImage.toPng(document.getElementById('promo-image')).then(function (dataUrl) {
+    const imageElement = document.getElementById('promo-image')
+    const scale = 1600 / imageElement.offsetWidth
+    const options = { height: 900, width: 1600, style: { transform: `scale(${scale})` } }
+    htmlToImage.toPng(imageElement).then(function (dataUrl) {
       download(dataUrl, 'SpacesPromo.png')
     })
   }
 
   const ImagePreview = ({ id }) => (
-    <div
-      id={id}
-      className={`w-[575px] h-[323.4375px] ${backgroundColor} flex flex-col justify-between items-center p-5 mb-10`}
-    >
-      <h1
-        className={`mb-5 font-medium text-center leading-none ${textColor}`}
-        style={{ fontSize: titleTextSize + 'px' }}
-      >
-        {title || 'Title'}
-      </h1>
-      <div className="flex-grow" />
-      <ul className="flex flex-wrap justify-center">
-        {speakers.map((speaker) => (
-          <li className="flex flex-col items-center mx-2 mb-3" key={speaker.name}>
-            <img
-              className="w-[4.9rem] h-[4.9rem] mx-auto rounded-full"
-              src={speaker.profile_image_url.replace(/_normal/g, '')}
-              alt=""
-            />
-            <h3 className={`text-[12px] font-medium ${textColor}`}>{speaker.name}</h3>
-          </li>
-        ))}
-      </ul>
-      <div className="flex-grow" />
-      <div className="flex-grow" />
-      <p className={`text-center ${textColor}`}>{dateTime}</p>
+    <div id={id} className={`aspect-w-16 aspect-h-9 ${backgroundColor} transform`}>
+      <div className="flex flex-col items-center justify-between w-full h-full p-5">
+        <h1
+          className={`mb-5 font-medium text-center leading-none ${textColor}`}
+          style={{ fontSize: titleTextSize + 'px' }}
+        >
+          {title || 'Title'}
+        </h1>
+        <div className="flex-grow" />
+        <ul className="flex flex-wrap justify-center">
+          {speakers.map((speaker) => (
+            <li className="flex flex-col items-center mx-2 mb-3" key={speaker.name}>
+              <img
+                className="w-[4.9rem] h-[4.9rem] mx-auto rounded-full"
+                src={speaker.profile_image_url.replace(/_normal/g, '')}
+                alt=""
+              />
+              <h3 className={`text-[12px] font-medium ${textColor}`}>{speaker.name}</h3>
+            </li>
+          ))}
+        </ul>
+        <div className="flex-grow" />
+        <div className="flex-grow" />
+        <p className={`text-center ${textColor}`}>{dateTime}</p>
+      </div>
     </div>
   )
 
@@ -267,7 +266,12 @@ export default function Home() {
                   Image Preview
                 </h3>
                 <ImagePreview id="promo-image" />
-                <button onClick={onSaveImage}>Save Image</button>
+                <button
+                  className="inline-flex items-center justify-center px-6 py-2 mt-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800"
+                  onClick={onSaveImage}
+                >
+                  Save Image
+                </button>
               </div>
             </div>
           </div>
