@@ -10,6 +10,7 @@ module.exports = {
         violet: colors.violet,
         primary: '#342956',
         secondary: '#8C72CF',
+        tertiary: '#8C72CF',
       },
     },
   },

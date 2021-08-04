@@ -13,7 +13,9 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
     axios
       .get(`/api/twitter_users?handle=${handle}`)
       .then((res) => {
-        setSpeakers((prev) => [...prev, ...res.data])
+        const user = res.data
+        console.log('res.data :>> ', res.data)
+        setSpeakers((prev) => [...prev, user])
         setHandle('')
       })
       .catch((err) => console.log(err))
@@ -51,12 +53,14 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
         <ul className="list-reset list-unstyled list-inline list-inline-icon-left">
           {speakers.map((speaker) => (
             <li key={speaker.id} className="mb-2">
-              <button
-                className="mr-4 font-mono font-semibold text-gray-900"
-                onClick={() => deleteSpeaker(speaker.id)}
-              >
-                x
-              </button>
+              <span className="mr-2">
+                <button
+                  className="font-mono font-semibold text-gray-900 transform rotate-45"
+                  onClick={() => deleteSpeaker(speaker.id)}
+                >
+                  +
+                </button>
+              </span>
               <span className="font-semibold text-gray-500">@{speaker.username}</span>
             </li>
           ))}

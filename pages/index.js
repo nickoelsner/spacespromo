@@ -23,6 +23,102 @@ const backgroundColors = [
 const textColors = ['text-white', 'text-gray-200', 'text-gray-700', 'text-gray-900']
 const textBgColors = ['bg-white', 'bg-gray-200', 'bg-gray-700', 'bg-gray-900']
 
+const seedUsers6 = [
+  {
+    username: 'NickOelsner',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1364044816649121796/uLmGPnwy_normal.jpg',
+    id: '1364044326334918656',
+    name: 'Nick Oelsner',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1354163904213966848/4dOl8di8_normal.jpg',
+    id: '1354159191296864256',
+    name: 'Katherine Peterson',
+    username: 'katherinecodes',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1421305898379608065/0iXfDSGP_normal.jpg',
+    username: 'tanoaksam',
+    id: '1311650703052476416',
+    name: 'Sam Sycamore 🌲 ⛰',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1412761083849457664/lsGkrZIQ_normal.jpg',
+    username: 'edanbenatar',
+    id: '1262720796511940609',
+    name: 'Edan Ben-Atar 🐒',
+  },
+  {
+    name: '🌲 James Cox 🦔',
+    username: 'MemRook',
+    id: '239982740',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1402802422637117451/U-fjmCk6_normal.jpg',
+  },
+  {
+    name: 'Rocco Sangellino',
+    username: 'RoccoSangellino',
+    id: '1337808128176340992',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1388602894258114561/LYpjcAVx_normal.jpg',
+  },
+]
+const seedUsers7 = [
+  {
+    username: 'NickOelsner',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1364044816649121796/uLmGPnwy_normal.jpg',
+    id: '1364044326334918656',
+    name: 'Nick Oelsner',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1354163904213966848/4dOl8di8_normal.jpg',
+    id: '1354159191296864256',
+    name: 'Katherine Peterson',
+    username: 'katherinecodes',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1421305898379608065/0iXfDSGP_normal.jpg',
+    username: 'tanoaksam',
+    id: '1311650703052476416',
+    name: 'Sam Sycamore 🌲 ⛰',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1412761083849457664/lsGkrZIQ_normal.jpg',
+    username: 'edanbenatar',
+    id: '1262720796511940609',
+    name: 'Edan Ben-Atar 🐒',
+  },
+  {
+    name: '🌲 James Cox 🦔',
+    username: 'MemRook',
+    id: '239982740',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1402802422637117451/U-fjmCk6_normal.jpg',
+  },
+  {
+    name: 'Rocco Sangellino',
+    username: 'RoccoSangellino',
+    id: '1337808128176340992',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1388602894258114561/LYpjcAVx_normal.jpg',
+  },
+  {
+    username: 'shookcodes',
+    name: 'Sarah Shook 🎀💎',
+    id: '1212524335174311936',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1400216053280559104/WvAf6G1M_normal.jpg',
+  },
+]
+
 export default function Home() {
   const [speakers, setSpeakers] = useState([])
   const [title, setTitle] = useState('')
@@ -57,7 +153,7 @@ export default function Home() {
           <li className="flex flex-col items-center mx-2 mb-3" key={speaker.name}>
             <img
               className="w-[4.9rem] h-[4.9rem] mx-auto rounded-full"
-              src={`https://unavatar.io/twitter/${speaker.username}`}
+              src={speaker.profile_image_url.replace(/_normal/g, '')}
               alt=""
             />
             <h3 className={`text-[12px] font-medium ${textColor}`}>{speaker.name}</h3>
@@ -71,7 +167,7 @@ export default function Home() {
   )
 
   return (
-    <div className="bg-gradient-to-t from-fuchsia-200 to-fuchsia-50">
+    <div className="h-screen bg-gray-50">
       <Head>
         <title>Spaces Promo</title>
         <link rel="icon" href="/favicon.ico" />
@@ -129,8 +225,8 @@ export default function Home() {
                     <div className="mt-1">
                       <input
                         type="text"
-                        name="title"
-                        id="title"
+                        name="datetime"
+                        id="datetime"
                         placeholder="Enter the date and time as you'd like it to appear"
                         value={dateTime}
                         onChange={(e) => setDateTime(e.target.value)}
