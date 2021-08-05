@@ -5,6 +5,8 @@ import * as htmlToImage from 'html-to-image'
 import { fontSize, width } from 'tailwindcss/defaultTheme'
 import RangeSlider from '../components/Slider'
 import StyleDetails from '../components/StyleDetails'
+import { ImageLayout1 } from '../components/ImageLayout1'
+import { ImageLayout2 } from '../components/ImageLayout2'
 
 const download = require('downloadjs')
 
@@ -30,7 +32,7 @@ const seedUsers6 = [
       'https://pbs.twimg.com/profile_images/1364044816649121796/uLmGPnwy_normal.jpg',
     id: '1364044326334918656',
     name: 'Nick Oelsner',
-    title: '',
+    title: 'Frontend Developer/ Freelancer',
   },
   {
     profile_image_url:
@@ -38,31 +40,31 @@ const seedUsers6 = [
     id: '1354159191296864256',
     name: 'Katherine Peterson',
     username: 'katherinecodes',
-    title: '',
+    title: 'Software Engineer at Github',
   },
   {
     profile_image_url:
       'https://pbs.twimg.com/profile_images/1421305898379608065/0iXfDSGP_normal.jpg',
     username: 'tanoaksam',
     id: '1311650703052476416',
-    name: 'Sam Sycamore 🌲 ⛰',
-    title: '',
+    name: 'Sam Sycamore',
+    title: 'Content & Marketing at Hashnode',
   },
   {
     profile_image_url:
       'https://pbs.twimg.com/profile_images/1412761083849457664/lsGkrZIQ_normal.jpg',
     username: 'edanbenatar',
     id: '1262720796511940609',
-    name: 'Edan Ben-Atar 🐒',
-    title: '',
+    name: 'Edan Ben-Atar',
+    title: 'Freelancer & Business Owner',
   },
   {
-    name: '🌲 James Cox 🦔',
+    name: 'James Cox',
     username: 'MemRook',
     id: '239982740',
     profile_image_url:
       'https://pbs.twimg.com/profile_images/1402802422637117451/U-fjmCk6_normal.jpg',
-    title: '',
+    title: 'Software Developer at Webstraunt',
   },
   {
     name: 'Rocco Sangellino',
@@ -70,7 +72,7 @@ const seedUsers6 = [
     id: '1337808128176340992',
     profile_image_url:
       'https://pbs.twimg.com/profile_images/1388602894258114561/LYpjcAVx_normal.jpg',
-    title: '',
+    title: 'Sofware Lead at Mondo Robot',
   },
 ]
 const seedUsers7 = [
@@ -130,7 +132,7 @@ export default function Home() {
   const [title, setTitle] = useState('')
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
   const [textColor, setTextColor] = useState(textColors[0])
-  const [dateTime, setDateTime] = useState('')
+  const [dateTime, setDateTime] = useState('August 8, 2021 - 8AM PT / 11AM ET')
   const [titleTextSize, setTitleTextSize] = useState(32)
   const [layoutVersion, setLayoutVersion] = useState(1)
 
@@ -142,78 +144,6 @@ export default function Home() {
       download(dataUrl, 'SpacesPromo.png')
     })
   }
-
-  const ImagePreview = ({ id }) => (
-    <div
-      id={id}
-      className={`aspect-w-16 aspect-h-9 ${backgroundColor} transform ${textColor} rounded-lg`}
-    >
-      <div className="flex flex-col items-center justify-around w-full h-full p-3">
-        <h1
-          className="font-medium leading-none text-center"
-          style={{ fontSize: titleTextSize + 'px' }}
-        >
-          {title || 'Title'}
-        </h1>
-        {/* <div className="flex-grow" /> */}
-        <ul className="flex flex-wrap justify-center gap-2">
-          {speakers.map((speaker) => (
-            <li
-              className="flex flex-col items-center font-bold text-center px-1 min-w-[100px] max-w-[130px]"
-              key={speaker.name}
-            >
-              <img
-                className="w-[60px] h-[60px] mx-auto rounded-full"
-                src={speaker.profile_image_url.replace(/_normal/g, '')}
-                alt=""
-              />
-              <h3 className={`text-[13px] font-medium ${textColor}`}>{speaker.name}</h3>
-              {speaker.title && (
-                <h3 className={`text-[10px] font-light ${textColor}`}>{speaker.title}</h3>
-              )}
-            </li>
-          ))}
-        </ul>
-        <p className="font-bold text-center">{dateTime}</p>
-      </div>
-    </div>
-  )
-  const ImagePreview2 = ({ id }) => (
-    <div
-      id={id}
-      className={`aspect-w-16 aspect-h-9 ${backgroundColor} transform ${textColor} rounded-lg`}
-    >
-      <div className="flex items-center justify-around w-full h-full">
-        <div className="flex flex-col justify-around w-1/3 h-full p-4 item-center">
-          <h1
-            className="font-medium leading-none text-center"
-            style={{ fontSize: titleTextSize + 'px' }}
-          >
-            {title || 'Title'}
-          </h1>
-          <p className="font-bold text-center">{dateTime}</p>
-        </div>
-        <ul className="flex flex-wrap justify-between w-2/3 h-full pr-4 items-around">
-          {speakers.map((speaker) => (
-            <li
-              className="flex flex-col items-center justify-center font-bold text-center min-w-[100px] max-w-[123px]"
-              key={speaker.name}
-            >
-              <img
-                className="w-[5rem] h-[5rem] mx-auto rounded-full"
-                src={speaker.profile_image_url.replace(/_normal/g, '')}
-                alt=""
-              />
-              <h3 className={`text-[13px] font-medium ${textColor}`}>{speaker.name}</h3>
-              {speaker.title && (
-                <h3 className={`text-[10px] font-light ${textColor}`}>{speaker.title}</h3>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  )
 
   return (
     <div className="bg-gray-50">
@@ -337,9 +267,27 @@ export default function Home() {
                     </button>
                   </span>
                 </div>
-                <ImagePreview2 id="promo-image" />
+                <ImageLayout1
+                  id="promo-image"
+                  idx={speakers.length - 1}
+                  backgroundColor={backgroundColor}
+                  textColor={textColor}
+                  titleTextSize={titleTextSize}
+                  title={title}
+                  speakers={speakers}
+                  dateTime={dateTime}
+                />
                 <br />
-                <ImagePreview id="promo-ima" />
+                <ImageLayout2
+                  id="promo-image-2"
+                  idx={speakers.length - 1}
+                  backgroundColor={backgroundColor}
+                  textColor={textColor}
+                  titleTextSize={titleTextSize}
+                  title={title}
+                  speakers={speakers}
+                  dateTime={dateTime}
+                />
                 <button
                   className="inline-flex items-center justify-center px-6 py-2 mt-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800"
                   onClick={onSaveImage}

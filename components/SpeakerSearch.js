@@ -68,7 +68,7 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
           </button>
         </form>
       </div>
-      <div className="mb-4 col-span-full">
+      <div className="mb-8 col-span-full">
         <ul className="list-reset list-unstyled list-inline list-inline-icon-left">
           {speakers.map((speaker) => (
             <li key={speaker.id} className="flex items-center w-full py-3 border-t border-gray-300">
