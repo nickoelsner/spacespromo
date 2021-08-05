@@ -8,13 +8,27 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
     setHandle(e.target.value)
   }
 
+  const handleAttributeChange = (e, id, attribute) => {
+    const currentSpeakerIndex = speakers.findIndex((speaker) => speaker.id === id)
+    if (currentSpeakerIndex >= 0) {
+      setSpeakers((prev) => [
+        ...prev.slice(0, currentSpeakerIndex),
+        Object.assign({}, prev[currentSpeakerIndex], { [attribute]: e.target.value }),
+        ...prev.slice(currentSpeakerIndex + 1),
+      ])
+    }
+  }
+
+  console.log('speakers :>> ', speakers)
+
   const onTwitterHandleSearch = (e) => {
     e.preventDefault()
     axios
       .get(`/api/twitter_users?handle=${handle}`)
       .then((res) => {
         const user = res.data
-        console.log('res.data :>> ', res.data)
+        user.title = 'cool person'
+        console.log('user :>> ', user)
         setSpeakers((prev) => [...prev, user])
         setHandle('')
       })
@@ -57,7 +71,7 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
       <div className="mb-4 col-span-full">
         <ul className="list-reset list-unstyled list-inline list-inline-icon-left">
           {speakers.map((speaker) => (
-            <li key={speaker.id} className="mb-2">
+            <li key={speaker.id} className="flex mb-2">
               <span className="mr-2">
                 <button
                   className="font-mono font-semibold text-gray-900 transform rotate-45"
@@ -66,7 +80,17 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
                   +
                 </button>
               </span>
-              <span className="font-semibold text-gray-500">@{speaker.username}</span>
+              <span className="font-semibold text-gray-500">@{speaker.username} => </span>
+              <input
+                type="text"
+                value={speaker.name}
+                onChange={(e) => handleAttributeChange(e, speaker.id, 'name')}
+              />
+              <input
+                type="text"
+                value={speaker.title}
+                onChange={(e) => handleAttributeChange(e, speaker.id, 'title')}
+              />
             </li>
           ))}
         </ul>

@@ -1,5 +1,5 @@
 import SpeakerSearch from '../components/SpeakerSearch'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import * as htmlToImage from 'html-to-image'
 import { fontSize, width } from 'tailwindcss/defaultTheme'
@@ -30,6 +30,7 @@ const seedUsers6 = [
       'https://pbs.twimg.com/profile_images/1364044816649121796/uLmGPnwy_normal.jpg',
     id: '1364044326334918656',
     name: 'Nick Oelsner',
+    title: '',
   },
   {
     profile_image_url:
@@ -37,6 +38,7 @@ const seedUsers6 = [
     id: '1354159191296864256',
     name: 'Katherine Peterson',
     username: 'katherinecodes',
+    title: '',
   },
   {
     profile_image_url:
@@ -44,6 +46,7 @@ const seedUsers6 = [
     username: 'tanoaksam',
     id: '1311650703052476416',
     name: 'Sam Sycamore 🌲 ⛰',
+    title: '',
   },
   {
     profile_image_url:
@@ -51,6 +54,7 @@ const seedUsers6 = [
     username: 'edanbenatar',
     id: '1262720796511940609',
     name: 'Edan Ben-Atar 🐒',
+    title: '',
   },
   {
     name: '🌲 James Cox 🦔',
@@ -58,6 +62,7 @@ const seedUsers6 = [
     id: '239982740',
     profile_image_url:
       'https://pbs.twimg.com/profile_images/1402802422637117451/U-fjmCk6_normal.jpg',
+    title: '',
   },
   {
     name: 'Rocco Sangellino',
@@ -65,6 +70,7 @@ const seedUsers6 = [
     id: '1337808128176340992',
     profile_image_url:
       'https://pbs.twimg.com/profile_images/1388602894258114561/LYpjcAVx_normal.jpg',
+    title: '',
   },
 ]
 const seedUsers7 = [
@@ -120,12 +126,13 @@ const seedUsers7 = [
 ]
 
 export default function Home() {
-  const [speakers, setSpeakers] = useState([])
+  const [speakers, setSpeakers] = useState(seedUsers6)
   const [title, setTitle] = useState('')
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
   const [textColor, setTextColor] = useState(textColors[0])
   const [dateTime, setDateTime] = useState('')
   const [titleTextSize, setTitleTextSize] = useState(32)
+  const [layoutVersion, setLayoutVersion] = useState(1)
 
   const onSaveImage = () => {
     const imageElement = document.getElementById('promo-image')
@@ -137,36 +144,79 @@ export default function Home() {
   }
 
   const ImagePreview = ({ id }) => (
-    <div id={id} className={`aspect-w-16 aspect-h-9 ${backgroundColor} transform`}>
-      <div className="flex flex-col items-center justify-between w-full h-full p-5">
+    <div
+      id={id}
+      className={`aspect-w-16 aspect-h-9 ${backgroundColor} transform ${textColor} rounded-lg`}
+    >
+      <div className="flex flex-col items-center justify-around w-full h-full p-3">
         <h1
-          className={`mb-5 font-medium text-center leading-none ${textColor}`}
+          className="font-medium leading-none text-center"
           style={{ fontSize: titleTextSize + 'px' }}
         >
           {title || 'Title'}
         </h1>
-        <div className="flex-grow" />
-        <ul className="flex flex-wrap justify-center">
+        {/* <div className="flex-grow" /> */}
+        <ul className="flex flex-wrap justify-center gap-2">
           {speakers.map((speaker) => (
-            <li className="flex flex-col items-center mx-2 mb-3" key={speaker.name}>
+            <li
+              className="flex flex-col items-center font-bold text-center px-1 min-w-[100px] max-w-[130px]"
+              key={speaker.name}
+            >
               <img
-                className="w-[4.9rem] h-[4.9rem] mx-auto rounded-full"
+                className="w-[60px] h-[60px] mx-auto rounded-full"
                 src={speaker.profile_image_url.replace(/_normal/g, '')}
                 alt=""
               />
-              <h3 className={`text-[12px] font-medium ${textColor}`}>{speaker.name}</h3>
+              <h3 className={`text-[13px] font-medium ${textColor}`}>{speaker.name}</h3>
+              <h3 className={`text-[10px] font-light ${textColor}`}>{speaker.title}</h3>
             </li>
           ))}
         </ul>
-        <div className="flex-grow" />
-        <div className="flex-grow" />
-        <p className={`text-center ${textColor}`}>{dateTime}</p>
+        {/* <div className="flex-grow" /> */}
+        {/* <div className="flex-grow" /> */}
+        <p className="font-bold text-center">{dateTime}</p>
+      </div>
+    </div>
+  )
+  const ImagePreview2 = ({ id }) => (
+    <div
+      id={id}
+      className={`aspect-w-16 aspect-h-9 ${backgroundColor} transform ${textColor} rounded-lg`}
+    >
+      <div className="flex items-center justify-around w-full h-full">
+        <div className="flex flex-col justify-around w-1/3 h-full p-4 item-center">
+          <h1
+            className="font-medium leading-none text-center"
+            style={{ fontSize: titleTextSize + 'px' }}
+          >
+            {title || 'Title'}
+          </h1>
+          <p className="font-bold text-center">{dateTime}</p>
+        </div>
+        <ul className="flex flex-wrap justify-between w-2/3 h-full pr-2 items-around">
+          {speakers.map((speaker) => (
+            <li
+              className="flex flex-col items-center justify-center font-bold text-center min-w-[100px] max-w-[123px]"
+              key={speaker.name}
+            >
+              <img
+                className="w-[5rem] h-[5rem] mx-auto rounded-full"
+                src={speaker.profile_image_url.replace(/_normal/g, '')}
+                alt=""
+              />
+              <h3 className={`text-[13px] font-medium ${textColor}`}>{speaker.name}</h3>
+              {speaker.title && (
+                <h3 className={`text-[10px] font-light ${textColor}`}>{speaker.title}</h3>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   )
 
   return (
-    <div className="h-screen bg-gray-50">
+    <div className="bg-gray-50">
       <Head>
         <title>Spaces Promo</title>
         <link rel="icon" href="/favicon.ico" />
@@ -262,10 +312,34 @@ export default function Home() {
                     )
                   })}
                 </div>
-                <h3 className="pt-12 mb-4 text-lg font-medium leading-6 text-violet-900">
-                  Image Preview
-                </h3>
-                <ImagePreview id="promo-image" />
+                <div className="flex items-center pt-12 mb-4">
+                  <h3 className="mr-4 text-lg font-medium leading-6 text-violet-900">
+                    Image Preview
+                  </h3>
+                  <span className="relative z-0 inline-flex rounded-md shadow-sm">
+                    <button
+                      type="button"
+                      onClick={() => setLayoutVersion(1)}
+                      className={`relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-l-md focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 ${
+                        layoutVersion === 1 ? 'bg-violet-200' : ''
+                      }`}
+                    >
+                      Layout 1
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setLayoutVersion(2)}
+                      className={`relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-r-md focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 ${
+                        layoutVersion === 2 ? 'bg-violet-200' : ''
+                      }`}
+                    >
+                      Layout 2
+                    </button>
+                  </span>
+                </div>
+                <ImagePreview2 id="promo-image" />
+                <br />
+                <ImagePreview id="promo-ima" />
                 <button
                   className="inline-flex items-center justify-center px-6 py-2 mt-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800"
                   onClick={onSaveImage}
