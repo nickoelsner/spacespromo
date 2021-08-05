@@ -168,12 +168,12 @@ export default function Home() {
                 alt=""
               />
               <h3 className={`text-[13px] font-medium ${textColor}`}>{speaker.name}</h3>
-              <h3 className={`text-[10px] font-light ${textColor}`}>{speaker.title}</h3>
+              {speaker.title && (
+                <h3 className={`text-[10px] font-light ${textColor}`}>{speaker.title}</h3>
+              )}
             </li>
           ))}
         </ul>
-        {/* <div className="flex-grow" /> */}
-        {/* <div className="flex-grow" /> */}
         <p className="font-bold text-center">{dateTime}</p>
       </div>
     </div>
@@ -193,7 +193,7 @@ export default function Home() {
           </h1>
           <p className="font-bold text-center">{dateTime}</p>
         </div>
-        <ul className="flex flex-wrap justify-between w-2/3 h-full pr-2 items-around">
+        <ul className="flex flex-wrap justify-between w-2/3 h-full pr-4 items-around">
           {speakers.map((speaker) => (
             <li
               className="flex flex-col items-center justify-center font-bold text-center min-w-[100px] max-w-[123px]"
