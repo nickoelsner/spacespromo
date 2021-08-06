@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import * as htmlToImage from 'html-to-image'
 import { fontSize, width } from 'tailwindcss/defaultTheme'
+import { RadioGroup } from '@headlessui/react'
 import RangeSlider from '../components/Slider'
 import StyleDetails from '../components/StyleDetails'
 import { ImageLayout1 } from '../components/ImageLayout1'
@@ -127,6 +128,21 @@ const seedUsers7 = [
   },
 ]
 
+const layouts = [
+  {
+    name: 'Layout 1',
+    description: 'Maximum 8 Speakers',
+  },
+  {
+    name: 'Layout 2',
+    description: 'Maximum 6 Speakers',
+  },
+]
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 export default function Home() {
   const [speakers, setSpeakers] = useState(seedUsers6)
   const [title, setTitle] = useState('')
@@ -134,7 +150,7 @@ export default function Home() {
   const [textColor, setTextColor] = useState(textColors[0])
   const [dateTime, setDateTime] = useState('August 8, 2021 - 8AM PT / 11AM ET')
   const [titleTextSize, setTitleTextSize] = useState(32)
-  const [layoutVersion, setLayoutVersion] = useState(1)
+  const [selected, setSelected] = useState(layouts[0])
 
   const onSaveImage = () => {
     const imageElement = document.getElementById('promo-image')
@@ -146,13 +162,13 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-gray-50">
+    <div className="h-full pb-8 bg-gray-50 overscroll-none">
       <Head>
         <title>Spaces Promo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="max-w-xl mx-auto">
+      <div className="h-full px-4 mx-auto sm:px-6 lg:px-8 xl:flex xl:top-0 xl:w-full overscroll-none">
+        <div className="max-w-xl mx-auto xl:w-1/2">
           <div className="space-y-8 divide-y divide-gray-200">
             <div className="space-y-8 divide-y divide-gray-200">
               <div className="pt-8">
@@ -215,58 +231,107 @@ export default function Home() {
                   </div>
                   <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
                 </div>
-                <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
-                <div className="flex items-end gap-3 mb-5">
-                  {backgroundColors.map((color, i) => (
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="h-full max-w-xl mx-auto xl:w-1/2 xl:sticky xl:top-0">
+          <div className="w-full xl:flex xl:flex-col">
+            <div className="xl:order-2 xl:mt-8">
+              <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
+              <div className="flex items-end gap-3 mb-5">
+                {backgroundColors.map((color, i) => (
+                  <button
+                    key={i}
+                    className={`w-14 h-8 shadow-md rounded-sm ${color} ${
+                      backgroundColor === color ? 'transform scale-[120%]' : ''
+                    }`}
+                    onClick={() => setBackgroundColor(color)}
+                  />
+                ))}
+              </div>
+              <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
+              <div className="flex items-end gap-3">
+                {textColors.map((color, i) => {
+                  const bgColor = color.replace(/text-/g, '')
+                  return (
                     <button
                       key={i}
-                      className={`w-14 h-8 shadow-md rounded-sm ${color} ${
-                        backgroundColor === color ? 'transform scale-[120%]' : ''
+                      className={`w-14 h-8 shadow-md rounded-sm bg-${bgColor} ${
+                        textColor === color ? 'transform scale-[120%]' : ''
                       }`}
-                      onClick={() => setBackgroundColor(color)}
+                      onClick={() => setTextColor(color)}
                     />
-                  ))}
-                </div>
-                <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
-                <div className="flex items-end gap-3">
-                  {textColors.map((color, i) => {
-                    const bgColor = color.replace(/text-/g, '')
-                    return (
-                      <button
-                        key={i}
-                        className={`w-14 h-8 shadow-md rounded-sm bg-${bgColor} ${
-                          textColor === color ? 'transform scale-[120%]' : ''
-                        }`}
-                        onClick={() => setTextColor(color)}
-                      />
-                    )
-                  })}
-                </div>
-                <div className="flex items-center pt-12 mb-4">
-                  <h3 className="mr-4 text-lg font-medium leading-6 text-violet-900">
-                    Image Preview
-                  </h3>
-                  <span className="relative z-0 inline-flex rounded-md shadow-sm">
-                    <button
-                      type="button"
-                      onClick={() => setLayoutVersion(1)}
-                      className={`relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-l-md focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 ${
-                        layoutVersion === 1 ? 'bg-violet-200' : ''
-                      }`}
-                    >
-                      Layout 1
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setLayoutVersion(2)}
-                      className={`relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-r-md focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 ${
-                        layoutVersion === 2 ? 'bg-violet-200' : ''
-                      }`}
-                    >
-                      Layout 2
-                    </button>
-                  </span>
-                </div>
+                  )
+                })}
+              </div>
+              <div className="pt-4">
+                <h4 className="block mb-2 text-sm font-medium text-violet-900">Layout</h4>
+                <RadioGroup value={selected} onChange={setSelected}>
+                  <RadioGroup.Label className="sr-only">Layout</RadioGroup.Label>
+                  <div className="-space-y-px bg-white rounded-md">
+                    {layouts.map((layout, layoutIdx) => (
+                      <RadioGroup.Option
+                        key={layout.name}
+                        value={layout}
+                        className={({ checked }) =>
+                          classNames(
+                            layoutIdx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
+                            layoutIdx === layouts.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
+                            checked ? 'bg-violet-50 border-violet-200 z-10' : 'border-gray-200',
+                            'relative border p-3 flex cursor-pointer focus:outline-none'
+                          )
+                        }
+                      >
+                        {({ active, checked }) => (
+                          <>
+                            <span
+                              className={classNames(
+                                checked
+                                  ? 'bg-violet-600 border-transparent'
+                                  : 'bg-white border-gray-300',
+                                active ? 'ring-2 ring-offset-2 ring-violet-500' : '',
+                                'h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center'
+                              )}
+                              aria-hidden="true"
+                            >
+                              <span className="rounded-full bg-white w-1.5 h-1.5" />
+                            </span>
+                            <div className="flex flex-row gap-3 ml-3">
+                              <RadioGroup.Label
+                                as="span"
+                                className={classNames(
+                                  checked ? 'text-violet-900' : 'text-gray-900',
+                                  'block text-sm font-medium'
+                                )}
+                              >
+                                {layout.name}
+                              </RadioGroup.Label>
+                              <RadioGroup.Description
+                                as="span"
+                                className={classNames(
+                                  checked ? 'text-violet-700' : 'text-gray-500',
+                                  'block text-sm'
+                                )}
+                              >
+                                {layout.description}
+                              </RadioGroup.Description>
+                            </div>
+                          </>
+                        )}
+                      </RadioGroup.Option>
+                    ))}
+                  </div>
+                </RadioGroup>
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center pt-8 mb-4">
+                <h3 className="mr-4 text-xl font-medium leading-6 text-violet-900">
+                  Image Preview
+                </h3>
+              </div>
+              {selected.name === 'Layout 1' && (
                 <ImageLayout1
                   id="promo-image"
                   idx={speakers.length - 1}
@@ -277,9 +342,10 @@ export default function Home() {
                   speakers={speakers}
                   dateTime={dateTime}
                 />
-                <br />
+              )}
+              {selected.name === 'Layout 2' && (
                 <ImageLayout2
-                  id="promo-image-2"
+                  id="promo-image"
                   idx={speakers.length - 1}
                   backgroundColor={backgroundColor}
                   textColor={textColor}
@@ -288,14 +354,14 @@ export default function Home() {
                   speakers={speakers}
                   dateTime={dateTime}
                 />
-                <button
-                  className="inline-flex items-center justify-center px-6 py-2 mt-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800"
-                  onClick={onSaveImage}
-                >
-                  Save Image
-                </button>
-              </div>
+              )}
             </div>
+            <button
+              className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 xl:order-3"
+              onClick={onSaveImage}
+            >
+              Save Image
+            </button>
           </div>
         </div>
       </div>

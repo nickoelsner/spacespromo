@@ -19,8 +19,6 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
     }
   }
 
-  console.log('speakers :>> ', speakers)
-
   const onTwitterHandleSearch = (e) => {
     e.preventDefault()
     axios
