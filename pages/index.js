@@ -12,17 +12,18 @@ import { ImageLayout2 } from '../components/ImageLayout2'
 const download = require('downloadjs')
 
 const backgroundColors = [
+  'bg-gradient-to-br from-pink-500 to-indigo-800',
+  'bg-gradient-to-br from-blue-200 to-blue-700',
   'bg-[#B16AF7]',
   'bg-[#5f7fff]',
   'bg-[#8FD4B7]',
   'bg-[#EE6A65]',
   'bg-[#F5DC66]',
   'bg-[#E47DF8]',
-  'bg-gradient-to-br from-pink-500 to-indigo-800',
-  'bg-gradient-to-br from-blue-200 to-blue-700',
 ]
 
 const textColors = ['text-white', 'text-gray-200', 'text-gray-700', 'text-gray-900']
+// needed so that Tailwind JIT engine "sees" these classes and adds them to the tailwind.css file
 const textBgColors = ['bg-white', 'bg-gray-200', 'bg-gray-700', 'bg-gray-900']
 
 const seedUsers6 = [

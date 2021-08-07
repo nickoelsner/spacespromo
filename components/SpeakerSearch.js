@@ -25,7 +25,7 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
       .get(`/api/twitter_users?handle=${handle}`)
       .then((res) => {
         const user = res.data
-        user.title = 'cool person'
+        user.title = ''
         console.log('user :>> ', user)
         setSpeakers((prev) => [...prev, user])
         setHandle('')
