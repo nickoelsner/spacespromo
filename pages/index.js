@@ -143,11 +143,11 @@ function classNames(...classes) {
 }
 
 export default function Home() {
-  const [speakers, setSpeakers] = useState(seedUsers6)
+  const [speakers, setSpeakers] = useState([])
   const [title, setTitle] = useState('')
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
   const [textColor, setTextColor] = useState(textColors[0])
-  const [dateTime, setDateTime] = useState('August 8, 2021 - 8AM PT / 11AM ET')
+  const [dateTime, setDateTime] = useState('')
   const [titleTextSize, setTitleTextSize] = useState(32)
   const [dateTimeTextSize, setDateTimeTextSize] = useState(16)
   const [selected, setSelected] = useState(layouts[0])
