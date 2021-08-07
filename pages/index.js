@@ -360,6 +360,12 @@ export default function Home() {
               >
                 Save Image
               </button>
+              <a
+                className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 ml-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
+                href="/api/auth/login"
+              >
+                Tweet Image
+              </a>
             </div>
             <div>
               <div className="flex items-center mb-4 sm:pt-8">
