@@ -72,7 +72,7 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
             <li key={speaker.id} className="flex items-center w-full py-3 border-t border-gray-300">
               <div className="flex flex-col flex-1">
                 <span className="mb-2 font-semibold text-gray-500">@{speaker.username}</span>
-                <div className="flex flex-row">
+                <div className="flex flex-col sm:flex-row">
                   <div>
                     <label
                       htmlFor={`${speaker.username}-name`}
@@ -86,10 +86,10 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
                       id={`${speaker.username}-name`}
                       value={speaker.name}
                       onChange={(e) => handleAttributeChange(e, speaker.id, 'name')}
-                      className="block text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50"
+                      className="block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50"
                     />
                   </div>
-                  <div className="flex-1 ml-3">
+                  <div className="flex-1 mt-2 sm:mt-0 sm:ml-3">
                     <label
                       htmlFor={`${speaker.username}-title`}
                       className="block text-sm font-medium text-violet-900"

@@ -1,5 +1,5 @@
 import SpeakerSearch from '../components/SpeakerSearch'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Head from 'next/head'
 import * as htmlToImage from 'html-to-image'
 import { fontSize, width } from 'tailwindcss/defaultTheme'
@@ -20,7 +20,6 @@ const backgroundColors = [
   'bg-[#E47DF8]',
   'bg-gradient-to-br from-pink-500 to-indigo-800',
   'bg-gradient-to-br from-blue-200 to-blue-700',
-  'bg-white',
 ]
 
 const textColors = ['text-white', 'text-gray-200', 'text-gray-700', 'text-gray-900']
@@ -150,11 +149,31 @@ export default function Home() {
   const [textColor, setTextColor] = useState(textColors[0])
   const [dateTime, setDateTime] = useState('August 8, 2021 - 8AM PT / 11AM ET')
   const [titleTextSize, setTitleTextSize] = useState(32)
+  const [dateTimeTextSize, setDateTimeTextSize] = useState(16)
   const [selected, setSelected] = useState(layouts[0])
+  const [scale, setScale] = useState(1)
+
+  const imageContainer = useRef()
+  console.log('imageContainer.current :>> ', imageContainer.current)
+  // const scale = imageContainer.current.offsetWidth ? imageContainer.current.offsetWidth / 576 : 1
+  // const scale = 0.7
+
+  const [refAquired, setRefAquired] = useState(false)
+  //...
+  useEffect(() => {
+    setRefAquired(true)
+  }, [])
+
+  useEffect(() => {
+    setScale(imageContainer.current.offsetWidth / 576)
+  }, [refAquired])
+
+  console.log('scale :>> ', scale)
+  console.log('speakers :>> ', speakers)
 
   const onSaveImage = () => {
     const imageElement = document.getElementById('promo-image')
-    const scale = 1600 / imageElement.offsetWidth
+    // const scale = 1600 / imageElement.offsetWidth
     const options = { height: 900, width: 1600, style: { transform: `scale(${scale})` } }
     htmlToImage.toPng(imageElement).then(function (dataUrl) {
       download(dataUrl, 'SpacesPromo.png')
@@ -191,27 +210,25 @@ export default function Home() {
                         className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
                       />
                     </div>
-                    <div className="">
-                      <StyleDetails>
-                        <div className="text-violet-900">
-                          <label
-                            htmlFor="title-text-size"
-                            className="block text-sm font-medium text-violet-900"
-                          >
-                            Text Size
-                          </label>
-                          <RangeSlider
-                            setStateValue={setTitleTextSize}
-                            min={20}
-                            max={64}
-                            step={4}
-                            defaultValue={32}
-                            label="title-text-size"
-                            unit="px"
-                          />
-                        </div>
-                      </StyleDetails>
-                    </div>
+                    <StyleDetails>
+                      <div className="text-violet-900">
+                        <label
+                          htmlFor="title-text-size"
+                          className="block text-sm font-medium text-violet-900"
+                        >
+                          Text Size
+                        </label>
+                        <RangeSlider
+                          setStateValue={setTitleTextSize}
+                          min={8}
+                          max={56}
+                          step={1}
+                          defaultValue={32}
+                          label="title-text-size"
+                          unit="px"
+                        />
+                      </div>
+                    </StyleDetails>
                   </div>
                   <div className="col-span-full">
                     <label htmlFor="datetime" className="block text-sm font-medium text-violet-900">
@@ -228,6 +245,25 @@ export default function Home() {
                         className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
                       />
                     </div>
+                    <StyleDetails>
+                      <div className="text-violet-900">
+                        <label
+                          htmlFor="date-time-text-size"
+                          className="block text-sm font-medium text-violet-900"
+                        >
+                          Text Size
+                        </label>
+                        <RangeSlider
+                          setStateValue={setDateTimeTextSize}
+                          min={8}
+                          max={24}
+                          step={1}
+                          defaultValue={16}
+                          label="date-time-text-size"
+                          unit="px"
+                        />
+                      </div>
+                    </StyleDetails>
                   </div>
                   <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
                 </div>
@@ -239,7 +275,7 @@ export default function Home() {
           <div className="w-full xl:flex xl:flex-col">
             <div className="xl:order-2 xl:mt-8">
               <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
-              <div className="flex items-end gap-3 mb-5">
+              <div className="flex flex-wrap items-end gap-3 mb-5">
                 {backgroundColors.map((color, i) => (
                   <button
                     key={i}
@@ -331,28 +367,34 @@ export default function Home() {
                   Image Preview
                 </h3>
               </div>
+
+              <div ref={imageContainer} id="imageContainer" className="w-full"></div>
               {selected.name === 'Layout 1' && (
                 <ImageLayout1
                   id="promo-image"
-                  idx={speakers.length - 1}
+                  idx={speakers.length}
                   backgroundColor={backgroundColor}
                   textColor={textColor}
                   titleTextSize={titleTextSize}
                   title={title}
                   speakers={speakers}
                   dateTime={dateTime}
+                  dateTimeTextSize={dateTimeTextSize}
+                  scale={scale}
                 />
               )}
               {selected.name === 'Layout 2' && (
                 <ImageLayout2
                   id="promo-image"
-                  idx={speakers.length - 1}
+                  idx={speakers.length}
                   backgroundColor={backgroundColor}
                   textColor={textColor}
                   titleTextSize={titleTextSize}
                   title={title}
                   speakers={speakers}
                   dateTime={dateTime}
+                  dateTimeTextSize={dateTimeTextSize}
+                  scale={scale}
                 />
               )}
             </div>

@@ -15,6 +15,11 @@ const layout1Styles = [
     img: 'w-[80px] h-[80px] mx-auto rounded-full mb-1',
   },
   {
+    ul: 'flex flex-wrap justify-center gap-4',
+    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
+    img: 'w-[80px] h-[80px] mx-auto rounded-full mb-1',
+  },
+  {
     ul: 'flex flex-wrap justify-center gap-2',
     li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
     img: 'w-[80px] h-[80px] mx-auto rounded-full mb-1',
@@ -50,10 +55,13 @@ export const ImageLayout1 = ({
   title,
   speakers,
   dateTime,
+  dateTimeTextSize,
+  scale,
 }) => (
   <div
     id={id}
-    className={`aspect-w-16 aspect-h-9 ${backgroundColor} transform ${textColor} rounded-lg`}
+    className={`w-[576px] h-[324px] ${backgroundColor} transform ${textColor} rounded-lg`}
+    style={{ transform: 'scale(' + scale + ')', transformOrigin: '0 0 0' }}
   >
     <div className="flex flex-col items-center justify-around w-full h-full p-3">
       <h1
@@ -64,20 +72,24 @@ export const ImageLayout1 = ({
       </h1>
       <ul className={layout1Styles[idx].ul}>
         {speakers.map((speaker) => (
-          <li className={layout1Styles[idx].li} key={speaker.name}>
+          <li className={layout1Styles[idx].li} key={speaker.id}>
             <img
               className={layout1Styles[idx].img}
               src={speaker.profile_image_url.replace(/_normal/g, '')}
               alt=""
             />
-            <h3 className={`text-[13px] font-medium ${textColor}`}>{speaker.name}</h3>
+            {speaker.name && (
+              <h3 className={`text-[13px] font-medium ${textColor}`}>{speaker.name}</h3>
+            )}
             {speaker.title && (
               <h3 className={`text-[10px] font-light ${textColor}`}>{speaker.title}</h3>
             )}
           </li>
         ))}
       </ul>
-      <p className="font-bold text-center">{dateTime}</p>
+      <p className="font-bold text-center" style={{ fontSize: dateTimeTextSize + 'px' }}>
+        {dateTime}
+      </p>
     </div>
   </div>
 )
