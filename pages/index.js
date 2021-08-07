@@ -8,6 +8,7 @@ import RangeSlider from '../components/Slider'
 import StyleDetails from '../components/StyleDetails'
 import { ImageLayout1 } from '../components/ImageLayout1'
 import { ImageLayout2 } from '../components/ImageLayout2'
+import { useUser } from '@auth0/nextjs-auth0'
 
 const download = require('downloadjs')
 
@@ -172,6 +173,8 @@ export default function Home() {
       download(dataUrl, 'SpacesPromo.png')
     })
   }
+
+  // const { user, error, isLoading } = useUser()
 
   return (
     <div className="h-full pb-8 bg-gray-50 overscroll-none">
@@ -367,6 +370,8 @@ export default function Home() {
               >
                 Tweet Image
               </a>
+              <a href="/api/auth/login">Login</a>
+              <a href="/api/auth/logout">Logout</a>
             </div>
             <div>
               <div className="flex items-center mb-4 sm:pt-8">
