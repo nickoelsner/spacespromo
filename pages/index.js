@@ -142,15 +142,6 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const SaveButton = ({ onSaveImage }) => (
-  <button
-    className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
-    onClick={onSaveImage}
-  >
-    Save Image
-  </button>
-)
-
 export default function Home() {
   const [speakers, setSpeakers] = useState(seedUsers6)
   const [title, setTitle] = useState('')
@@ -363,7 +354,12 @@ export default function Home() {
               </div>
             </div>
             <div className="sm:order-3 xl:order-2 sm:inline-block">
-              <SaveButton onSaveImage={onSaveImage} />
+              <button
+                className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
+                onClick={onSaveImage}
+              >
+                Save Image
+              </button>
             </div>
             <div>
               <div className="flex items-center mb-4 sm:pt-8">
