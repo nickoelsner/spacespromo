@@ -72,7 +72,7 @@ const seedUsers6 = [
     id: '1337808128176340992',
     profile_image_url:
       'https://pbs.twimg.com/profile_images/1388602894258114561/LYpjcAVx_normal.jpg',
-    title: 'Sofware Lead at Mondo Robot',
+    title: 'Software Lead at Mondo Robot',
   },
 ]
 const seedUsers7 = [
@@ -142,6 +142,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+const SaveButton = ({ onSaveImage }) => (
+  <button
+    className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
+    onClick={onSaveImage}
+  >
+    Save Image
+  </button>
+)
+
 export default function Home() {
   const [speakers, setSpeakers] = useState(seedUsers6)
   const [title, setTitle] = useState('')
@@ -152,14 +161,9 @@ export default function Home() {
   const [dateTimeTextSize, setDateTimeTextSize] = useState(16)
   const [selected, setSelected] = useState(layouts[0])
   const [scale, setScale] = useState(1)
+  const [refAquired, setRefAquired] = useState(false)
 
   const imageContainer = useRef()
-  console.log('imageContainer.current :>> ', imageContainer.current)
-  // const scale = imageContainer.current.offsetWidth ? imageContainer.current.offsetWidth / 576 : 1
-  // const scale = 0.7
-
-  const [refAquired, setRefAquired] = useState(false)
-  //...
   useEffect(() => {
     setRefAquired(true)
   }, [])
@@ -167,9 +171,6 @@ export default function Home() {
   useEffect(() => {
     setScale(imageContainer.current.offsetWidth / 576)
   }, [refAquired])
-
-  console.log('scale :>> ', scale)
-  console.log('speakers :>> ', speakers)
 
   const onSaveImage = () => {
     const imageElement = document.getElementById('promo-image')
@@ -272,8 +273,8 @@ export default function Home() {
           </div>
         </div>
         <div className="h-full max-w-xl mx-auto xl:w-1/2 xl:sticky xl:top-0">
-          <div className="w-full xl:flex xl:flex-col">
-            <div className="xl:order-2 xl:mt-8">
+          <div className="w-full sm:flex sm:flex-col">
+            <div className="xl:order-3">
               <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
               <div className="flex flex-wrap items-end gap-3 mb-5">
                 {backgroundColors.map((color, i) => (
@@ -361,8 +362,11 @@ export default function Home() {
                 </RadioGroup>
               </div>
             </div>
+            <div className="sm:order-3 xl:order-2 sm:inline-block">
+              <SaveButton onSaveImage={onSaveImage} />
+            </div>
             <div>
-              <div className="flex items-center pt-8 mb-4">
+              <div className="flex items-center mb-4 sm:pt-8">
                 <h3 className="mr-4 text-xl font-medium leading-6 text-violet-900">
                   Image Preview
                 </h3>
@@ -398,12 +402,6 @@ export default function Home() {
                 />
               )}
             </div>
-            <button
-              className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 xl:order-3"
-              onClick={onSaveImage}
-            >
-              Save Image
-            </button>
           </div>
         </div>
       </div>
