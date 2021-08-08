@@ -6,3 +6,9 @@ html,
 body {
   background-color: #fafafa;
 }
+
+input[type='color'] {
+  -webkit-appearance: none;
+  border: none;
+  opacity: 0;
+}

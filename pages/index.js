@@ -154,6 +154,7 @@ export default function Home() {
   const [selected, setSelected] = useState(layouts[0])
   const [scale, setScale] = useState(1)
   const [refAquired, setRefAquired] = useState(false)
+  const [colorPicker, setColorPicker] = useState('#000000')
 
   const imageContainer = useRef()
   useEffect(() => {
@@ -163,6 +164,12 @@ export default function Home() {
   useEffect(() => {
     setScale(imageContainer.current.offsetWidth / 576)
   }, [refAquired])
+
+  useEffect(() => {
+    setBackgroundColor(`bg-[${colorPicker}]`)
+  }, [colorPicker])
+  console.log('colorPicker :>> ', colorPicker)
+  console.log('backgroundColor :>> ', typeof backgroundColor)
 
   const onSaveImage = () => {
     const imageElement = document.getElementById('promo-image')
@@ -280,6 +287,20 @@ export default function Home() {
                     onClick={() => setBackgroundColor(color)}
                   />
                 ))}
+
+                <div
+                  className="h-8 pt-1 text-sm text-center rounded-sm shadow-md w-14"
+                  style={{ backgroundColor: colorPicker }}
+                >
+                  {' '}
+                  Custom
+                  <input
+                    type="color"
+                    className="h-8 p-0 border-transparent rounded-sm shadow-md w-14"
+                    value={colorPicker}
+                    onChange={(e) => setColorPicker(e.target.value)}
+                  />
+                </div>
               </div>
               <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
               <div className="flex items-end gap-3">
@@ -392,6 +413,7 @@ export default function Home() {
                   dateTime={dateTime}
                   dateTimeTextSize={dateTimeTextSize}
                   scale={scale}
+                  colorPicker={colorPicker}
                 />
               )}
               {selected.name === 'Layout 2' && (
