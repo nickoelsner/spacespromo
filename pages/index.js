@@ -179,243 +179,277 @@ export default function Home() {
   if (error) console.log('Error: ', error)
   if (user) console.log('Logged in as: ', user)
 
+  const LogInOut = () => {
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>{error.message}</div>
+
+    if (user) {
+      return (
+        <div>
+          Welcome {user.name}!{' '}
+          <a
+            className="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800"
+            href="/api/auth/logout"
+          >
+            Logout
+          </a>
+        </div>
+      )
+    }
+
+    return (
+      <a
+        className="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800"
+        href="/api/auth/login"
+      >
+        Login
+      </a>
+    )
+  }
+
   return (
     <div className="h-full pb-8 bg-gray-50 overscroll-none">
       <Head>
         <title>Spaces Promo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="h-full px-4 mx-auto sm:px-6 lg:px-8 xl:flex xl:top-0 xl:w-full overscroll-none">
-        <div className="max-w-xl mx-auto xl:w-1/2">
-          <div className="space-y-8 divide-y divide-gray-200">
+      <>
+        <div className="flex items-center justify-center w-full py-4 bg-white shadow-md">
+          <LogInOut />
+        </div>
+        <div className="h-full px-4 mx-auto sm:px-6 lg:px-8 xl:flex xl:top-0 xl:w-full overscroll-none">
+          <div className="max-w-xl mx-auto xl:w-1/2">
             <div className="space-y-8 divide-y divide-gray-200">
-              <div className="pt-8">
-                <h3 className="text-xl font-medium leading-6 text-violet-900">
-                  Twitter Space Details
-                </h3>
-                <div className="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
-                  <div className="col-span-full">
-                    <label htmlFor="title" className="block text-sm font-medium text-violet-900">
-                      Title
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        placeholder="Title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
-                      />
-                    </div>
-                    <StyleDetails>
-                      <div className="text-violet-900">
-                        <label
-                          htmlFor="title-text-size"
-                          className="block text-sm font-medium text-violet-900"
-                        >
-                          Text Size
-                        </label>
-                        <RangeSlider
-                          setStateValue={setTitleTextSize}
-                          min={8}
-                          max={56}
-                          step={1}
-                          defaultValue={32}
-                          label="title-text-size"
-                          unit="px"
+              <div className="space-y-8 divide-y divide-gray-200">
+                <div className="pt-8">
+                  <h3 className="text-xl font-medium leading-6 text-violet-900">
+                    Twitter Space Details
+                  </h3>
+                  <div className="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
+                    <div className="col-span-full">
+                      <label htmlFor="title" className="block text-sm font-medium text-violet-900">
+                        Title
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          type="text"
+                          name="title"
+                          id="title"
+                          placeholder="Title"
+                          value={title}
+                          onChange={(e) => setTitle(e.target.value)}
+                          className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
                         />
                       </div>
-                    </StyleDetails>
-                  </div>
-                  <div className="col-span-full">
-                    <label htmlFor="datetime" className="block text-sm font-medium text-violet-900">
-                      Date and Time
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="datetime"
-                        id="datetime"
-                        placeholder="Enter the date and time as you'd like it to appear"
-                        value={dateTime}
-                        onChange={(e) => setDateTime(e.target.value)}
-                        className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
-                      />
+                      <StyleDetails>
+                        <div className="text-violet-900">
+                          <label
+                            htmlFor="title-text-size"
+                            className="block text-sm font-medium text-violet-900"
+                          >
+                            Text Size
+                          </label>
+                          <RangeSlider
+                            setStateValue={setTitleTextSize}
+                            min={8}
+                            max={56}
+                            step={1}
+                            defaultValue={32}
+                            label="title-text-size"
+                            unit="px"
+                          />
+                        </div>
+                      </StyleDetails>
                     </div>
-                    <StyleDetails>
-                      <div className="text-violet-900">
-                        <label
-                          htmlFor="date-time-text-size"
-                          className="block text-sm font-medium text-violet-900"
-                        >
-                          Text Size
-                        </label>
-                        <RangeSlider
-                          setStateValue={setDateTimeTextSize}
-                          min={8}
-                          max={24}
-                          step={1}
-                          defaultValue={16}
-                          label="date-time-text-size"
-                          unit="px"
+                    <div className="col-span-full">
+                      <label
+                        htmlFor="datetime"
+                        className="block text-sm font-medium text-violet-900"
+                      >
+                        Date and Time
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          type="text"
+                          name="datetime"
+                          id="datetime"
+                          placeholder="Enter the date and time as you'd like it to appear"
+                          value={dateTime}
+                          onChange={(e) => setDateTime(e.target.value)}
+                          className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
                         />
                       </div>
-                    </StyleDetails>
+                      <StyleDetails>
+                        <div className="text-violet-900">
+                          <label
+                            htmlFor="date-time-text-size"
+                            className="block text-sm font-medium text-violet-900"
+                          >
+                            Text Size
+                          </label>
+                          <RangeSlider
+                            setStateValue={setDateTimeTextSize}
+                            min={8}
+                            max={24}
+                            step={1}
+                            defaultValue={16}
+                            label="date-time-text-size"
+                            unit="px"
+                          />
+                        </div>
+                      </StyleDetails>
+                    </div>
+                    <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
                   </div>
-                  <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="h-full max-w-xl mx-auto xl:w-1/2 xl:sticky xl:top-0">
-          <div className="w-full sm:flex sm:flex-col">
-            <div className="xl:order-3">
-              <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
-              <div className="flex flex-wrap items-end gap-3 mb-5">
-                {backgroundColors.map((color, i) => (
-                  <button
-                    key={i}
-                    className={`w-14 h-8 shadow-md rounded-sm ${color} ${
-                      backgroundColor === color ? 'transform scale-[120%]' : ''
-                    }`}
-                    onClick={() => setBackgroundColor(color)}
-                  />
-                ))}
-              </div>
-              <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
-              <div className="flex items-end gap-3">
-                {textColors.map((color, i) => {
-                  const bgColor = color.replace(/text-/g, '')
-                  return (
+          <div className="h-full max-w-xl mx-auto xl:w-1/2 xl:sticky xl:top-0">
+            <div className="w-full sm:flex sm:flex-col">
+              <div className="xl:order-3">
+                <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
+                <div className="flex flex-wrap items-end gap-3 mb-5">
+                  {backgroundColors.map((color, i) => (
                     <button
                       key={i}
-                      className={`w-14 h-8 shadow-md rounded-sm bg-${bgColor} ${
-                        textColor === color ? 'transform scale-[120%]' : ''
+                      className={`w-14 h-8 shadow-md rounded-sm ${color} ${
+                        backgroundColor === color ? 'transform scale-[120%]' : ''
                       }`}
-                      onClick={() => setTextColor(color)}
+                      onClick={() => setBackgroundColor(color)}
                     />
-                  )
-                })}
-              </div>
-              <div className="pt-4">
-                <h4 className="block mb-2 text-sm font-medium text-violet-900">Layout</h4>
-                <RadioGroup value={selected} onChange={setSelected}>
-                  <RadioGroup.Label className="sr-only">Layout</RadioGroup.Label>
-                  <div className="-space-y-px bg-white rounded-md">
-                    {layouts.map((layout, layoutIdx) => (
-                      <RadioGroup.Option
-                        key={layout.name}
-                        value={layout}
-                        className={({ checked }) =>
-                          classNames(
-                            layoutIdx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
-                            layoutIdx === layouts.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
-                            checked ? 'bg-violet-50 border-violet-200 z-10' : 'border-gray-200',
-                            'relative border p-3 flex cursor-pointer focus:outline-none'
-                          )
-                        }
-                      >
-                        {({ active, checked }) => (
-                          <>
-                            <span
-                              className={classNames(
-                                checked
-                                  ? 'bg-violet-600 border-transparent'
-                                  : 'bg-white border-gray-300',
-                                active ? 'ring-2 ring-offset-2 ring-violet-500' : '',
-                                'h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center'
-                              )}
-                              aria-hidden="true"
-                            >
-                              <span className="rounded-full bg-white w-1.5 h-1.5" />
-                            </span>
-                            <div className="flex flex-row gap-3 ml-3">
-                              <RadioGroup.Label
-                                as="span"
+                  ))}
+                </div>
+                <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
+                <div className="flex items-end gap-3">
+                  {textColors.map((color, i) => {
+                    const bgColor = color.replace(/text-/g, '')
+                    return (
+                      <button
+                        key={i}
+                        className={`w-14 h-8 shadow-md rounded-sm bg-${bgColor} ${
+                          textColor === color ? 'transform scale-[120%]' : ''
+                        }`}
+                        onClick={() => setTextColor(color)}
+                      />
+                    )
+                  })}
+                </div>
+                <div className="pt-4">
+                  <h4 className="block mb-2 text-sm font-medium text-violet-900">Layout</h4>
+                  <RadioGroup value={selected} onChange={setSelected}>
+                    <RadioGroup.Label className="sr-only">Layout</RadioGroup.Label>
+                    <div className="-space-y-px bg-white rounded-md">
+                      {layouts.map((layout, layoutIdx) => (
+                        <RadioGroup.Option
+                          key={layout.name}
+                          value={layout}
+                          className={({ checked }) =>
+                            classNames(
+                              layoutIdx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
+                              layoutIdx === layouts.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
+                              checked ? 'bg-violet-50 border-violet-200 z-10' : 'border-gray-200',
+                              'relative border p-3 flex cursor-pointer focus:outline-none'
+                            )
+                          }
+                        >
+                          {({ active, checked }) => (
+                            <>
+                              <span
                                 className={classNames(
-                                  checked ? 'text-violet-900' : 'text-gray-900',
-                                  'block text-sm font-medium'
+                                  checked
+                                    ? 'bg-violet-600 border-transparent'
+                                    : 'bg-white border-gray-300',
+                                  active ? 'ring-2 ring-offset-2 ring-violet-500' : '',
+                                  'h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center'
                                 )}
+                                aria-hidden="true"
                               >
-                                {layout.name}
-                              </RadioGroup.Label>
-                              <RadioGroup.Description
-                                as="span"
-                                className={classNames(
-                                  checked ? 'text-violet-700' : 'text-gray-500',
-                                  'block text-sm'
-                                )}
-                              >
-                                {layout.description}
-                              </RadioGroup.Description>
-                            </div>
-                          </>
-                        )}
-                      </RadioGroup.Option>
-                    ))}
-                  </div>
-                </RadioGroup>
+                                <span className="rounded-full bg-white w-1.5 h-1.5" />
+                              </span>
+                              <div className="flex flex-row gap-3 ml-3">
+                                <RadioGroup.Label
+                                  as="span"
+                                  className={classNames(
+                                    checked ? 'text-violet-900' : 'text-gray-900',
+                                    'block text-sm font-medium'
+                                  )}
+                                >
+                                  {layout.name}
+                                </RadioGroup.Label>
+                                <RadioGroup.Description
+                                  as="span"
+                                  className={classNames(
+                                    checked ? 'text-violet-700' : 'text-gray-500',
+                                    'block text-sm'
+                                  )}
+                                >
+                                  {layout.description}
+                                </RadioGroup.Description>
+                              </div>
+                            </>
+                          )}
+                        </RadioGroup.Option>
+                      ))}
+                    </div>
+                  </RadioGroup>
+                </div>
               </div>
-            </div>
-            <div className="sm:order-3 xl:order-2 sm:inline-block">
-              <button
-                className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
-                onClick={onSaveImage}
-              >
-                Save Image
-              </button>
-              <a
-                className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 ml-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
-                href="/api/auth/login"
-              >
-                Tweet Image
-              </a>
-              <a href="/api/auth/login">Login</a>
-              <a href="/api/auth/logout">Logout</a>
-            </div>
-            <div>
-              <div className="flex items-center mb-4 sm:pt-8">
-                <h3 className="mr-4 text-xl font-medium leading-6 text-violet-900">
-                  Image Preview
-                </h3>
+              <div className="sm:order-3 xl:order-2 sm:inline-block">
+                <button
+                  className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
+                  onClick={onSaveImage}
+                >
+                  Save Image
+                </button>
+                <a
+                  className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 ml-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
+                  href="/api/auth/login"
+                >
+                  Tweet Image
+                </a>
               </div>
+              <div>
+                <div className="flex items-center mb-4 sm:pt-8">
+                  <h3 className="mr-4 text-xl font-medium leading-6 text-violet-900">
+                    Image Preview
+                  </h3>
+                </div>
 
-              <div ref={imageContainer} id="imageContainer" className="w-full"></div>
-              {selected.name === 'Layout 1' && (
-                <ImageLayout1
-                  id="promo-image"
-                  idx={speakers.length}
-                  backgroundColor={backgroundColor}
-                  textColor={textColor}
-                  titleTextSize={titleTextSize}
-                  title={title}
-                  speakers={speakers}
-                  dateTime={dateTime}
-                  dateTimeTextSize={dateTimeTextSize}
-                  scale={scale}
-                />
-              )}
-              {selected.name === 'Layout 2' && (
-                <ImageLayout2
-                  id="promo-image"
-                  idx={speakers.length}
-                  backgroundColor={backgroundColor}
-                  textColor={textColor}
-                  titleTextSize={titleTextSize}
-                  title={title}
-                  speakers={speakers}
-                  dateTime={dateTime}
-                  dateTimeTextSize={dateTimeTextSize}
-                  scale={scale}
-                />
-              )}
+                <div ref={imageContainer} id="imageContainer" className="w-full"></div>
+                {selected.name === 'Layout 1' && (
+                  <ImageLayout1
+                    id="promo-image"
+                    idx={speakers.length}
+                    backgroundColor={backgroundColor}
+                    textColor={textColor}
+                    titleTextSize={titleTextSize}
+                    title={title}
+                    speakers={speakers}
+                    dateTime={dateTime}
+                    dateTimeTextSize={dateTimeTextSize}
+                    scale={scale}
+                  />
+                )}
+                {selected.name === 'Layout 2' && (
+                  <ImageLayout2
+                    id="promo-image"
+                    idx={speakers.length}
+                    backgroundColor={backgroundColor}
+                    textColor={textColor}
+                    titleTextSize={titleTextSize}
+                    title={title}
+                    speakers={speakers}
+                    dateTime={dateTime}
+                    dateTimeTextSize={dateTimeTextSize}
+                    scale={scale}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     </div>
   )
 }
