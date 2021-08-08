@@ -173,7 +173,11 @@ export default function Home() {
     })
   }
 
-  // const { user, error, isLoading } = useUser()
+  const { user, error, isLoading } = useUser()
+
+  if (isLoading) console.log('Loading...')
+  if (error) console.log('Error: ', error)
+  if (user) console.log('Logged in as: ', user)
 
   return (
     <div className="h-full pb-8 bg-gray-50 overscroll-none">
