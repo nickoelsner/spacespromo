@@ -16,7 +16,6 @@ const backgroundColors = [
   'bg-gradient-to-br from-pink-500 to-indigo-800',
   'bg-gradient-to-br from-blue-200 to-blue-700',
   'bg-[#B16AF7]',
-  'bg-[#5f7fff]',
   'bg-[#8FD4B7]',
   'bg-[#EE6A65]',
   'bg-[#F5DC66]',
