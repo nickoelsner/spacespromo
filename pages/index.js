@@ -55,7 +55,7 @@ const seedUsers6 = [
     username: 'edanbenatar',
     id: '1262720796511940609',
     name: 'Edan Ben-Atar',
-    title: 'Freelancer & Business Owner',
+    title: 'Founder of Weblime',
   },
   {
     name: 'James Cox',
@@ -91,7 +91,7 @@ function classNames(...classes) {
 }
 
 export default function Home() {
-  const [speakers, setSpeakers] = useState([])
+  const [speakers, setSpeakers] = useState(seedUsers6)
   const [title, setTitle] = useState('')
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
   const [textColor, setTextColor] = useState(textColors[0])
