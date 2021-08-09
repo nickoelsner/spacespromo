@@ -11,9 +11,9 @@ module.exports = {
       colors: {
         fuchsia: colors.fuchsia,
         violet: colors.violet,
-        primary: '#342956',
-        secondary: '#8C72CF',
-        tertiary: '#8C72CF',
+        orange: colors.orange,
+        teal: colors.teal,
+        lime: colors.lime,
       },
     },
   },

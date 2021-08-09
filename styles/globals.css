@@ -14,3 +14,9 @@ body {
   font-weight: 400;
   font-display: swap;
 }
+
+input[type='color'] {
+  -webkit-appearance: none;
+  border: none;
+  opacity: 0;
+}
