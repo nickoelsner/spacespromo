@@ -137,6 +137,11 @@ export default function Home() {
         <title>Spaces Promo</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preload" href="/fonts/Montserrat-Regular.ttf" as="font" crossOrigin="" />
+        <script
+          defer
+          data-domain="spacespromo.com"
+          src="https://plausible.io/js/plausible.js"
+        ></script>
       </Head>
       <>
         <div className="flex items-center justify-center w-full py-4">
