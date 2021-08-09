@@ -44,7 +44,6 @@ const RangeSlider = ({ setStateValue, min, max, step, defaultValue, label, unit 
   }
 
   const handleChange = (event, value) => {
-    console.log(value)
     setStateValue(value)
   }
 

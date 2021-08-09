@@ -26,7 +26,6 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
       .then((res) => {
         const user = res.data
         user.title = ''
-        console.log('user :>> ', user)
         setSpeakers((prev) => [...prev, user])
         setHandle('')
       })

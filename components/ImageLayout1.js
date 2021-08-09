@@ -57,11 +57,16 @@ export const ImageLayout1 = ({
   dateTime,
   dateTimeTextSize,
   scale,
+  colorPicker,
 }) => (
   <div
     id={id}
     className={`w-[576px] h-[324px] ${backgroundColor} transform ${textColor} rounded-lg`}
-    style={{ transform: 'scale(' + scale + ')', transformOrigin: '0 0 0' }}
+    style={{
+      transform: 'scale(' + scale + ')',
+      transformOrigin: '0 0 0',
+      backgroundColor: colorPicker,
+    }}
   >
     <div className="flex flex-col items-center justify-around w-full h-full p-3">
       <h1
