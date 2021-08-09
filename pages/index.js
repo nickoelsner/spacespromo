@@ -132,7 +132,7 @@ export default function Home() {
   }
 
   return (
-    <div className="pb-8 overscroll-none">
+    <div className="h-full pb-8 overscroll-none">
       <Head>
         <title>Spaces Promo</title>
         <link rel="icon" href="/favicon.ico" />
@@ -158,7 +158,7 @@ export default function Home() {
             </svg>
           </div>
         </div>
-        <div className="h-full px-4 mx-auto sm:px-6 lg:px-8 xl:flex xl:top-0 xl:w-full overscroll-none">
+        <div className="h-full px-4 mx-auto sm:px-6 lg:px-8 xl:flex xl:top-0 xl:w-full overscroll-none max-w-screen-2xl">
           <div className="max-w-xl mx-auto xl:w-1/2">
             <div className="space-y-8 divide-y divide-gray-200">
               <div className="space-y-8 divide-y divide-gray-200">
@@ -246,165 +246,165 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="h-full max-w-xl mx-auto xl:w-1/2 xl:sticky xl:top-0">
-          <div className="w-full sm:flex sm:flex-col">
-            <div className="xl:order-3">
-              <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
-              <div className="flex flex-wrap items-end gap-3 mb-5">
-                {backgroundColors.map((color, i) => (
-                  <button
-                    key={i}
-                    className={`w-14 h-8 shadow-md rounded-sm ${color} ${
-                      backgroundColor === color ? 'transform scale-[120%]' : ''
-                    }`}
-                    onClick={() => setBackgroundColor(color)}
-                  />
-                ))}
-
-                <button
-                  className={`relative h-8 text-xs leading-tight text-center rounded-sm shadow-md cursor-pointer w-14 text-violet-900 italic ${
-                    backgroundColor === `bg-[${colorPicker}]` ? 'transform scale-[120%]' : ''
-                  }`}
-                  style={{ backgroundColor: colorPicker }}
-                  // onClick={() => setBackgroundColor('custom')}
-                >
-                  <input
-                    type="color"
-                    className="absolute inset-0 h-8 p-0 border-transparent rounded-sm shadow-md cursor-pointer w-14"
-                    value={colorPicker}
-                    onChange={(e) => setColorPicker(e.target.value)}
-                  />
-                  <span className="cursor-pointer">custom color</span>
-                </button>
-              </div>
-              <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
-              <div className="flex items-end gap-3">
-                {textColors.map((color, i) => {
-                  const bgColor = color.replace(/text-/g, '')
-                  return (
+          <div className="h-full max-w-xl mx-auto xl:w-1/2 xl:sticky xl:top-0">
+            <div className="w-full sm:flex sm:flex-col">
+              <div className="xl:order-3">
+                <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
+                <div className="flex flex-wrap items-end gap-3 mb-5">
+                  {backgroundColors.map((color, i) => (
                     <button
                       key={i}
-                      className={`w-14 h-8 shadow-md rounded-sm bg-${bgColor} ${
-                        textColor === color ? 'transform scale-[120%]' : ''
+                      className={`w-14 h-8 shadow-md rounded-sm ${color} ${
+                        backgroundColor === color ? 'transform scale-[120%]' : ''
                       }`}
-                      onClick={() => setTextColor(color)}
+                      onClick={() => setBackgroundColor(color)}
                     />
-                  )
-                })}
-              </div>
-              <div className="pt-4">
-                <h4 className="block mb-2 text-sm font-medium text-violet-900">Layout</h4>
-                <RadioGroup value={selected} onChange={setSelected}>
-                  <RadioGroup.Label className="sr-only">Layout</RadioGroup.Label>
-                  <div className="-space-y-px bg-white rounded-md">
-                    {layouts.map((layout, layoutIdx) => (
-                      <RadioGroup.Option
-                        key={layout.name}
-                        value={layout}
-                        className={({ checked }) =>
-                          classNames(
-                            layoutIdx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
-                            layoutIdx === layouts.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
-                            checked ? 'bg-violet-50 border-violet-200 z-10' : 'border-gray-200',
-                            'relative border p-3 flex cursor-pointer focus:outline-none'
-                          )
-                        }
-                      >
-                        {({ active, checked }) => (
-                          <>
-                            <span
-                              className={classNames(
-                                checked
-                                  ? 'bg-violet-600 border-transparent'
-                                  : 'bg-white border-gray-300',
-                                active ? 'ring-2 ring-offset-2 ring-violet-500' : '',
-                                'h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center'
-                              )}
-                              aria-hidden="true"
-                            >
-                              <span className="rounded-full bg-white w-1.5 h-1.5" />
-                            </span>
-                            <div className="flex flex-row gap-3 ml-3">
-                              <RadioGroup.Label
-                                as="span"
-                                className={classNames(
-                                  checked ? 'text-violet-900' : 'text-gray-900',
-                                  'block text-sm font-medium'
-                                )}
-                              >
-                                {layout.name}
-                              </RadioGroup.Label>
-                              <RadioGroup.Description
-                                as="span"
-                                className={classNames(
-                                  checked ? 'text-violet-700' : 'text-gray-500',
-                                  'block text-sm'
-                                )}
-                              >
-                                {layout.description}
-                              </RadioGroup.Description>
-                            </div>
-                          </>
-                        )}
-                      </RadioGroup.Option>
-                    ))}
-                  </div>
-                </RadioGroup>
-              </div>
-            </div>
-            <div className="flex flex-row space-x-4 sm:order-3 xl:order-2 sm:inline-block">
-              <button
-                className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm sm:px-6 xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
-                onClick={onSaveImage}
-              >
-                Save Image
-              </button>
-              <a
-                className="inline-flex items-center justify-center px-4 sm:px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-[#49A1EB] hover:bg-[#198ae6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#49A1EB] "
-                href={`https://twitter.com/intent/tweet?text=${tweetText}`}
-                target="_blank"
-              >
-                Compose Tweet
-              </a>
-            </div>
-            <div>
-              <div className="flex items-center mb-4 sm:pt-8">
-                <h3 className="mr-4 text-xl font-medium leading-6 text-violet-900">
-                  Image Preview
-                </h3>
-              </div>
+                  ))}
 
-              <div ref={imageContainer} id="imageContainer" className="w-full"></div>
-              {selected.name === 'Layout 1' && (
-                <ImageLayout1
-                  id="promo-image"
-                  idx={speakers.length}
-                  backgroundColor={backgroundColor}
-                  textColor={textColor}
-                  titleTextSize={titleTextSize}
-                  title={title}
-                  speakers={speakers}
-                  dateTime={dateTime}
-                  dateTimeTextSize={dateTimeTextSize}
-                  scale={scale}
-                  colorPicker={colorPicker}
-                />
-              )}
-              {selected.name === 'Layout 2' && (
-                <ImageLayout2
-                  id="promo-image"
-                  idx={speakers.length}
-                  backgroundColor={backgroundColor}
-                  textColor={textColor}
-                  titleTextSize={titleTextSize}
-                  title={title}
-                  speakers={speakers}
-                  dateTime={dateTime}
-                  dateTimeTextSize={dateTimeTextSize}
-                  scale={scale}
-                />
-              )}
+                  <button
+                    className={`relative h-8 text-xs leading-tight text-center rounded-sm shadow-md cursor-pointer w-14 text-violet-900 italic ${
+                      backgroundColor === `bg-[${colorPicker}]` ? 'transform scale-[120%]' : ''
+                    }`}
+                    style={{ backgroundColor: colorPicker }}
+                    // onClick={() => setBackgroundColor('custom')}
+                  >
+                    <input
+                      type="color"
+                      className="absolute inset-0 h-8 p-0 border-transparent rounded-sm shadow-md cursor-pointer w-14"
+                      value={colorPicker}
+                      onChange={(e) => setColorPicker(e.target.value)}
+                    />
+                    <span className="cursor-pointer">custom color</span>
+                  </button>
+                </div>
+                <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
+                <div className="flex items-end gap-3">
+                  {textColors.map((color, i) => {
+                    const bgColor = color.replace(/text-/g, '')
+                    return (
+                      <button
+                        key={i}
+                        className={`w-14 h-8 shadow-md rounded-sm bg-${bgColor} ${
+                          textColor === color ? 'transform scale-[120%]' : ''
+                        }`}
+                        onClick={() => setTextColor(color)}
+                      />
+                    )
+                  })}
+                </div>
+                <div className="pt-4">
+                  <h4 className="block mb-2 text-sm font-medium text-violet-900">Layout</h4>
+                  <RadioGroup value={selected} onChange={setSelected}>
+                    <RadioGroup.Label className="sr-only">Layout</RadioGroup.Label>
+                    <div className="-space-y-px bg-white rounded-md">
+                      {layouts.map((layout, layoutIdx) => (
+                        <RadioGroup.Option
+                          key={layout.name}
+                          value={layout}
+                          className={({ checked }) =>
+                            classNames(
+                              layoutIdx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
+                              layoutIdx === layouts.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
+                              checked ? 'bg-violet-50 border-violet-200 z-10' : 'border-gray-200',
+                              'relative border p-3 flex cursor-pointer focus:outline-none'
+                            )
+                          }
+                        >
+                          {({ active, checked }) => (
+                            <>
+                              <span
+                                className={classNames(
+                                  checked
+                                    ? 'bg-violet-600 border-transparent'
+                                    : 'bg-white border-gray-300',
+                                  active ? 'ring-2 ring-offset-2 ring-violet-500' : '',
+                                  'h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center'
+                                )}
+                                aria-hidden="true"
+                              >
+                                <span className="rounded-full bg-white w-1.5 h-1.5" />
+                              </span>
+                              <div className="flex flex-row gap-3 ml-3">
+                                <RadioGroup.Label
+                                  as="span"
+                                  className={classNames(
+                                    checked ? 'text-violet-900' : 'text-gray-900',
+                                    'block text-sm font-medium'
+                                  )}
+                                >
+                                  {layout.name}
+                                </RadioGroup.Label>
+                                <RadioGroup.Description
+                                  as="span"
+                                  className={classNames(
+                                    checked ? 'text-violet-700' : 'text-gray-500',
+                                    'block text-sm'
+                                  )}
+                                >
+                                  {layout.description}
+                                </RadioGroup.Description>
+                              </div>
+                            </>
+                          )}
+                        </RadioGroup.Option>
+                      ))}
+                    </div>
+                  </RadioGroup>
+                </div>
+              </div>
+              <div className="flex flex-row space-x-4 sm:order-3 xl:order-2">
+                <button
+                  className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm sm:px-6 bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
+                  onClick={onSaveImage}
+                >
+                  Save Image
+                </button>
+                <a
+                  className="inline-flex items-center justify-center px-4 sm:px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-[#49A1EB] hover:bg-[#198ae6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#49A1EB] "
+                  href={`https://twitter.com/intent/tweet?text=${tweetText}`}
+                  target="_blank"
+                >
+                  Compose Tweet
+                </a>
+              </div>
+              <div>
+                <div className="flex items-center mb-4 sm:pt-8">
+                  <h3 className="mr-4 text-xl font-medium leading-6 text-violet-900">
+                    Image Preview
+                  </h3>
+                </div>
+
+                <div ref={imageContainer} id="imageContainer" className="w-full"></div>
+                {selected.name === 'Layout 1' && (
+                  <ImageLayout1
+                    id="promo-image"
+                    idx={speakers.length}
+                    backgroundColor={backgroundColor}
+                    textColor={textColor}
+                    titleTextSize={titleTextSize}
+                    title={title}
+                    speakers={speakers}
+                    dateTime={dateTime}
+                    dateTimeTextSize={dateTimeTextSize}
+                    scale={scale}
+                    colorPicker={colorPicker}
+                  />
+                )}
+                {selected.name === 'Layout 2' && (
+                  <ImageLayout2
+                    id="promo-image"
+                    idx={speakers.length}
+                    backgroundColor={backgroundColor}
+                    textColor={textColor}
+                    titleTextSize={titleTextSize}
+                    title={title}
+                    speakers={speakers}
+                    dateTime={dateTime}
+                    dateTimeTextSize={dateTimeTextSize}
+                    scale={scale}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
