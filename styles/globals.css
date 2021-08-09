@@ -4,5 +4,13 @@
 
 html,
 body {
-  background-color: #fafafa;
+  background-color: rgb(247, 245, 252);
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Regular.ttf');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
 }
