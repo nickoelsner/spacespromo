@@ -8,7 +8,6 @@ import RangeSlider from '../components/Slider'
 import StyleDetails from '../components/StyleDetails'
 import { ImageLayout1 } from '../components/ImageLayout1'
 import { ImageLayout2 } from '../components/ImageLayout2'
-import { useUser } from '@auth0/nextjs-auth0'
 
 const download = require('downloadjs')
 
@@ -155,6 +154,8 @@ export default function Home() {
   const [scale, setScale] = useState(1)
   const [refAquired, setRefAquired] = useState(false)
 
+  const tweetText = `Join us ${dateTime} for a Twitter Space:%0D%0A${title}`
+
   const imageContainer = useRef()
   useEffect(() => {
     setRefAquired(true)
@@ -172,12 +173,6 @@ export default function Home() {
       download(dataUrl, 'SpacesPromo.png')
     })
   }
-
-  const { user, error, isLoading } = useUser()
-
-  if (isLoading) console.log('Loading...')
-  if (error) console.log('Error: ', error)
-  if (user) console.log('Logged in as: ', user)
 
   return (
     <div className="h-full pb-8 bg-gray-50 overscroll-none">
@@ -360,21 +355,20 @@ export default function Home() {
                 </RadioGroup>
               </div>
             </div>
-            <div className="sm:order-3 xl:order-2 sm:inline-block">
+            <div className="flex flex-row space-x-4 sm:order-3 xl:order-2 sm:inline-block">
               <button
-                className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
+                className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm sm:px-6 xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
                 onClick={onSaveImage}
               >
                 Save Image
               </button>
               <a
-                className="inline-flex items-center justify-center px-6 py-2 mt-8 mb-8 ml-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
-                href="/api/auth/login"
+                className="inline-flex items-center justify-center px-4 sm:px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm xl:mr-auto bg-[#49A1EB] hover:bg-[#198ae6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#49A1EB] "
+                href={`https://twitter.com/intent/tweet?text=${tweetText}`}
+                target="_blank"
               >
-                Tweet Image
+                Compose Tweet
               </a>
-              <a href="/api/auth/login">Login</a>
-              <a href="/api/auth/logout">Logout</a>
             </div>
             <div>
               <div className="flex items-center mb-4 sm:pt-8">
