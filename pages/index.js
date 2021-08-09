@@ -91,7 +91,7 @@ function classNames(...classes) {
 }
 
 export default function Home() {
-  const [speakers, setSpeakers] = useState(seedUsers6)
+  const [speakers, setSpeakers] = useState([])
   const [title, setTitle] = useState('')
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
   const [textColor, setTextColor] = useState(textColors[0])
@@ -130,16 +130,24 @@ export default function Home() {
         <link rel="preload" href="/fonts/Montserrat-Regular.ttf" as="font" crossOrigin="" />
       </Head>
       <>
-        <div className="flex items-center justify-center w-full py-4 text-3xl text-violet-800">
-          SpacesPromo
-          <svg
-            className="w-8 h-8 ml-2 text-violet-800"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-          >
-            <path d="M12.61,43.55l11.6,4.81a67,67,0,0,0-3.12,10.17l-.44,2L37.28,77.17l2-.43a67,67,0,0,0,10.17-3.12l4.81,11.6a.75.75,0,0,0,1.23.24l7.27-7.27a12,12,0,0,0,3.5-9.09L66,64.43C79.46,54.49,93.08,37.06,96.79,6.64A5,5,0,0,0,91.18,1C60.77,4.74,43.33,18.37,33.39,31.79l-4.66-.24A12,12,0,0,0,19.64,35l-7.27,7.27A.75.75,0,0,0,12.61,43.55ZM59.25,25.83a9,9,0,1,1,0,12.75A9,9,0,0,1,59.25,25.83ZM10.44,78.5a11.81,11.81,0,0,0-6-.48,1.08,1.08,0,0,1-1-.3,1.09,1.09,0,0,1-.22-1.23C5.35,71.91,11,62.7,21.23,70.14a.51.51,0,0,1,0,.76A11.11,11.11,0,0,0,17,80a.81.81,0,0,0,.78.78,11.1,11.1,0,0,0,9.1-4.14.51.51,0,0,1,.79,0c1.42,1.69,5.33,7.21,1,12.54a11.25,11.25,0,0,1-7.54,4C16.93,93.63,9.17,95,6,98.62a1.09,1.09,0,0,1-1.88-.4C3,94.4,1.26,85.86,10.44,78.5Z"></path>
-          </svg>
+        <div className="flex items-center justify-center w-full py-4">
+          <div className="flex text-3xl text-transparent bg-clip-text bg-gradient-to-tr from-pink-500 to-violet-800">
+            <span>SpacesPromo</span>
+            <svg
+              className="w-8 h-8 ml-2"
+              fill="url(#grad1)"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 100 100"
+            >
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" style={{ stopColor: '#EC4899', stopOpacity: '1' }} />
+                  <stop offset="100%" style={{ stopColor: '#5B21B6', stopOpacity: '1' }} />
+                </linearGradient>
+              </defs>
+              <path d="M12.61,43.55l11.6,4.81a67,67,0,0,0-3.12,10.17l-.44,2L37.28,77.17l2-.43a67,67,0,0,0,10.17-3.12l4.81,11.6a.75.75,0,0,0,1.23.24l7.27-7.27a12,12,0,0,0,3.5-9.09L66,64.43C79.46,54.49,93.08,37.06,96.79,6.64A5,5,0,0,0,91.18,1C60.77,4.74,43.33,18.37,33.39,31.79l-4.66-.24A12,12,0,0,0,19.64,35l-7.27,7.27A.75.75,0,0,0,12.61,43.55ZM59.25,25.83a9,9,0,1,1,0,12.75A9,9,0,0,1,59.25,25.83ZM10.44,78.5a11.81,11.81,0,0,0-6-.48,1.08,1.08,0,0,1-1-.3,1.09,1.09,0,0,1-.22-1.23C5.35,71.91,11,62.7,21.23,70.14a.51.51,0,0,1,0,.76A11.11,11.11,0,0,0,17,80a.81.81,0,0,0,.78.78,11.1,11.1,0,0,0,9.1-4.14.51.51,0,0,1,.79,0c1.42,1.69,5.33,7.21,1,12.54a11.25,11.25,0,0,1-7.54,4C16.93,93.63,9.17,95,6,98.62a1.09,1.09,0,0,1-1.88-.4C3,94.4,1.26,85.86,10.44,78.5Z"></path>
+            </svg>
+          </div>
         </div>
         <div className="h-full px-4 mx-auto sm:px-6 lg:px-8 xl:flex xl:top-0 xl:w-full overscroll-none">
           <div className="max-w-xl mx-auto xl:w-1/2">
