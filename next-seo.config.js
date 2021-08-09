@@ -15,7 +15,7 @@ export default {
     description: `Use SpacesPromo to create a Tweetable image with infomration about your Twitter Space and it's speakers`,
     images: [
       {
-        url: 'https://spacespromo.com/example',
+        url: 'https://spacespromo.com/example2.png',
         width: 576,
         height: 324,
         alt: 'Example of promotional image for a Twitter Space',

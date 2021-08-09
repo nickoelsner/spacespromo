@@ -58,20 +58,20 @@ const seedUsers6 = [
     title: 'Founder of Weblime',
   },
   {
-    name: 'James Cox',
-    username: 'MemRook',
-    id: '239982740',
-    profile_image_url:
-      'https://pbs.twimg.com/profile_images/1402802422637117451/U-fjmCk6_normal.jpg',
-    title: 'Software Developer at Webstraunt',
-  },
-  {
     name: 'Rocco Sangellino',
     username: 'RoccoSangellino',
     id: '1337808128176340992',
     profile_image_url:
       'https://pbs.twimg.com/profile_images/1388602894258114561/LYpjcAVx_normal.jpg',
     title: 'Software Lead at Mondo Robot',
+  },
+  {
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1400216053280559104/WvAf6G1M_normal.jpg',
+    username: 'shookcodes',
+    id: '1212524335174311936',
+    name: 'Sarah Shook',
+    title: 'Freelance Developer',
   },
 ]
 
@@ -91,7 +91,7 @@ function classNames(...classes) {
 }
 
 export default function Home() {
-  const [speakers, setSpeakers] = useState(seedUsers6)
+  const [speakers, setSpeakers] = useState([])
   const [title, setTitle] = useState('')
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
   const [textColor, setTextColor] = useState(textColors[0])

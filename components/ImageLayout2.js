@@ -37,14 +37,14 @@ const layout2Styles = [
   {
     titleContainer: 'flex flex-col justify-around w-1/3 h-full p-4 pr-2 items-center',
     ul: 'flex flex-wrap justify-center w-2/3 gap-y-6 pr-4 items-around',
-    li: 'flex flex-col items-center justify-start font-bold text-center min-w-[100px] max-w-[33%]',
+    li: 'flex flex-col items-center justify-start font-bold text-center w-[33%]',
     name: 'text-[13px]',
     title: 'text-[10px]',
   },
   {
     titleContainer: 'flex flex-col justify-around w-1/3 h-full p-4 pr-2 items-center',
     ul: 'flex flex-wrap justify-center w-2/3 gap-y-6 pr-4 items-around',
-    li: 'flex flex-col items-center justify-start font-bold text-center min-w-[100px] max-w-[33%]',
+    li: 'flex flex-col items-center justify-start font-bold text-center w-[33%]',
     name: 'text-[13px]',
     title: 'text-[10px]',
   },
