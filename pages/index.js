@@ -84,7 +84,7 @@ const seedUsers6 = [
 ]
 
 export default function Home() {
-  const [speakers, setSpeakers] = useState(seedUsers6)
+  const [speakers, setSpeakers] = useState([])
   const [title, setTitle] = useState('')
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0])
   const [textColor, setTextColor] = useState(textColors[0])
