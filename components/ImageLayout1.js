@@ -44,6 +44,11 @@ const layout1Styles = [
     li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
     img: 'w-[60px] h-[60px] mx-auto rounded-full',
   },
+  {
+    ul: 'flex flex-wrap justify-center gap-2',
+    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
+    img: 'w-[60px] h-[60px] mx-auto rounded-full',
+  },
 ]
 
 export const ImageLayout1 = ({
