@@ -20,7 +20,7 @@ const backgroundColors = [
   'bg-gradient-to-br from-orange-400 to-red-600',
 ]
 
-const textColors = ['text-white', 'text-gray-200', 'text-gray-700', 'text-gray-900']
+const textColors = ['#FFFFFF', '#E4E4E7', '#3F3F46', '#18181B']
 // needed so that Tailwind JIT engine "sees" these classes and adds them to the tailwind.css file
 const textBgColors = ['bg-white', 'bg-gray-200', 'bg-gray-700', 'bg-gray-900']
 
@@ -101,7 +101,9 @@ export default function Home() {
   const [selected, setSelected] = useState(layouts[0])
   const [scale, setScale] = useState(1)
   const [refAquired, setRefAquired] = useState(false)
-  const [colorPicker, setColorPicker] = useState('#ffffff')
+  const [bgColorPicker, setBgColorPicker] = useState('#ffffff')
+  const [textColorPicker, setTextColorPicker] = useState('#000')
+  console.log('textColor :>> ', textColor)
 
   const tweetText = `Join us ${dateTime} for a Twitter Space:%0D%0A${title}`
 
@@ -115,11 +117,16 @@ export default function Home() {
   }, [refAquired])
 
   useEffect(() => {
-    setBackgroundColor(`bg-[${colorPicker}]`)
-  }, [colorPicker])
+    setBackgroundColor(`bg-[${bgColorPicker}]`)
+  }, [bgColorPicker])
+
+  useEffect(() => {
+    setTextColor(textColorPicker)
+  }, [textColorPicker])
 
   useEffect(() => {
     setBackgroundColor(backgroundColors[0])
+    setTextColor(textColors[0])
   }, [])
 
   const onSaveImage = () => {
@@ -219,7 +226,7 @@ export default function Home() {
                           type="text"
                           name="datetime"
                           id="datetime"
-                          placeholder="Enter the date and time as you'd like it to appear"
+                          placeholder="Date and time as you'd like it to appear"
                           value={dateTime}
                           onChange={(e) => setDateTime(e.target.value)}
                           className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
@@ -255,7 +262,7 @@ export default function Home() {
             <div className="w-full sm:flex sm:flex-col">
               <div className="xl:order-3">
                 <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
-                <div className="flex flex-wrap items-end gap-3 mb-5">
+                <div className="flex flex-wrap items-end gap-3 pb-2 mb-5">
                   {backgroundColors.map((color, i) => (
                     <button
                       key={i}
@@ -267,35 +274,46 @@ export default function Home() {
                   ))}
 
                   <button
-                    className={`relative h-8 text-xs leading-tight text-center rounded-sm shadow-md cursor-pointer w-14 text-violet-900 italic ${
-                      backgroundColor === `bg-[${colorPicker}]` ? 'transform scale-[120%]' : ''
+                    className={`relative h-8 text-xs leading-tight text-center rounded-sm shadow-md cursor-pointer w-14 text-violet-900 ${
+                      backgroundColor === `bg-[${bgColorPicker}]` ? 'transform scale-[120%]' : ''
                     }`}
-                    style={{ backgroundColor: colorPicker }}
-                    // onClick={() => setBackgroundColor('custom')}
+                    style={{ backgroundColor: bgColorPicker }}
                   >
                     <input
                       type="color"
-                      className="absolute inset-0 h-8 p-0 border-transparent rounded-sm shadow-md cursor-pointer w-14"
-                      value={colorPicker}
-                      onChange={(e) => setColorPicker(e.target.value)}
+                      className="h-8 p-0 border-transparent rounded-sm shadow-md cursor-pointer w-14"
+                      value={bgColorPicker}
+                      onChange={(e) => setBgColorPicker(e.target.value)}
                     />
-                    <span className="cursor-pointer">custom color</span>
+                    <span className="absolute left-0 w-full text-center -bottom-4">Custom</span>
                   </button>
                 </div>
                 <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
-                <div className="flex items-end gap-3">
-                  {textColors.map((color, i) => {
-                    const bgColor = color.replace(/text-/g, '')
-                    return (
-                      <button
-                        key={i}
-                        className={`w-14 h-8 shadow-md rounded-sm bg-${bgColor} ${
-                          textColor === color ? 'transform scale-[120%]' : ''
-                        }`}
-                        onClick={() => setTextColor(color)}
-                      />
-                    )
-                  })}
+                <div className="flex items-end gap-3 mb-4">
+                  {textColors.map((color, i) => (
+                    <button
+                      key={i}
+                      className={`w-14 h-8 shadow-md rounded-sm ${
+                        textColor === color ? 'transform scale-[120%]' : ''
+                      }`}
+                      onClick={() => setTextColor(color)}
+                      style={{ backgroundColor: color }}
+                    />
+                  ))}
+                  <button
+                    className={`relative h-8 text-xs leading-tight text-center rounded-sm shadow-md cursor-pointer w-14 text-violet-900 ${
+                      textColor === `text-[${textColorPicker}]` ? 'transform scale-[120%]' : ''
+                    }`}
+                    style={{ backgroundColor: textColorPicker }}
+                  >
+                    <input
+                      type="color"
+                      className="h-8 p-0 border-transparent rounded-sm shadow-md cursor-pointer w-14"
+                      value={textColorPicker}
+                      onChange={(e) => setTextColorPicker(e.target.value)}
+                    />
+                    <span className="absolute left-0 w-full text-center -bottom-4">Custom</span>
+                  </button>
                 </div>
                 <div className="pt-4">
                   <h4 className="block mb-2 text-sm font-medium text-violet-900">Layout</h4>
@@ -392,7 +410,8 @@ export default function Home() {
                     dateTime={dateTime}
                     dateTimeTextSize={dateTimeTextSize}
                     scale={scale}
-                    colorPicker={colorPicker}
+                    bgColorPicker={bgColorPicker}
+                    textColorPicker={textColorPicker}
                   />
                 )}
                 {selected.name === 'Layout 2' && (
@@ -407,7 +426,8 @@ export default function Home() {
                     dateTime={dateTime}
                     dateTimeTextSize={dateTimeTextSize}
                     scale={scale}
-                    colorPicker={colorPicker}
+                    bgColorPicker={bgColorPicker}
+                    textColorPicker={textColorPicker}
                   />
                 )}
               </div>

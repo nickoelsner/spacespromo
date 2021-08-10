@@ -61,7 +61,7 @@ export const ImageLayout2 = ({
   dateTime,
   dateTimeTextSize,
   scale,
-  colorPicker,
+  bgColorPicker,
 }) => (
   <div
     id={id}
@@ -69,7 +69,7 @@ export const ImageLayout2 = ({
     style={{
       transform: 'scale(' + scale + ')',
       transformOrigin: '0 0 0',
-      backgroundColor: colorPicker,
+      backgroundColor: bgColorPicker,
     }}
   >
     <div className="flex items-center justify-around w-full h-full">

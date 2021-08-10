@@ -51,8 +51,8 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
               type="text"
               name="speaker"
               id="speaker"
-              className="block w-full pl-6 text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50"
-              placeholder=" Enter a Twitter handle to add a speaker"
+              className="block w-full pl-8 text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50"
+              placeholder=" Twitter handle"
               value={handle}
               onChange={onHandleChange}
             />
