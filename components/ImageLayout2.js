@@ -70,6 +70,7 @@ export const ImageLayout2 = ({
       transform: 'scale(' + scale + ')',
       transformOrigin: '0 0 0',
       backgroundColor: bgColorPicker,
+      color: textColor,
     }}
   >
     <div className="flex items-center justify-around w-full h-full">

@@ -58,7 +58,6 @@ export const ImageLayout1 = ({
   dateTimeTextSize,
   scale,
   bgColorPicker,
-  textColorPicker,
 }) => (
   <div
     id={id}
