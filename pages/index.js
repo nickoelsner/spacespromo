@@ -289,7 +289,7 @@ export default function Home() {
                   </button>
                 </div>
                 <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
-                <div className="flex items-end gap-3 mb-4">
+                <div className="flex flex-wrap items-end gap-3 pb-2 mb-5">
                   {textColors.map((color, i) => (
                     <button
                       key={i}
