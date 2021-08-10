@@ -145,8 +145,8 @@ export default function Home() {
       </Head>
       <div className="h-full pb-12 overscroll-none" style={{ minHeight: '100vh' }}>
         <header className="flex items-center justify-center w-full py-4">
-          <div className="flex text-3xl text-transparent bg-clip-text bg-gradient-to-tr from-pink-500 to-violet-800">
-            <span>SpacesPromo</span>
+          <div className="flex text-3xl">
+            <span id="header">SpacesPromo</span>
             <svg
               className="w-8 h-8 ml-2"
               fill="url(#grad1)"
@@ -154,8 +154,8 @@ export default function Home() {
               viewBox="0 0 100 100"
             >
               <defs>
-                <linearGradient id="grad1" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" style={{ stopColor: '#EC4899', stopOpacity: '1' }} />
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#d946ef', stopOpacity: '1' }} />
                   <stop offset="100%" style={{ stopColor: '#5B21B6', stopOpacity: '1' }} />
                 </linearGradient>
               </defs>
@@ -407,6 +407,7 @@ export default function Home() {
                     dateTime={dateTime}
                     dateTimeTextSize={dateTimeTextSize}
                     scale={scale}
+                    colorPicker={colorPicker}
                   />
                 )}
               </div>

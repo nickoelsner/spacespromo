@@ -61,11 +61,16 @@ export const ImageLayout2 = ({
   dateTime,
   dateTimeTextSize,
   scale,
+  colorPicker,
 }) => (
   <div
     id={id}
-    className={`aspect-w-16 aspect-h-9 ${backgroundColor} transform ${textColor} rounded-lg`}
-    style={{ transform: 'scale(' + scale + ')', transformOrigin: '0 0 0' }}
+    className={`w-[576px] h-[324px] ${backgroundColor} transform ${textColor} rounded-lg`}
+    style={{
+      transform: 'scale(' + scale + ')',
+      transformOrigin: '0 0 0',
+      backgroundColor: colorPicker,
+    }}
   >
     <div className="flex items-center justify-around w-full h-full">
       <div className={layout2Styles[idx].titleContainer}>
