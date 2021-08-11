@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { ExclamationIcon } from '@heroicons/react/solid'
+import Tooltip from '@material-ui/core/Tooltip'
 
 const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
   const [handle, setHandle] = useState('')
@@ -131,7 +132,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                   <div>
                     <label
                       htmlFor={`${speaker.username}-name`}
-                      className="block text-sm font-medium text-violet-900"
+                      className="block ml-1 text-sm font-medium text-violet-900"
                     >
                       Name
                     </label>
@@ -141,13 +142,20 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                       id={`${speaker.username}-name`}
                       value={speaker.name}
                       onChange={(e) => handleAttributeChange(e, speaker.id, 'name')}
-                      className="block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50"
+                      className={`block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50 ${
+                        speaker.name.length > 32
+                          ? 'border-2 border-orange-600 focus:border-orange-600'
+                          : ''
+                      }`}
                     />
+                    {speaker.name.length > 32 && (
+                      <div className="ml-1 text-sm text-orange-600">Long names may get cut off</div>
+                    )}
                   </div>
                   <div className="flex-1 mt-2 sm:mt-0 sm:ml-3">
                     <label
                       htmlFor={`${speaker.username}-title`}
-                      className="block text-sm font-medium text-violet-900"
+                      className="block ml-1 text-sm font-medium text-violet-900"
                     >
                       Title
                     </label>
@@ -157,8 +165,17 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                       id={`${speaker.username}-title`}
                       value={speaker.title}
                       onChange={(e) => handleAttributeChange(e, speaker.id, 'title')}
-                      className="block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50"
+                      className={`block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50 ${
+                        speaker.title.length > 55
+                          ? 'border-2 border-orange-600 focus:border-orange-600'
+                          : ''
+                      }`}
                     />
+                    {speaker.title.length > 55 && (
+                      <div className="ml-1 text-sm text-orange-600">
+                        Long titles may get cut off
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

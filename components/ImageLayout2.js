@@ -8,7 +8,7 @@ const layout2Styles = [
   },
   {
     titleContainer: 'flex flex-col items-center justify-around w-1/2 h-full p-4 pr-2',
-    ul: 'flex flex-wrap justify-center w-1/2 pr-4 items-between gap-y-6',
+    ul: 'flex flex-wrap justify-center w-1/2 pr-6 items-between gap-y-6',
     li: 'flex flex-col items-center justify-start w-full px-2 font-bold text-center',
     name: 'text-[15px]',
     title: 'text-[12px]',
@@ -16,35 +16,35 @@ const layout2Styles = [
   {
     titleContainer: 'flex flex-col items-center justify-around w-1/2 h-full p-4 pr-2',
     ul: 'flex flex-wrap justify-center w-1/2 pr-4 items-between gap-y-6',
-    li: 'flex flex-col items-center justify-start w-full px-2 font-bold text-center',
+    li: 'flex flex-col items-center justify-start w-full px-2 font-bold text-center ',
     name: 'text-[15px]',
     title: 'text-[12px]',
   },
   {
     titleContainer: 'flex flex-col items-center justify-around w-2/5 h-full p-4 pr-2',
-    ul: 'flex flex-wrap justify-center w-3/5 pr-4 items-between gap-y-6',
-    li: 'flex flex-col items-center justify-start w-1/2 px-2 font-bold text-center max-w-[50%]',
+    ul: 'flex flex-wrap justify-center w-3/5 pr-4 items-between gap-y-4 h-full py-4',
+    li: 'flex flex-col items-center justify-start px-2 font-bold text-center w-1/2 max-h-[138px] overflow-hidden',
     name: 'text-[15px]',
     title: 'text-[12px]',
   },
   {
     titleContainer: 'flex flex-col items-center justify-around w-2/5 h-full p-4 pr-2',
-    ul: 'flex flex-wrap justify-center w-3/5 pr-4 items-between gap-y-6',
-    li: 'flex flex-col items-center justify-start w-1/2 px-2 font-bold text-center max-w-[50%]',
+    ul: 'flex flex-wrap justify-center w-3/5 pr-4 items-between gap-y-4',
+    li: 'flex flex-col items-center justify-start w-1/2 px-2 font-bold text-center max-w-[50%] max-h-[138px] overflow-hidden',
     name: 'text-[15px]',
     title: 'text-[12px]',
   },
   {
     titleContainer: 'flex flex-col justify-around w-1/3 h-full p-4 pr-2 items-center',
-    ul: 'flex flex-wrap justify-center w-2/3 gap-y-6 pr-4 items-around',
-    li: 'flex flex-col items-center justify-start font-bold text-center w-[33%]',
+    ul: 'flex flex-wrap justify-center w-2/3 gap-y-4 pr-4 items-around',
+    li: 'flex flex-col items-center justify-start font-bold text-center w-[33%] max-h-[167px] overflow-hidden',
     name: 'text-[13px]',
     title: 'text-[10px]',
   },
   {
     titleContainer: 'flex flex-col justify-around w-1/3 h-full p-4 pr-2 items-center',
-    ul: 'flex flex-wrap justify-center w-2/3 gap-y-6 pr-4 items-around',
-    li: 'flex flex-col items-center justify-start font-bold text-center w-[33%]',
+    ul: 'flex flex-wrap justify-center w-2/3 gap-y-4 pr-4 items-around',
+    li: 'flex flex-col items-center justify-start font-bold text-center w-[33%] max-h-[167px] overflow-hidden',
     name: 'text-[13px]',
     title: 'text-[10px]',
   },
@@ -102,12 +102,12 @@ export const ImageLayout2 = ({
                 alt=""
               />
               {speaker.name && (
-                <h3 className={`${layout2Styles[idx].name} font-medium ${textColor}`}>
+                <h3 className={`${layout2Styles[idx].name} font-medium w-full ${textColor}`}>
                   {speaker.name}
                 </h3>
               )}
               {speaker.title && (
-                <h3 className={`${layout2Styles[idx].title} font-light ${textColor}`}>
+                <h3 className={`${layout2Styles[idx].title} font-light w-full ${textColor}`}>
                   {speaker.title}
                 </h3>
               )}

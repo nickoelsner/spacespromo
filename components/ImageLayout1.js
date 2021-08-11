@@ -1,53 +1,83 @@
 const layout1Styles = [
   {
+    container: 'flex flex-col items-center justify-between w-full h-full py-3',
     ul: 'flex flex-wrap justify-center gap-4',
     li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
     img: 'w-[80px] h-[80px] mx-auto rounded-full mb-1',
+    name: 'text-[13px] font-medium w-full max-h-[38px] overflow-hidden',
+    title: 'text-[10px] font-light w-full max-h-[30px] overflow-hidden',
   },
   {
+    container: 'flex flex-col items-center justify-around w-full h-full py-4 px-6',
     ul: 'flex flex-wrap justify-center gap-4',
-    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
+    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[75%]',
     img: 'w-[80px] h-[80px] mx-auto rounded-full mb-1',
+    name: 'text-[13px] font-medium w-full max-h-[57px] overflow-hidden',
+    title: 'text-[10px] font-light w-full max-h-[45px] overflow-hidden',
   },
   {
+    container: 'flex flex-col items-center justify-around w-full h-full py-4 px-6',
     ul: 'flex flex-wrap justify-center gap-4',
-    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
-    img: 'w-[80px] h-[80px] mx-auto rounded-full mb-1',
+    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[40%]',
+    img: 'w-[90px] h-[90px] mx-auto rounded-full mb-1',
+    name: 'text-[13px] font-medium w-full max-h-[57px] overflow-hidden',
+    title: 'text-[10px] font-light w-full max-h-[45px] overflow-hidden',
   },
   {
+    container: 'flex flex-col items-center justify-around w-full h-full py-4 px-6',
     ul: 'flex flex-wrap justify-center gap-4',
-    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
+    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[35%]',
     img: 'w-[80px] h-[80px] mx-auto rounded-full mb-1',
+    name: 'text-[13px] font-medium w-full max-h-[57px] overflow-hidden',
+    title: 'text-[10px] font-light w-full max-h-[45px] overflow-hidden',
   },
   {
+    container: 'flex flex-col items-center justify-between w-full h-full py-6',
     ul: 'flex flex-wrap justify-center gap-2',
-    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
+    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[23%]',
     img: 'w-[80px] h-[80px] mx-auto rounded-full mb-1',
+    name: 'text-[13px] font-medium w-full max-h-[57px] overflow-hidden',
+    title: 'text-[10px] font-light w-full max-h-[45px] overflow-hidden',
   },
   {
-    ul: 'flex flex-wrap justify-center gap-x-6 gap-y-2',
-    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[140px] max-w-[150px]',
-    img: 'w-[60px] h-[60px] mx-auto rounded-full',
+    container: 'flex flex-col items-center justify-between w-full h-full py-4',
+    ul: 'flex flex-wrap justify-center gap-2 pt-2',
+    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[140px] max-w-[40%]',
+    img: 'w-[56px] h-[56px] mx-auto rounded-full',
+    name: 'text-[13px] font-medium w-full max-h-[38px] overflow-hidden',
+    title: 'text-[10px] font-light w-full max-h-[30px] overflow-hidden',
   },
   {
-    ul: 'flex flex-wrap justify-center gap-x-6 gap-y-2',
-    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[140px] max-w-[150px]',
-    img: 'w-[60px] h-[60px] mx-auto rounded-full',
+    container: 'flex flex-col items-center justify-between w-full h-full py-3',
+    ul: 'flex flex-wrap justify-center gap-2 pt-2',
+    li: 'flex flex-col items-center font-bold text-center px-1 w-[30%]',
+    img: 'w-[56px] h-[56px] mx-auto rounded-full',
+    name: 'text-[13px] font-medium w-full max-h-[38px] overflow-hidden',
+    title: 'text-[10px] font-light w-full max-h-[30px] overflow-hidden',
   },
   {
+    container: 'flex flex-col items-center justify-between w-full h-full py-3',
+    ul: 'flex flex-wrap justify-center gap-2 pt-2',
+    li: 'flex flex-col items-center font-bold text-center px-1 w-[23%] max-h-[128px]',
+    img: 'w-[56px] h-[56px] mx-auto rounded-full',
+    name: 'text-[13px] font-medium w-full max-h-[38px] overflow-hidden',
+    title: 'text-[10px] font-light w-full max-h-[30px] overflow-hidden',
+  },
+  {
+    container: 'flex flex-col items-center justify-between w-full h-full py-3',
+    ul: 'flex flex-wrap justify-center gap-2 pt-2',
+    li: 'flex flex-col items-center font-bold text-center px-1 w-[23%] max-h-[128px]',
+    img: 'w-[56px] h-[56px] mx-auto rounded-full',
+    name: 'text-[13px] font-medium w-full max-h-[38px] overflow-hidden',
+    title: 'text-[10px] font-light w-full max-h-[30px] overflow-hidden',
+  },
+  {
+    container: 'flex flex-col items-center justify-between w-full h-full py-3',
     ul: 'flex flex-wrap justify-center gap-2',
     li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
-    img: 'w-[60px] h-[60px] mx-auto rounded-full',
-  },
-  {
-    ul: 'flex flex-wrap justify-center gap-2',
-    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
-    img: 'w-[60px] h-[60px] mx-auto rounded-full',
-  },
-  {
-    ul: 'flex flex-wrap justify-center gap-2',
-    li: 'flex flex-col items-center font-bold text-center px-1 min-w-[120px] max-w-[130px]',
-    img: 'w-[60px] h-[60px] mx-auto rounded-full',
+    img: 'w-[56px] h-[56px] mx-auto rounded-full',
+    name: 'text-[13px] font-medium w-full max-h-[38px] overflow-hidden',
+    title: 'text-[10px] font-light w-full max-h-[30px] overflow-hidden',
   },
 ]
 
@@ -74,7 +104,7 @@ export const ImageLayout1 = ({
       color: textColor,
     }}
   >
-    <div className="flex flex-col items-center justify-around w-full h-full p-3">
+    <div className={layout1Styles[idx].container}>
       <h1
         className="font-medium leading-none text-center"
         style={{ fontSize: titleTextSize + 'px' }}
@@ -89,12 +119,8 @@ export const ImageLayout1 = ({
               src={speaker.profile_image_url.replace(/_normal/g, '')}
               alt=""
             />
-            {speaker.name && (
-              <h3 className={`text-[13px] font-medium ${textColor}`}>{speaker.name}</h3>
-            )}
-            {speaker.title && (
-              <h3 className={`text-[10px] font-light ${textColor}`}>{speaker.title}</h3>
-            )}
+            {speaker.name && <h3 className={layout1Styles[idx].name}>{speaker.name}</h3>}
+            {speaker.title && <h3 className={layout1Styles[idx].title}>{speaker.title}</h3>}
           </li>
         ))}
       </ul>
