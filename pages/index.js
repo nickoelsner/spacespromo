@@ -3,7 +3,7 @@ import Head from 'next/head'
 import * as htmlToImage from 'html-to-image'
 import { ImageLayout1 } from '../components/ImageLayout1'
 import { ImageLayout2 } from '../components/ImageLayout2'
-import TitleDateTime from '../components/TitleDateTime'
+import SpaceDetails from '../components/SpaceDetails'
 import LayoutPicker from '../components/LayoutPicker'
 import ColorPickers from '../components/ColorPickers'
 
@@ -25,10 +25,12 @@ const layouts = [
   {
     name: 'Layout 1',
     description: 'Maximum 8 Speakers',
+    max: 8,
   },
   {
     name: 'Layout 2',
     description: 'Maximum 6 Speakers',
+    max: 6,
   },
 ]
 
@@ -95,7 +97,8 @@ export default function Home() {
   const [scale, setScale] = useState(1)
   const [refAquired, setRefAquired] = useState(false)
   const [bgColorPicker, setBgColorPicker] = useState('#ffffff')
-  const [textColorPicker, setTextColorPicker] = useState('#000')
+  const [textColorPicker, setTextColorPicker] = useState('#000000')
+  const [numSpeakersError, setNumSpeakersError] = useState(false)
 
   const tweetText = `Join us ${dateTime} for a Twitter Space:%0D%0A${title}`
 
@@ -120,6 +123,14 @@ export default function Home() {
     setBackgroundColor(backgroundColors[0])
     setTextColor(textColors[0])
   }, [])
+
+  useEffect(() => {
+    if (speakers.length > selected.max) {
+      setNumSpeakersError(true)
+    } else {
+      setNumSpeakersError(false)
+    }
+  }, [selected, speakers])
 
   const margbot = scale * 324 - 324
 
@@ -166,7 +177,7 @@ export default function Home() {
         </header>
         <main className="h-full px-4 mx-auto sm:px-6 lg:px-8 xl:flex xl:top-0 xl:w-full overscroll-none max-w-screen-2xl">
           <div className="max-w-xl mx-auto xl:w-1/3 xl:mx-12">
-            <TitleDateTime
+            <SpaceDetails
               title={title}
               setTitle={setTitle}
               setTitleTextSize={setTitleTextSize}
@@ -175,6 +186,7 @@ export default function Home() {
               setDateTimeTextSize={setDateTimeTextSize}
               speakers={speakers}
               setSpeakers={setSpeakers}
+              numSpeakersError={numSpeakersError}
             />
             <div className="xl:order-3">
               <LayoutPicker selected={selected} setSelected={setSelected} layouts={layouts} />
@@ -211,7 +223,7 @@ export default function Home() {
                       textColor={textColor}
                       titleTextSize={titleTextSize}
                       title={title}
-                      speakers={speakers}
+                      speakers={speakers.slice(0, 8)}
                       dateTime={dateTime}
                       dateTimeTextSize={dateTimeTextSize}
                       scale={scale}
@@ -226,7 +238,7 @@ export default function Home() {
                       textColor={textColor}
                       titleTextSize={titleTextSize}
                       title={title}
-                      speakers={speakers}
+                      speakers={speakers.slice(0, 6)}
                       dateTime={dateTime}
                       dateTimeTextSize={dateTimeTextSize}
                       scale={scale}

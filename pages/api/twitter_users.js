@@ -16,6 +16,7 @@ export default function handler(req, res) {
         return response.json()
       })
       .then(({ data }) => {
+        console.log('data :>> ', data)
         res.status(200).json(data)
       })
       .catch((error) => {

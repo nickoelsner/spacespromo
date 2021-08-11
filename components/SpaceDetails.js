@@ -2,7 +2,7 @@ import RangeSlider from './Slider'
 import StyleDetails from './StyleDetails'
 import SpeakerSearch from './SpeakerSearch'
 
-const TitleDateTime = ({
+const SpaceDetails = ({
   title,
   setTitle,
   setTitleTextSize,
@@ -11,6 +11,7 @@ const TitleDateTime = ({
   setDateTimeTextSize,
   speakers,
   setSpeakers,
+  numSpeakersError,
 }) => {
   return (
     <div className="pt-8 space-y-8 xl:w-full">
@@ -86,10 +87,14 @@ const TitleDateTime = ({
             </div>
           </StyleDetails>
         </div>
-        <SpeakerSearch speakers={speakers} setSpeakers={setSpeakers} />
+        <SpeakerSearch
+          speakers={speakers}
+          setSpeakers={setSpeakers}
+          numSpeakersError={numSpeakersError}
+        />
       </div>
     </div>
   )
 }
 
-export default TitleDateTime
+export default SpaceDetails

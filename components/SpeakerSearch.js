@@ -1,8 +1,25 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { ExclamationIcon } from '@heroicons/react/solid'
+import Tooltip from '@material-ui/core/Tooltip'
 
-const SpeakerSearch = ({ speakers, setSpeakers }) => {
+const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
   const [handle, setHandle] = useState('')
+  const [error, setError] = useState(false)
+  const [duplicateError, setDuplicateError] = useState(false)
+  const [speakerIds, setSpeakerIds] = useState([])
+
+  useEffect(() => {
+    const idArray = speakers.map((speaker) => speaker.id)
+    const isDuplicate = idArray.some((id, index) => idArray.indexOf(id) !== index)
+    setDuplicateError(isDuplicate)
+    setSpeakerIds(idArray)
+  }, [speakers])
+
+  useEffect(() => {
+    setError(false)
+    setDuplicateError(false)
+  }, [handle])
 
   const onHandleChange = (e) => {
     setHandle(e.target.value)
@@ -25,9 +42,17 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
       .get(`/api/twitter_users?handle=${handle}`)
       .then((res) => {
         const user = res.data
-        user.title = ''
-        setSpeakers((prev) => [...prev, user])
-        setHandle('')
+        if (user) {
+          if (speakerIds.includes(user.id)) {
+            setDuplicateError(true)
+          } else {
+            user.title = ''
+            setSpeakers((prev) => [...prev, user])
+            setHandle('')
+          }
+        } else {
+          setError(true)
+        }
       })
       .catch((err) => console.log(err))
   }
@@ -66,6 +91,38 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
         </form>
       </div>
       <div className="mb-8 col-span-full">
+        {numSpeakersError && (
+          <div className="p-4 mb-4 bg-red-100 rounded-lg">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <ExclamationIcon className="w-5 h-5 text-red-400" aria-hidden="true" />
+              </div>
+              <h3 className="ml-3 text-sm font-medium text-red-800">
+                You have exceeded the maximum number of speakers for this layout.
+              </h3>
+            </div>
+          </div>
+        )}
+        {error && (
+          <div className="p-4 mb-4 bg-red-100 rounded-lg">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <ExclamationIcon className="w-5 h-5 text-red-400" aria-hidden="true" />
+              </div>
+              <h3 className="ml-3 text-sm font-medium text-red-800">Speaker not found</h3>
+            </div>
+          </div>
+        )}
+        {duplicateError && (
+          <div className="p-4 mb-4 bg-red-100 rounded-lg">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <ExclamationIcon className="w-5 h-5 text-red-400" aria-hidden="true" />
+              </div>
+              <h3 className="ml-3 text-sm font-medium text-red-800">Speaker already exists</h3>
+            </div>
+          </div>
+        )}
         <ul className="list-reset list-unstyled list-inline list-inline-icon-left">
           {speakers.map((speaker) => (
             <li key={speaker.id} className="flex items-center w-full py-3 border-t border-gray-300">
@@ -75,7 +132,7 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
                   <div>
                     <label
                       htmlFor={`${speaker.username}-name`}
-                      className="block text-sm font-medium text-violet-900"
+                      className="block ml-1 text-sm font-medium text-violet-900"
                     >
                       Name
                     </label>
@@ -85,13 +142,20 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
                       id={`${speaker.username}-name`}
                       value={speaker.name}
                       onChange={(e) => handleAttributeChange(e, speaker.id, 'name')}
-                      className="block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50"
+                      className={`block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50 ${
+                        speaker.name.length > 32
+                          ? 'border-2 border-orange-600 focus:border-orange-600'
+                          : ''
+                      }`}
                     />
+                    {speaker.name.length > 32 && (
+                      <div className="ml-1 text-sm text-orange-600">Long names may get cut off</div>
+                    )}
                   </div>
                   <div className="flex-1 mt-2 sm:mt-0 sm:ml-3">
                     <label
                       htmlFor={`${speaker.username}-title`}
-                      className="block text-sm font-medium text-violet-900"
+                      className="block ml-1 text-sm font-medium text-violet-900"
                     >
                       Title
                     </label>
@@ -101,8 +165,17 @@ const SpeakerSearch = ({ speakers, setSpeakers }) => {
                       id={`${speaker.username}-title`}
                       value={speaker.title}
                       onChange={(e) => handleAttributeChange(e, speaker.id, 'title')}
-                      className="block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50"
+                      className={`block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50 ${
+                        speaker.title.length > 55
+                          ? 'border-2 border-orange-600 focus:border-orange-600'
+                          : ''
+                      }`}
                     />
+                    {speaker.title.length > 55 && (
+                      <div className="ml-1 text-sm text-orange-600">
+                        Long titles may get cut off
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
