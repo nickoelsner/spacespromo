@@ -76,7 +76,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
               type="text"
               name="speakers"
               id="speakers"
-              className="block w-full pl-8 text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50"
+              className="block w-full pl-8 text-sm border-gray-300 rounded-md focus:ring-primary focus:border-primary-50"
               placeholder=" Twitter handle"
               value={handle}
               onChange={onHandleChange}
@@ -142,7 +142,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                       id={`${speaker.username}-name`}
                       value={speaker.name}
                       onChange={(e) => handleAttributeChange(e, speaker.id, 'name')}
-                      className={`block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50 ${
+                      className={`block w-full text-sm border-gray-300 rounded-md focus:ring-primary focus:border-primary-50 ${
                         speaker.name.length > 32
                           ? 'border-2 border-orange-600 focus:border-orange-600'
                           : ''
@@ -165,7 +165,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                       id={`${speaker.username}-title`}
                       value={speaker.title}
                       onChange={(e) => handleAttributeChange(e, speaker.id, 'title')}
-                      className={`block w-full text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50 ${
+                      className={`block w-full text-sm border-gray-300 rounded-md focus:ring-primary focus:border-primary-50 ${
                         speaker.title.length > 55
                           ? 'border-2 border-orange-600 focus:border-orange-600'
                           : ''

@@ -154,8 +154,8 @@ export default function MainPage() {
   return (
     <div>
       <div className="h-full pb-12 overscroll-none" style={{ minHeight: '100vh' }}>
-        <header className="flex items-center justify-start w-full max-w-xl px-4 py-4 mx-auto sm:px-0 xl:max-w-screen-2xl">
-          <a className="flex items-center text-2xl text-primary-text xl:px-20" href="/">
+        <header className="flex items-center justify-start w-full max-w-xl px-4 py-4 mx-auto sm:px-0 xl:max-w-screen-2xl xl:px-20">
+          <a className="flex items-center text-2xl text-primary-text" href="/">
             <span className="font-bold">SpacesPromo</span>
             <svg
               className="w-6 h-6 ml-2"

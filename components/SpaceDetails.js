@@ -29,7 +29,7 @@ const SpaceDetails = ({
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
+              className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary-50"
             />
           </div>
           <StyleDetails>
@@ -64,7 +64,7 @@ const SpaceDetails = ({
               placeholder="Date and time as you'd like it to appear"
               value={dateTime}
               onChange={(e) => setDateTime(e.target.value)}
-              className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-violet-500 focus:border-violet-50"
+              className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary-50"
             />
           </div>
           <StyleDetails>
