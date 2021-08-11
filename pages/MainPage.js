@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import Head from 'next/head'
+
 import * as htmlToImage from 'html-to-image'
 import { ImageLayout1 } from '../components/ImageLayout1'
 import { ImageLayout2 } from '../components/ImageLayout2'
@@ -86,7 +86,7 @@ const seedUsers6 = [
   },
 ]
 
-export default function Home() {
+export default function MainPage() {
   const [speakers, setSpeakers] = useStickyState([], 'speakers')
   const [title, setTitle] = useStickyState('', 'title')
   const [dateTime, setDateTime] = useStickyState('', 'dateTime')
@@ -153,16 +153,6 @@ export default function Home() {
 
   return (
     <div>
-      <Head>
-        <title>SpacesPromo</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="preload" href="/fonts/Montserrat-Regular.ttf" as="font" crossOrigin="" />
-        <script
-          defer
-          data-domain="spacespromo.com"
-          src="https://plausible.io/js/plausible.js"
-        ></script>
-      </Head>
       <div className="h-full pb-12 overscroll-none" style={{ minHeight: '100vh' }}>
         <header className="flex items-center justify-center w-full py-4">
           <div className="flex text-3xl">

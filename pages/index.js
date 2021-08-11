@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import Home from './Home'
+import MainPage from './MainPage'
+import Head from 'next/head'
 
-export default function Index() {
+export default function Home() {
   const [hasMounted, setHasMounted] = useState(false)
   useEffect(() => {
     setHasMounted(true)
@@ -10,6 +11,20 @@ export default function Index() {
   if (!hasMounted) {
     return null
   } else {
-    return <Home />
+    return (
+      <div>
+        <Head>
+          <title>SpacesPromo</title>
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="preload" href="/fonts/Montserrat-Regular.ttf" as="font" crossOrigin="" />
+          <script
+            defer
+            data-domain="spacespromo.com"
+            src="https://plausible.io/js/plausible.js"
+          ></script>
+        </Head>
+        <MainPage />
+      </div>
+    )
   }
 }
