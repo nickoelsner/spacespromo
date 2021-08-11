@@ -247,13 +247,13 @@ export default function MainPage() {
               </div>
               <div className="flex flex-row space-x-4">
                 <button
-                  className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm sm:px-6 bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
+                  className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm sm:px-6 bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
                   onClick={onSaveImage}
                 >
                   Save Image
                 </button>
                 <a
-                  className="inline-flex items-center justify-center px-4 sm:px-6 py-2 mt-8 mb-8 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-[#49A1EB] hover:bg-[#198ae6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#49A1EB] "
+                  className="inline-flex items-center justify-center px-4 sm:px-6 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm bg-[#49A1EB] hover:bg-[#198ae6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#49A1EB] "
                   href={`https://twitter.com/intent/tweet?text=${tweetText}`}
                   target="_blank"
                 >
