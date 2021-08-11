@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react'
-import Home from './Home'
 
-export default function Index() {
+export default function useHasMounted() {
   const [hasMounted, setHasMounted] = useState(false)
   useEffect(() => {
     setHasMounted(true)
   }, [])
-
-  if (!hasMounted) {
-    return null
-  } else {
-    return <Home />
-  }
+  return hasMounted
 }
