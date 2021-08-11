@@ -89,19 +89,19 @@ const seedUsers6 = [
 export default function Home() {
   const [speakers, setSpeakers] = useStickyState([], 'speakers')
   const [title, setTitle] = useStickyState('', 'title')
+  const [dateTime, setDateTime] = useStickyState('', 'dateTime')
   const [backgroundColor, setBackgroundColor] = useStickyState(
     backgroundColors[0],
     'backgroundColor'
   )
   const [textColor, setTextColor] = useStickyState(textColors[0], 'textColor')
-  const [dateTime, setDateTime] = useStickyState('', 'dateTime')
   const [titleTextSize, setTitleTextSize] = useStickyState(32, 'titleTextSize')
   const [dateTimeTextSize, setDateTimeTextSize] = useStickyState(16, 'dateTimeTextSize')
   const [selected, setSelected] = useStickyState(layouts[0], 'selectedLayout')
-  const [scale, setScale] = useState(1)
-  const [refAquired, setRefAquired] = useState(false)
   const [bgColorPicker, setBgColorPicker] = useStickyState('#ffffff', 'bgColorPicker')
   const [textColorPicker, setTextColorPicker] = useStickyState('#000000', 'textColorPicker')
+  const [scale, setScale] = useState(1)
+  const [refAquired, setRefAquired] = useState(false)
   const [numSpeakersError, setNumSpeakersError] = useState(false)
 
   const tweetText = `Join us ${dateTime} for a Twitter Space:%0D%0A${title}`
