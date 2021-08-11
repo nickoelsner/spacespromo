@@ -21,22 +21,30 @@ const ColorPickers = ({
               backgroundColor === color ? 'transform scale-[120%]' : ''
             }`}
             onClick={() => setBackgroundColor(color)}
+            aria-label={`gradient background color option ${i + 1}`}
           />
         ))}
-
         <button
           className={`relative h-8 text-xs leading-tight text-center rounded-sm shadow-md cursor-pointer w-14 text-violet-900 ${
             backgroundColor === `bg-[${bgColorPicker}]` ? 'transform scale-[120%]' : ''
           }`}
           style={{ backgroundColor: bgColorPicker }}
+          aria-label="custom background color picker"
         >
           <input
+            id="custom-background-color"
+            name="custom-background-color"
             type="color"
             className="h-8 p-0 border-transparent rounded-sm shadow-md cursor-pointer w-14"
             value={bgColorPicker}
             onChange={(e) => setBgColorPicker(e.target.value)}
           />
-          <span className="absolute left-0 w-full text-center -bottom-4">Custom</span>
+          <label
+            htmlFor="custom-background-color"
+            className="absolute left-0 w-full text-center -bottom-4"
+          >
+            Custom
+          </label>
         </button>
       </div>
       <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
@@ -49,6 +57,7 @@ const ColorPickers = ({
             }`}
             onClick={() => setTextColor(color)}
             style={{ backgroundColor: color }}
+            aria-label={`text color ${color}`}
           />
         ))}
         <button
@@ -56,14 +65,22 @@ const ColorPickers = ({
             textColor === `text-[${textColorPicker}]` ? 'transform scale-[120%]' : ''
           }`}
           style={{ backgroundColor: textColorPicker }}
+          aria-label="custom text color picker"
         >
           <input
+            id="custom-text-color"
+            name="custom-text-color"
             type="color"
             className="h-8 p-0 border-transparent rounded-sm shadow-md cursor-pointer w-14"
             value={textColorPicker}
             onChange={(e) => setTextColorPicker(e.target.value)}
           />
-          <span className="absolute left-0 w-full text-center -bottom-4">Custom</span>
+          <label
+            htmlFor="custom-text-color"
+            className="absolute left-0 w-full text-center -bottom-4"
+          >
+            Custom
+          </label>
         </button>
       </div>
     </>

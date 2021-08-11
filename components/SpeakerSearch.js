@@ -74,8 +74,8 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
             </div>
             <input
               type="text"
-              name="speaker"
-              id="speaker"
+              name="speakers"
+              id="speakers"
               className="block w-full pl-8 text-sm border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-50"
               placeholder=" Twitter handle"
               value={handle}
@@ -183,6 +183,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                 <button
                   className="font-mono font-semibold text-gray-900 hover:text-red-700"
                   onClick={() => deleteSpeaker(speaker.id)}
+                  aria-label="Delete speaker"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
