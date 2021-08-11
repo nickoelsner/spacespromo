@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import MainPage from './MainPage'
+import MainPage from '../components/MainPage'
 import Head from 'next/head'
 
 export default function Home() {

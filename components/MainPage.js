@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
 
 import * as htmlToImage from 'html-to-image'
-import { ImageLayout1 } from '../components/ImageLayout1'
-import { ImageLayout2 } from '../components/ImageLayout2'
-import SpaceDetails from '../components/SpaceDetails'
-import LayoutPicker from '../components/LayoutPicker'
-import ColorPickers from '../components/ColorPickers'
+import { ImageLayout1 } from './ImageLayout1'
+import { ImageLayout2 } from './ImageLayout2'
+import SpaceDetails from './SpaceDetails'
+import LayoutPicker from './LayoutPicker'
+import ColorPickers from './ColorPickers'
 import useStickyState from '../hooks/useStickyState'
 
 const download = require('downloadjs')
