@@ -14,11 +14,11 @@ const SpaceDetails = ({
   numSpeakersError,
 }) => {
   return (
-    <div className="pt-8 space-y-8 xl:w-full">
-      <h3 className="text-xl font-medium leading-6 text-violet-900">Twitter Space Details</h3>
+    <div className="space-y-8 xl:w-full">
+      {/* <h3 className="text-xl font-medium leading-6 text-primary-text">Twitter Space Details</h3> */}
       <div className="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div className="col-span-full">
-          <label htmlFor="title" className="block text-sm font-medium text-violet-900">
+          <label htmlFor="title" className="block text-sm font-medium text-primary-text">
             Title
           </label>
           <div className="mt-1">
@@ -33,10 +33,10 @@ const SpaceDetails = ({
             />
           </div>
           <StyleDetails>
-            <div className="text-violet-900">
+            <div className="text-primary-text">
               <label
                 htmlFor="title-text-size"
-                className="block text-sm font-medium text-violet-900"
+                className="block text-sm font-medium text-primary-text"
               >
                 Text Size
               </label>
@@ -53,7 +53,7 @@ const SpaceDetails = ({
           </StyleDetails>
         </div>
         <div className="col-span-full">
-          <label htmlFor="datetime" className="block text-sm font-medium text-violet-900">
+          <label htmlFor="datetime" className="block text-sm font-medium text-primary-text">
             Date and Time
           </label>
           <div className="mt-1">
@@ -68,10 +68,10 @@ const SpaceDetails = ({
             />
           </div>
           <StyleDetails>
-            <div className="text-violet-900">
+            <div className="text-primary-text">
               <label
                 htmlFor="date-time-text-size"
-                className="block text-sm font-medium text-violet-900"
+                className="block text-sm font-medium text-primary-text"
               >
                 Text Size
               </label>

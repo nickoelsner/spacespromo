@@ -2,27 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-text.min.css');
+
 html,
 body {
-  background-color: rgb(247, 245, 252);
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat-Regular.ttf');
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
+  background-color: #fafafa;
+  font-family: 'Plus Jakarta Text', sans-serif;
 }
 
 input[type='color'] {
   -webkit-appearance: none;
   border: none;
   opacity: 0;
-}
-
-#header {
-  background: -webkit-linear-gradient(#d946ef, #4c1d95);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }

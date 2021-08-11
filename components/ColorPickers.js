@@ -12,7 +12,7 @@ const ColorPickers = ({
 }) => {
   return (
     <>
-      <h4 className="block mb-2 text-sm font-medium text-violet-900">Background Color</h4>
+      <h4 className="block mb-2 text-sm font-medium text-primary-text">Background Color</h4>
       <div className="flex flex-wrap items-end gap-3 pb-2 mb-5">
         {backgroundColors.map((color, i) => (
           <button
@@ -25,7 +25,7 @@ const ColorPickers = ({
           />
         ))}
         <button
-          className={`relative h-8 text-xs leading-tight text-center rounded-sm shadow-md cursor-pointer w-14 text-violet-900 ${
+          className={`relative h-8 text-xs leading-tight text-center rounded-sm shadow-md cursor-pointer w-14 text-primary-text ${
             backgroundColor === `bg-[${bgColorPicker}]` ? 'transform scale-[120%]' : ''
           }`}
           style={{ backgroundColor: bgColorPicker }}
@@ -47,7 +47,7 @@ const ColorPickers = ({
           </label>
         </button>
       </div>
-      <h4 className="block mb-2 text-sm font-medium text-violet-900">Text Color</h4>
+      <h4 className="block mb-2 text-sm font-medium text-primary-text">Text Color</h4>
       <div className="flex flex-wrap items-end gap-3 pb-2 mb-5">
         {textColors.map((color, i) => (
           <button
@@ -61,7 +61,7 @@ const ColorPickers = ({
           />
         ))}
         <button
-          className={`relative h-8 text-xs leading-tight text-center rounded-sm shadow-md cursor-pointer w-14 text-violet-900 ${
+          className={`relative h-8 text-xs leading-tight text-center rounded-sm shadow-md cursor-pointer w-14 text-primary-text ${
             textColor === `text-[${textColorPicker}]` ? 'transform scale-[120%]' : ''
           }`}
           style={{ backgroundColor: textColorPicker }}

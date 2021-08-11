@@ -8,7 +8,7 @@ export default function StyleDetails({ children }) {
         <Disclosure>
           {({ open }) => (
             <>
-              <Disclosure.Button className="flex justify-start py-2 text-sm font-medium text-left rounded-lg text-violet-900 focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-900 focus-visible:ring-opacity-75">
+              <Disclosure.Button className="flex justify-start py-2 text-sm font-medium text-left rounded-lg text-primary-text focus:outline-none focus-visible:ring-1 focus-visible:ring-primary-hover focus-visible:ring-opacity-75">
                 <span>Additional Styles</span>
                 <ChevronUpIcon className={`${open ? 'transform rotate-180' : ''} w-5 h-5 ml-2`} />
               </Disclosure.Button>

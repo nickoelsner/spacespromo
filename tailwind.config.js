@@ -5,15 +5,19 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Monsterrat', 'sans-serif'],
-      },
+      // fontFamily: {
+      //   monsterrat: ['Monsterrat', 'sans-serif'],
+      //   sans: ['AtkinsonHyperlegible', 'open-sans', 'sans-serif'],
+      // },
       colors: {
         fuchsia: colors.fuchsia,
         violet: colors.violet,
         orange: colors.orange,
         teal: colors.teal,
         lime: colors.lime,
+        'primary-text': colors.violet[900],
+        primary: colors.violet[800],
+        'primary-hover': colors.violet[900],
       },
     },
   },

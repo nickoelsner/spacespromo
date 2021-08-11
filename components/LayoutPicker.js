@@ -7,7 +7,7 @@ function classNames(...classes) {
 const LayoutPicker = ({ selected, setSelected, layouts }) => {
   return (
     <div className="mb-6">
-      <h4 className="block mb-2 text-sm font-medium text-violet-900">Layout</h4>
+      <h4 className="block mb-2 text-sm font-medium text-primary-text">Layout</h4>
       <RadioGroup value={selected} onChange={setSelected}>
         <RadioGroup.Label className="sr-only">Layout</RadioGroup.Label>
         <div className="-space-y-px bg-white rounded-md">
@@ -42,7 +42,7 @@ const LayoutPicker = ({ selected, setSelected, layouts }) => {
                       <RadioGroup.Label
                         as="span"
                         className={classNames(
-                          checked ? 'text-violet-900' : 'text-gray-900',
+                          checked ? 'text-primary-text' : 'text-gray-900',
                           'block text-sm font-medium'
                         )}
                       >

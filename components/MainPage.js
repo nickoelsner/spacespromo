@@ -154,24 +154,18 @@ export default function MainPage() {
   return (
     <div>
       <div className="h-full pb-12 overscroll-none" style={{ minHeight: '100vh' }}>
-        <header className="flex items-center justify-center w-full py-4">
-          <div className="flex text-3xl">
-            <span id="header">SpacesPromo</span>
+        <header className="flex items-center justify-start w-full max-w-xl px-4 py-4 mx-auto sm:px-0 xl:max-w-screen-2xl">
+          <a className="flex items-center text-2xl text-primary-text xl:px-20" href="/">
+            <span className="font-bold">SpacesPromo</span>
             <svg
-              className="w-8 h-8 ml-2"
-              fill="url(#grad1)"
+              className="w-6 h-6 ml-2"
+              fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 100 100"
             >
-              <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#d946ef', stopOpacity: '1' }} />
-                  <stop offset="100%" style={{ stopColor: '#4C1D95', stopOpacity: '1' }} />
-                </linearGradient>
-              </defs>
               <path d="M12.61,43.55l11.6,4.81a67,67,0,0,0-3.12,10.17l-.44,2L37.28,77.17l2-.43a67,67,0,0,0,10.17-3.12l4.81,11.6a.75.75,0,0,0,1.23.24l7.27-7.27a12,12,0,0,0,3.5-9.09L66,64.43C79.46,54.49,93.08,37.06,96.79,6.64A5,5,0,0,0,91.18,1C60.77,4.74,43.33,18.37,33.39,31.79l-4.66-.24A12,12,0,0,0,19.64,35l-7.27,7.27A.75.75,0,0,0,12.61,43.55ZM59.25,25.83a9,9,0,1,1,0,12.75A9,9,0,0,1,59.25,25.83ZM10.44,78.5a11.81,11.81,0,0,0-6-.48,1.08,1.08,0,0,1-1-.3,1.09,1.09,0,0,1-.22-1.23C5.35,71.91,11,62.7,21.23,70.14a.51.51,0,0,1,0,.76A11.11,11.11,0,0,0,17,80a.81.81,0,0,0,.78.78,11.1,11.1,0,0,0,9.1-4.14.51.51,0,0,1,.79,0c1.42,1.69,5.33,7.21,1,12.54a11.25,11.25,0,0,1-7.54,4C16.93,93.63,9.17,95,6,98.62a1.09,1.09,0,0,1-1.88-.4C3,94.4,1.26,85.86,10.44,78.5Z"></path>
             </svg>
-          </div>
+          </a>
         </header>
         <main className="h-full px-4 mx-auto sm:px-6 lg:px-8 xl:flex xl:top-0 xl:w-full overscroll-none max-w-screen-2xl">
           <div className="max-w-xl mx-auto xl:w-1/3 xl:mx-12">
@@ -204,12 +198,12 @@ export default function MainPage() {
           </div>
           <div className="h-full max-w-xl mx-auto xl:max-w-4xl xl:w-2/3 xl:sticky xl:top-0">
             <div className="w-full sm:flex sm:flex-col">
-              <div>
-                <div className="flex items-center mb-4 sm:pt-8">
-                  <h3 className="mr-4 text-xl font-medium leading-6 text-violet-900">
+              <div className="pt-8">
+                {/* <div className="flex items-center mb-4 sm:pt-8">
+                  <h3 className="mr-4 text-xl font-medium leading-6 text-primary-text">
                     Image Preview
                   </h3>
-                </div>
+                </div> */}
 
                 <div ref={imageContainer} id="imageContainer" className="w-full"></div>
                 <div style={{ marginBottom: `${margbot}px` }}>
@@ -247,7 +241,7 @@ export default function MainPage() {
               </div>
               <div className="flex flex-row space-x-4">
                 <button
-                  className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm sm:px-6 bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
+                  className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm sm:px-6 bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary "
                   onClick={onSaveImage}
                 >
                   Save Image
@@ -266,7 +260,10 @@ export default function MainPage() {
       </div>
       <footer className="flex items-center justify-center h-8 -mt-8 text-gray-500">
         Made with <span className="mx-2">❤️</span> and <span className="mx-2">☕️</span> by
-        <a className="ml-1 text-opacity-70 text-violet-900" href="https://twitter.com/NickOelsner">
+        <a
+          className="ml-1 text-opacity-70 text-primary-text"
+          href="https://twitter.com/NickOelsner"
+        >
           Nick Oelsner
         </a>
       </footer>

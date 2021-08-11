@@ -64,7 +64,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
   return (
     <>
       <div className="col-span-full">
-        <label htmlFor="speakers" className="block text-sm font-medium text-violet-900">
+        <label htmlFor="speakers" className="block text-sm font-medium text-primary-text">
           Speakers
         </label>
         <form onSubmit={onTwitterHandleSearch} className="flex mt-1">
@@ -84,7 +84,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
           </div>
           <button
             type="submit"
-            className="inline-flex items-center justify-center px-6 py-2 ml-3 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800"
+            className="inline-flex items-center justify-center px-6 py-2 ml-3 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
           >
             Add
           </button>
@@ -132,7 +132,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                   <div>
                     <label
                       htmlFor={`${speaker.username}-name`}
-                      className="block ml-1 text-sm font-medium text-violet-900"
+                      className="block ml-1 text-sm font-medium text-primary-text"
                     >
                       Name
                     </label>
@@ -155,7 +155,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                   <div className="flex-1 mt-2 sm:mt-0 sm:ml-3">
                     <label
                       htmlFor={`${speaker.username}-title`}
-                      className="block ml-1 text-sm font-medium text-violet-900"
+                      className="block ml-1 text-sm font-medium text-primary-text"
                     >
                       Title
                     </label>
