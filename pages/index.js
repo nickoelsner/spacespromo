@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
 import Head from 'next/head'
-import Link from 'next/Link'
 import { ArrowRightIcon } from '@heroicons/react/solid'
 
 const speakers = [
