@@ -39,14 +39,14 @@ const layout2Styles = [
     ul: 'flex flex-wrap justify-center w-2/3 gap-y-4 pr-4 items-around',
     li: 'flex flex-col items-center justify-start font-bold text-center w-[33%] max-h-[167px] overflow-hidden',
     name: 'text-[13px]',
-    title: 'text-[10px]',
+    title: 'text-[9px]',
   },
   {
     titleContainer: 'flex flex-col justify-around w-[30%] h-full p-4 pr-2 items-center',
     ul: 'flex flex-wrap justify-center w-[70%] gap-y-4 pr-4 items-around',
     li: 'flex flex-col items-center justify-start font-bold text-center w-[33%] max-h-[167px] overflow-hidden',
     name: 'text-[13px]',
-    title: 'text-[10px]',
+    title: 'text-[9px]',
   },
   {
     titleContainer: 'flex flex-col justify-around w-1/3 h-full p-4 pr-2 items-center',
@@ -102,7 +102,9 @@ export const ImageLayout2 = ({
                 alt=""
               />
               {speaker.name && (
-                <h3 className={`${layout2Styles[idx].name} font-medium w-full mb-px ${textColor}`}>
+                <h3
+                  className={`${layout2Styles[idx].name} font-medium w-full mb-px mt-1 ${textColor}`}
+                >
                   {speaker.name}
                 </h3>
               )}
