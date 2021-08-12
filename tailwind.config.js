@@ -5,10 +5,6 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      // fontFamily: {
-      //   monsterrat: ['Monsterrat', 'sans-serif'],
-      //   sans: ['AtkinsonHyperlegible', 'open-sans', 'sans-serif'],
-      // },
       colors: {
         fuchsia: colors.fuchsia,
         violet: colors.violet,
@@ -16,8 +12,8 @@ module.exports = {
         teal: colors.teal,
         lime: colors.lime,
         'primary-text': colors.blue[900],
-        primary: colors.blue[800],
-        'primary-hover': colors.blue[900],
+        primary: colors.blue[600],
+        'primary-hover': colors.blue[700],
         'primary-50': colors.blue[50],
         'primary-200': colors.blue[200],
         'primary-300': colors.blue[300],

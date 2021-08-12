@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from 'react'
-
 import * as htmlToImage from 'html-to-image'
 import { ImageLayout1 } from './ImageLayout1'
 import { ImageLayout2 } from './ImageLayout2'
@@ -86,7 +85,7 @@ const seedUsers6 = [
   },
 ]
 
-export default function MainPage() {
+export default function ImageCreator() {
   const [speakers, setSpeakers] = useStickyState([], 'speakers')
   const [title, setTitle] = useStickyState('', 'title')
   const [dateTime, setDateTime] = useStickyState('', 'dateTime')
@@ -155,7 +154,7 @@ export default function MainPage() {
     <div>
       <div className="h-full pb-12 overscroll-none" style={{ minHeight: '100vh' }}>
         <header className="flex items-center justify-start w-full max-w-xl px-4 py-4 mx-auto sm:px-0 xl:max-w-screen-2xl xl:px-20">
-          <a className="flex items-center text-2xl text-primary-text" href="/">
+          <a className="flex items-center text-2xl text-primary" href="/">
             <span className="font-bold">SpacesPromo</span>
             <svg
               className="w-6 h-6 ml-2"
