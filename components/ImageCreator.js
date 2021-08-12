@@ -10,8 +10,8 @@ import useStickyState from '../hooks/useStickyState'
 const download = require('downloadjs')
 
 const backgroundColors = [
-  'bg-gradient-to-br from-blue-300 to-blue-700',
   'bg-gradient-to-br from-pink-500 to-indigo-800',
+  'bg-gradient-to-br from-blue-300 to-blue-700',
   'bg-gradient-to-br from-orange-200 to-blue-200',
   'bg-gradient-to-br from-teal-500 to-blue-400',
   'bg-gradient-to-br from-yellow-100 to-lime-200',
@@ -149,6 +149,21 @@ export default function ImageCreator() {
       download(dataUrl, 'SpacesPromo.png')
     })
   }
+
+  // const copyToClipboard = (e) => {
+
+  //   const imageElement = document.getElementById('promo-image')
+  //   const imgScale = 1600 / imageElement.offsetWidth
+  //   const options = { height: 900, width: 1600, style: { transform: `scale(${imgScale})` } }
+  //   htmlToImage.toPng(imageElement, { style: options }).then(function (dataUrl) {
+  //     const img = new Image();
+  //   img.src = dataUrl;
+  //   document.body.appendChild(img);
+  //   })
+  //     textAreaRef.current.select()
+  //     document.execCommand('copy')
+  //     e.target.focus()
+  // }
 
   return (
     <div>
