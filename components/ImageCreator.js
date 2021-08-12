@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from 'react'
-
 import * as htmlToImage from 'html-to-image'
 import { ImageLayout1 } from './ImageLayout1'
 import { ImageLayout2 } from './ImageLayout2'
@@ -11,8 +10,8 @@ import useStickyState from '../hooks/useStickyState'
 const download = require('downloadjs')
 
 const backgroundColors = [
+  'bg-gradient-to-br from-blue-300 to-blue-700',
   'bg-gradient-to-br from-pink-500 to-indigo-800',
-  'bg-gradient-to-br from-blue-200 to-blue-700',
   'bg-gradient-to-br from-orange-200 to-blue-200',
   'bg-gradient-to-br from-teal-500 to-blue-400',
   'bg-gradient-to-br from-yellow-100 to-lime-200',
@@ -37,28 +36,12 @@ const layouts = [
 
 const seedUsers6 = [
   {
-    username: 'NickOelsner',
     profile_image_url:
-      'https://pbs.twimg.com/profile_images/1364044816649121796/uLmGPnwy_normal.jpg',
-    id: '1364044326334918656',
-    name: 'Nick Oelsner',
-    title: 'Frontend Developer/ Freelancer',
-  },
-  {
-    profile_image_url:
-      'https://pbs.twimg.com/profile_images/1354163904213966848/4dOl8di8_normal.jpg',
-    id: '1354159191296864256',
-    name: 'Katherine Peterson',
-    username: 'katherinecodes',
-    title: 'Software Engineer at Github',
-  },
-  {
-    profile_image_url:
-      'https://pbs.twimg.com/profile_images/1421305898379608065/0iXfDSGP_normal.jpg',
-    username: 'tanoaksam',
-    id: '1311650703052476416',
-    name: 'Sam Sycamore',
-    title: 'Content & Marketing at Hashnode',
+      'https://pbs.twimg.com/profile_images/1400216053280559104/WvAf6G1M_normal.jpg',
+    id: '1212524335174311936',
+    username: 'shookcodes',
+    name: 'Sarah Shook',
+    title: 'Owner, Shook LLC',
   },
   {
     profile_image_url:
@@ -66,27 +49,43 @@ const seedUsers6 = [
     username: 'edanbenatar',
     id: '1262720796511940609',
     name: 'Edan Ben-Atar',
-    title: 'Founder of Weblime',
+    title: 'Founder/Owner, Weblime',
+  },
+  {
+    username: 'shaquilhansford',
+    name: 'Shaquil Hansford',
+    id: '3188230904',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1387992635105812485/54yCv-mQ_normal.jpg',
+    title: 'Freelance Developer',
   },
   {
     name: 'Rocco Sangellino',
-    username: 'RoccoSangellino',
-    id: '1337808128176340992',
     profile_image_url:
       'https://pbs.twimg.com/profile_images/1388602894258114561/LYpjcAVx_normal.jpg',
-    title: 'Software Lead at Mondo Robot',
+    id: '1337808128176340992',
+    username: 'RoccoSangellino',
+    title: 'Lead Engineer at Mondo Robot',
   },
   {
     profile_image_url:
-      'https://pbs.twimg.com/profile_images/1400216053280559104/WvAf6G1M_normal.jpg',
-    username: 'shookcodes',
-    id: '1212524335174311936',
-    name: 'Sarah Shook',
-    title: 'Freelance Developer',
+      'https://pbs.twimg.com/profile_images/1383561638339432454/wXVxviKa_normal.png',
+    id: '1004483816',
+    username: 'shaundai',
+    name: 'Shaundai Person',
+    title: 'UI Engineer at SalesLoft (aka HBIC)',
+  },
+  {
+    username: 'katherinecodes',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1354163904213966848/4dOl8di8_normal.jpg',
+    id: '1354159191296864256',
+    name: 'Katherine Peterson',
+    title: 'Software Engineer at Github',
   },
 ]
 
-export default function MainPage() {
+export default function ImageCreator() {
   const [speakers, setSpeakers] = useStickyState([], 'speakers')
   const [title, setTitle] = useStickyState('', 'title')
   const [dateTime, setDateTime] = useStickyState('', 'dateTime')
@@ -144,9 +143,9 @@ export default function MainPage() {
 
   const onSaveImage = () => {
     const imageElement = document.getElementById('promo-image')
-    // const scale = 1600 / imageElement.offsetWidth
-    const options = { height: 900, width: 1600, style: { transform: `scale(${scale})` } }
-    htmlToImage.toPng(imageElement).then(function (dataUrl) {
+    const imgScale = 1600 / imageElement.offsetWidth
+    const options = { height: 900, width: 1600, style: { transform: `scale(${imgScale})` } }
+    htmlToImage.toPng(imageElement, { style: options }).then(function (dataUrl) {
       download(dataUrl, 'SpacesPromo.png')
     })
   }
@@ -154,24 +153,18 @@ export default function MainPage() {
   return (
     <div>
       <div className="h-full pb-12 overscroll-none" style={{ minHeight: '100vh' }}>
-        <header className="flex items-center justify-center w-full py-4">
-          <div className="flex text-3xl">
-            <span id="header">SpacesPromo</span>
+        <header className="flex items-center justify-start w-full max-w-xl px-4 py-4 mx-auto sm:px-0 xl:max-w-screen-2xl xl:px-20">
+          <a className="flex items-center text-2xl text-primary" href="/">
+            <span className="font-bold">SpacesPromo</span>
             <svg
-              className="w-8 h-8 ml-2"
-              fill="url(#grad1)"
+              className="w-6 h-6 ml-2"
+              fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 100 100"
             >
-              <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#d946ef', stopOpacity: '1' }} />
-                  <stop offset="100%" style={{ stopColor: '#4C1D95', stopOpacity: '1' }} />
-                </linearGradient>
-              </defs>
               <path d="M12.61,43.55l11.6,4.81a67,67,0,0,0-3.12,10.17l-.44,2L37.28,77.17l2-.43a67,67,0,0,0,10.17-3.12l4.81,11.6a.75.75,0,0,0,1.23.24l7.27-7.27a12,12,0,0,0,3.5-9.09L66,64.43C79.46,54.49,93.08,37.06,96.79,6.64A5,5,0,0,0,91.18,1C60.77,4.74,43.33,18.37,33.39,31.79l-4.66-.24A12,12,0,0,0,19.64,35l-7.27,7.27A.75.75,0,0,0,12.61,43.55ZM59.25,25.83a9,9,0,1,1,0,12.75A9,9,0,0,1,59.25,25.83ZM10.44,78.5a11.81,11.81,0,0,0-6-.48,1.08,1.08,0,0,1-1-.3,1.09,1.09,0,0,1-.22-1.23C5.35,71.91,11,62.7,21.23,70.14a.51.51,0,0,1,0,.76A11.11,11.11,0,0,0,17,80a.81.81,0,0,0,.78.78,11.1,11.1,0,0,0,9.1-4.14.51.51,0,0,1,.79,0c1.42,1.69,5.33,7.21,1,12.54a11.25,11.25,0,0,1-7.54,4C16.93,93.63,9.17,95,6,98.62a1.09,1.09,0,0,1-1.88-.4C3,94.4,1.26,85.86,10.44,78.5Z"></path>
             </svg>
-          </div>
+          </a>
         </header>
         <main className="h-full px-4 mx-auto sm:px-6 lg:px-8 xl:flex xl:top-0 xl:w-full overscroll-none max-w-screen-2xl">
           <div className="max-w-xl mx-auto xl:w-1/3 xl:mx-12">
@@ -203,19 +196,13 @@ export default function MainPage() {
             </div>
           </div>
           <div className="h-full max-w-xl mx-auto xl:max-w-4xl xl:w-2/3 xl:sticky xl:top-0">
-            <div className="w-full sm:flex sm:flex-col">
-              <div>
-                <div className="flex items-center mb-4 sm:pt-8">
-                  <h3 className="mr-4 text-xl font-medium leading-6 text-violet-900">
-                    Image Preview
-                  </h3>
-                </div>
-
+            <div className="w-full pt-8 sm:flex sm:flex-col">
+              <div id="promo-image">
                 <div ref={imageContainer} id="imageContainer" className="w-full"></div>
                 <div style={{ marginBottom: `${margbot}px` }}>
                   {selected.name === 'Layout 1' && (
                     <ImageLayout1
-                      id="promo-image"
+                      id="promo-imagee"
                       idx={speakers.length}
                       backgroundColor={backgroundColor}
                       textColor={textColor}
@@ -230,7 +217,7 @@ export default function MainPage() {
                   )}
                   {selected.name === 'Layout 2' && (
                     <ImageLayout2
-                      id="promo-image"
+                      id="promo-imagee"
                       idx={speakers.length}
                       backgroundColor={backgroundColor}
                       textColor={textColor}
@@ -247,7 +234,7 @@ export default function MainPage() {
               </div>
               <div className="flex flex-row space-x-4">
                 <button
-                  className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm sm:px-6 bg-violet-800 hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-800 "
+                  className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm sm:px-6 bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary "
                   onClick={onSaveImage}
                 >
                   Save Image
@@ -266,7 +253,10 @@ export default function MainPage() {
       </div>
       <footer className="flex items-center justify-center h-8 -mt-8 text-gray-500">
         Made with <span className="mx-2">❤️</span> and <span className="mx-2">☕️</span> by
-        <a className="ml-1 text-opacity-70 text-violet-900" href="https://twitter.com/NickOelsner">
+        <a
+          className="ml-1 text-opacity-70 text-primary-text"
+          href="https://twitter.com/NickOelsner"
+        >
           Nick Oelsner
         </a>
       </footer>

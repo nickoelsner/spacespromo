@@ -8,7 +8,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en" title="SpacesPromo">
+      <Html lang="en">
         <Head />
         <body>
           <Main />

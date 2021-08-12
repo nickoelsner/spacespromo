@@ -39,14 +39,14 @@ const layout2Styles = [
     ul: 'flex flex-wrap justify-center w-2/3 gap-y-4 pr-4 items-around',
     li: 'flex flex-col items-center justify-start font-bold text-center w-[33%] max-h-[167px] overflow-hidden',
     name: 'text-[13px]',
-    title: 'text-[10px]',
+    title: 'text-[9px]',
   },
   {
-    titleContainer: 'flex flex-col justify-around w-1/3 h-full p-4 pr-2 items-center',
-    ul: 'flex flex-wrap justify-center w-2/3 gap-y-4 pr-4 items-around',
+    titleContainer: 'flex flex-col justify-around w-[30%] h-full p-4 pr-2 items-center',
+    ul: 'flex flex-wrap justify-center w-[70%] gap-y-4 pr-4 items-around',
     li: 'flex flex-col items-center justify-start font-bold text-center w-[33%] max-h-[167px] overflow-hidden',
     name: 'text-[13px]',
-    title: 'text-[10px]',
+    title: 'text-[9px]',
   },
   {
     titleContainer: 'flex flex-col justify-around w-1/3 h-full p-4 pr-2 items-center',
@@ -84,7 +84,7 @@ export const ImageLayout2 = ({
       <div className="flex items-center justify-around w-full h-full">
         <div className={layout2Styles[idx].titleContainer}>
           <h1
-            className="font-medium leading-none text-center"
+            className="font-medium leading-tight text-center"
             style={{ fontSize: titleTextSize + 'px' }}
           >
             {title || 'Title'}
@@ -102,12 +102,16 @@ export const ImageLayout2 = ({
                 alt=""
               />
               {speaker.name && (
-                <h3 className={`${layout2Styles[idx].name} font-medium w-full ${textColor}`}>
+                <h3
+                  className={`${layout2Styles[idx].name} font-medium w-full mb-px mt-1 ${textColor}`}
+                >
                   {speaker.name}
                 </h3>
               )}
               {speaker.title && (
-                <h3 className={`${layout2Styles[idx].title} font-light w-full ${textColor}`}>
+                <h3
+                  className={`${layout2Styles[idx].title} font-light leading-snug w-full ${textColor}`}
+                >
                   {speaker.title}
                 </h3>
               )}
