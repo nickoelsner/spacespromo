@@ -125,7 +125,7 @@ const SpeakerComponent = ({ speaker }) => (
 const ImageLayout2 = ({ scale }) => {
   return (
     <div
-      className="w-[576px] h-[324px] bg-gradient-to-br from-pink-500 to-indigo-800 transform text-white rounded-lg shadow-md"
+      className="w-[576px] h-[324px] bg-gradient-to-br from-blue-300 to-blue-700 transform text-white rounded-lg shadow-md"
       style={{
         transform: 'scale(' + scale + ')',
         transformOrigin: '0 0 0',
@@ -149,18 +149,18 @@ const ImageLayout2 = ({ scale }) => {
 }
 
 export default function Home() {
-  const [scale, setScale] = useState(1)
-  const [refAquired, setRefAquired] = useState(false)
+  // const [scale, setScale] = useState(1)
+  // const [refAquired, setRefAquired] = useState(false)
 
-  const imageContainer = useRef()
+  // const imageContainer = useRef()
 
-  useEffect(() => {
-    setRefAquired(true)
-  }, [])
+  // useEffect(() => {
+  //   setRefAquired(true)
+  // }, [])
 
-  useEffect(() => {
-    setScale(imageContainer.current.offsetWidth / 576)
-  }, [refAquired])
+  // useEffect(() => {
+  //   setScale(imageContainer.current.offsetWidth / 576)
+  // }, [refAquired])
 
   return (
     <div>
@@ -187,7 +187,7 @@ export default function Home() {
         </a>
       </header>
       <main>
-        <section className="text-gray-800 body-font lg:pt-28">
+        <section className="text-gray-800 body-font lg:pt-16">
           <div className="container px-5 pt-32 mx-auto lg:px-4 lg:py-4">
             <div className="flex flex-col w-full mb-10 text-left lg:text-center">
               <h1 className="mb-6 text-4xl font-black leading-tight text-gray-800 md:leading-tight lg:leading-tight md:text-5xl lg:text-7xl">
@@ -196,39 +196,34 @@ export default function Home() {
                 In 5 minutes.
               </h1>
               <p className="mx-auto text-lg leading-snug text-gray-700 lg:w-1/2">
-                Generate an image to promote a Twitter Space. Enter a title, date & time, and the
-                speakers' Twitter handles and use the generated image to Tweet about the event.
+                Generate an image to promote a Twitter Space. Enter the information about the Space
+                and the speakers' Twitter handles and use the generated image to Tweet about the
+                event.
               </p>
             </div>
-            <div class="flex flex-col mb-10 justify-left lg:justify-center md:flex-row">
+            <div className="flex flex-col mb-10 justify-left lg:justify-center md:flex-row">
               <div className="inline-flex items-center justify-center text-lg font-normal text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ">
-                <div className="flex items-center px-6 py-3">
-                  <Link href="/image-creator">Let's do it!</Link>
+                <a href="/image-creator" className="flex items-center w-full h-full px-6 py-3">
+                  <span>Let's do it!</span>
                   <ArrowRightIcon className="w-5 h-5 ml-2" />
-                </div>
+                </a>
               </div>
             </div>
-            <p className="mt-2 mb-10 text-sm italic text-blueGray-500 md:mx-auto md:text-center ">
-              No credit card required
-            </p>
           </div>
         </section>
         <section>
-          <div className="container flex flex-col items-center justify-center px-10 py-8 mx-auto rounded-lg lg:px-40 lg:-mt-28">
-            {/* <img
-              class="object-cover object-center w-full mb-10 shadow rounded-xl border-blueGray-200 dark:border-blueGray-900"
+          <div className="container flex flex-col items-center justify-center px-10 py-10 mx-auto mb-10 rounded-lg lg:px-40 lg:-mt-28">
+            <img
+              id="hero-image"
+              className="object-cover object-center w-full rounded-xl"
               alt="hero"
-              src="/example2.png"
-              style={{
-                transform:
-                  'perspective(1000px)rotateX(30deg) rotateY(0) rotateZ(0); transform-origin: center center;',
-              }}
-            /> */}
-            <div ref={imageContainer} className="w-full max-w-4xl">
+              src="/example.png"
+            />
+            {/* <div ref={imageContainer} className="w-full max-w-4xl">
               <div style={{ marginBottom: `${scale * 324 - 324}px` }}>
                 <ImageLayout2 scale={scale} />
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
       </main>

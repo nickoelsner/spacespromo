@@ -10,8 +10,8 @@ import useStickyState from '../hooks/useStickyState'
 const download = require('downloadjs')
 
 const backgroundColors = [
+  'bg-gradient-to-br from-blue-300 to-blue-700',
   'bg-gradient-to-br from-pink-500 to-indigo-800',
-  'bg-gradient-to-br from-blue-200 to-blue-700',
   'bg-gradient-to-br from-orange-200 to-blue-200',
   'bg-gradient-to-br from-teal-500 to-blue-400',
   'bg-gradient-to-br from-yellow-100 to-lime-200',
@@ -36,28 +36,12 @@ const layouts = [
 
 const seedUsers6 = [
   {
-    username: 'NickOelsner',
     profile_image_url:
-      'https://pbs.twimg.com/profile_images/1364044816649121796/uLmGPnwy_normal.jpg',
-    id: '1364044326334918656',
-    name: 'Nick Oelsner',
-    title: 'Frontend Developer/ Freelancer',
-  },
-  {
-    profile_image_url:
-      'https://pbs.twimg.com/profile_images/1354163904213966848/4dOl8di8_normal.jpg',
-    id: '1354159191296864256',
-    name: 'Katherine Peterson',
-    username: 'katherinecodes',
-    title: 'Software Engineer at Github',
-  },
-  {
-    profile_image_url:
-      'https://pbs.twimg.com/profile_images/1421305898379608065/0iXfDSGP_normal.jpg',
-    username: 'tanoaksam',
-    id: '1311650703052476416',
-    name: 'Sam Sycamore',
-    title: 'Content & Marketing at Hashnode',
+      'https://pbs.twimg.com/profile_images/1400216053280559104/WvAf6G1M_normal.jpg',
+    id: '1212524335174311936',
+    username: 'shookcodes',
+    name: 'Sarah Shook',
+    title: 'Owner, Shook LLC',
   },
   {
     profile_image_url:
@@ -65,23 +49,39 @@ const seedUsers6 = [
     username: 'edanbenatar',
     id: '1262720796511940609',
     name: 'Edan Ben-Atar',
-    title: 'Founder of Weblime',
+    title: 'Founder/Owner, Weblime',
+  },
+  {
+    username: 'shaquilhansford',
+    name: 'Shaquil Hansford',
+    id: '3188230904',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1387992635105812485/54yCv-mQ_normal.jpg',
+    title: 'Freelance Developer',
   },
   {
     name: 'Rocco Sangellino',
-    username: 'RoccoSangellino',
-    id: '1337808128176340992',
     profile_image_url:
       'https://pbs.twimg.com/profile_images/1388602894258114561/LYpjcAVx_normal.jpg',
-    title: 'Software Lead at Mondo Robot',
+    id: '1337808128176340992',
+    username: 'RoccoSangellino',
+    title: 'Lead Engineer at Mondo Robot',
   },
   {
     profile_image_url:
-      'https://pbs.twimg.com/profile_images/1400216053280559104/WvAf6G1M_normal.jpg',
-    username: 'shookcodes',
-    id: '1212524335174311936',
-    name: 'Sarah Shook',
-    title: 'Freelance Developer',
+      'https://pbs.twimg.com/profile_images/1383561638339432454/wXVxviKa_normal.png',
+    id: '1004483816',
+    username: 'shaundai',
+    name: 'Shaundai Person',
+    title: 'UI Engineer at SalesLoft (aka HBIC)',
+  },
+  {
+    username: 'katherinecodes',
+    profile_image_url:
+      'https://pbs.twimg.com/profile_images/1354163904213966848/4dOl8di8_normal.jpg',
+    id: '1354159191296864256',
+    name: 'Katherine Peterson',
+    title: 'Software Engineer at Github',
   },
 ]
 
@@ -143,9 +143,9 @@ export default function ImageCreator() {
 
   const onSaveImage = () => {
     const imageElement = document.getElementById('promo-image')
-    // const scale = 1600 / imageElement.offsetWidth
-    const options = { height: 900, width: 1600, style: { transform: `scale(${scale})` } }
-    htmlToImage.toPng(imageElement).then(function (dataUrl) {
+    const imgScale = 1600 / imageElement.offsetWidth
+    const options = { height: 900, width: 1600, style: { transform: `scale(${imgScale})` } }
+    htmlToImage.toPng(imageElement, { style: options }).then(function (dataUrl) {
       download(dataUrl, 'SpacesPromo.png')
     })
   }
@@ -196,19 +196,13 @@ export default function ImageCreator() {
             </div>
           </div>
           <div className="h-full max-w-xl mx-auto xl:max-w-4xl xl:w-2/3 xl:sticky xl:top-0">
-            <div className="w-full sm:flex sm:flex-col">
-              <div className="pt-8">
-                {/* <div className="flex items-center mb-4 sm:pt-8">
-                  <h3 className="mr-4 text-xl font-medium leading-6 text-primary-text">
-                    Image Preview
-                  </h3>
-                </div> */}
-
+            <div className="w-full pt-8 sm:flex sm:flex-col">
+              <div id="promo-image">
                 <div ref={imageContainer} id="imageContainer" className="w-full"></div>
                 <div style={{ marginBottom: `${margbot}px` }}>
                   {selected.name === 'Layout 1' && (
                     <ImageLayout1
-                      id="promo-image"
+                      id="promo-imagee"
                       idx={speakers.length}
                       backgroundColor={backgroundColor}
                       textColor={textColor}
@@ -223,7 +217,7 @@ export default function ImageCreator() {
                   )}
                   {selected.name === 'Layout 2' && (
                     <ImageLayout2
-                      id="promo-image"
+                      id="promo-imagee"
                       idx={speakers.length}
                       backgroundColor={backgroundColor}
                       textColor={textColor}

@@ -15,3 +15,9 @@ input[type='color'] {
   border: none;
   opacity: 0;
 }
+
+#hero-image {
+  transform: perspective(1000px) rotateX(28deg) rotateY(0) rotateZ(0);
+  transform-origin: center center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
