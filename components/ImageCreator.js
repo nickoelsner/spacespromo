@@ -102,8 +102,9 @@ export default function ImageCreator() {
   const [scale, setScale] = useState(1)
   const [refAquired, setRefAquired] = useState(false)
   const [numSpeakersError, setNumSpeakersError] = useState(false)
+  const [speakerHandles, setSpeakerHandles] = useState('')
 
-  const tweetText = `Join us ${dateTime} for a Twitter Space:%0D%0A${title}`
+  const tweetText = `Join us ${dateTime} for a Twitter Space:%0D%0A${title}%0D%0A%0D%0ASpeakers:%0D%0A${speakerHandles}`
 
   const imageContainer = useRef()
   useEffect(() => {
@@ -138,6 +139,14 @@ export default function ImageCreator() {
       setNumSpeakersError(false)
     }
   }, [selected, speakers])
+
+  useEffect(() => {
+    let speakersString = ''
+    for (let i = 0; i < speakers.length; i++) {
+      speakersString += `@${speakers[i].username}%0D%0A`
+    }
+    setSpeakerHandles(speakersString)
+  }, [speakers])
 
   const margbot = scale * 324 - 324
 
@@ -249,17 +258,18 @@ export default function ImageCreator() {
               </div>
               <div className="flex flex-row space-x-4">
                 <button
-                  className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm sm:px-6 bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary "
+                  className="inline-flex items-center justify-center px-5 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary "
                   onClick={onSaveImage}
                 >
                   Save Image
                 </button>
                 <a
-                  className="inline-flex items-center justify-center px-4 sm:px-6 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm bg-[#49A1EB] hover:bg-[#198ae6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#49A1EB] "
+                  className="inline-flex items-center justify-center px-5 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm bg-[#49A1EB] hover:bg-[#198ae6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#49A1EB] "
                   href={`https://twitter.com/intent/tweet?text=${tweetText}`}
                   target="_blank"
                 >
-                  Compose Tweet
+                  <img src="/twitterLogo.svg" className="w-5 h-5 mr-2" />
+                  Tweet
                 </a>
               </div>
             </div>
