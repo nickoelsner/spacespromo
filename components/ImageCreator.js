@@ -6,6 +6,7 @@ import SpaceDetails from './SpaceDetails'
 import LayoutPicker from './LayoutPicker'
 import ColorPickers from './ColorPickers'
 import useStickyState from '../hooks/useStickyState'
+import copy from 'copy-to-clipboard'
 
 const download = require('downloadjs')
 
@@ -102,6 +103,7 @@ export default function ImageCreator() {
   const [scale, setScale] = useState(1)
   const [refAquired, setRefAquired] = useState(false)
   const [numSpeakersError, setNumSpeakersError] = useState(false)
+  const [imgUrl, setImgUrl] = useState('')
 
   const tweetText = `Join us ${dateTime} for a Twitter Space:%0D%0A${title}`
 
@@ -150,20 +152,14 @@ export default function ImageCreator() {
     })
   }
 
-  // const copyToClipboard = (e) => {
-
-  //   const imageElement = document.getElementById('promo-image')
-  //   const imgScale = 1600 / imageElement.offsetWidth
-  //   const options = { height: 900, width: 1600, style: { transform: `scale(${imgScale})` } }
-  //   htmlToImage.toPng(imageElement, { style: options }).then(function (dataUrl) {
-  //     const img = new Image();
-  //   img.src = dataUrl;
-  //   document.body.appendChild(img);
-  //   })
-  //     textAreaRef.current.select()
-  //     document.execCommand('copy')
-  //     e.target.focus()
-  // }
+  const copyToClipboard = (e) => {
+    const imageElement = document.getElementById('promo-image')
+    const imgScale = 1600 / imageElement.offsetWidth
+    const options = { height: 900, width: 1600, style: { transform: `scale(${imgScale})` } }
+    htmlToImage.toPng(imageElement, { style: options }).then(function (dataUrl) {
+      copy(dataUrl)
+    })
+  }
 
   return (
     <div>
@@ -252,7 +248,13 @@ export default function ImageCreator() {
                   className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm sm:px-6 bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary "
                   onClick={onSaveImage}
                 >
-                  Save Image
+                  Download
+                </button>
+                <button
+                  className="inline-flex items-center justify-center px-4 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm sm:px-6 bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary "
+                  onClick={copyToClipboard}
+                >
+                  Copy to Clipboard
                 </button>
                 <a
                   className="inline-flex items-center justify-center px-4 sm:px-6 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm bg-[#49A1EB] hover:bg-[#198ae6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#49A1EB] "
@@ -270,6 +272,7 @@ export default function ImageCreator() {
         Made with <span className="mx-2">❤️</span> and <span className="mx-2">☕️</span> by
         <a
           className="ml-1 text-opacity-70 text-primary-text"
+          // onClick={copyToClipboard}
           href="https://twitter.com/NickOelsner"
         >
           Nick Oelsner
