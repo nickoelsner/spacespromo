@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { ExclamationIcon } from '@heroicons/react/solid'
+import { createRef, useEffect, useState, useRef } from 'react'
+import { ExclamationIcon, PlusIcon } from '@heroicons/react/solid'
 import Tooltip from '@material-ui/core/Tooltip'
 
 const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
@@ -9,12 +9,25 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
   const [duplicateError, setDuplicateError] = useState(false)
   const [speakerIds, setSpeakerIds] = useState([])
 
+  const imageRef = useRef(null)
+
+  let speakerImgRefs = {}
+
   useEffect(() => {
     const idArray = speakers.map((speaker) => speaker.id)
     const isDuplicate = idArray.some((id, index) => idArray.indexOf(id) !== index)
     setDuplicateError(isDuplicate)
     setSpeakerIds(idArray)
+    speakers.forEach((speaker) => {
+      speakerImgRefs[speaker.id] = createRef()
+    })
   }, [speakers])
+
+  useEffect(() => {
+    speakers.forEach((speaker) => {
+      speakerImgRefs[speaker.id] = createRef()
+    })
+  }, [])
 
   useEffect(() => {
     setError(false)
@@ -59,6 +72,19 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
 
   const deleteSpeaker = (speakerId) => {
     setSpeakers((prev) => prev.filter(({ id }) => id !== speakerId))
+  }
+
+  const handleImageUpload = (e, speaker) => {
+    const currentSpeakerIndex = speakers.findIndex((s) => s.id === speaker.id)
+    if (currentSpeakerIndex >= 0) {
+      setSpeakers((prev) => [
+        ...prev.slice(0, currentSpeakerIndex),
+        Object.assign({}, prev[currentSpeakerIndex], {
+          customImage: URL.createObjectURL(e.target.files[0]),
+        }),
+        ...prev.slice(currentSpeakerIndex + 1),
+      ])
+    }
   }
 
   return (
@@ -128,7 +154,29 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
             <li key={speaker.id} className="flex items-center w-full py-3 border-t border-gray-300">
               <div className="flex flex-col flex-1">
                 <span className="mb-2 font-semibold text-gray-500">@{speaker.username}</span>
-                <div className="flex flex-col sm:flex-row">
+                <div className="flex flex-col sm:flex-row ">
+                  <div className="flex items-end mt-auto mr-3 w-[38px] h-[38px] rounded-full border border-gray-300 group">
+                    <label
+                      htmlFor={`custom-image-${speaker.username}`}
+                      className="items-center justify-center hidden w-full h-full bg-white rounded-full cursor-pointer group-hover:flex"
+                    >
+                      <PlusIcon className="w-6 h-6 text-primary-text" />
+                      <input
+                        type="file"
+                        id={`custom-image-${speaker.username}`}
+                        name={`custom-image-${speaker.username}`}
+                        ref={imageRef}
+                        onChange={(e) => handleImageUpload(e, speaker)}
+                        className="w-[0.1px] h-[0.1px] opacity-0 overflow-hidden absolute z-[-1]"
+                      />
+                    </label>
+                    <img
+                      className="w-full h-full rounded-full group-hover:hidden"
+                      src={speaker.customImage ? speaker.customImage : speaker.profile_image_url}
+                      alt=""
+                    />
+                  </div>
+
                   <div>
                     <label
                       htmlFor={`${speaker.username}-name`}

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.5.0",
+    "@github/file-attachment-element": "^2.0.1",
     "@headlessui/react": "^1.4.0",
     "@heroicons/react": "^1.0.1",
     "@material-ui/core": "^4.12.3",
