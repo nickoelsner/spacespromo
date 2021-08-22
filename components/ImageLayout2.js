@@ -98,7 +98,11 @@ export const ImageLayout2 = ({
             <li className={layout2Styles[idx].li} key={speaker.id}>
               <img
                 className="w-[5rem] h-[5rem] mx-auto rounded-full"
-                src={speaker.profile_image_url.replace(/_normal/g, '')}
+                src={
+                  speaker.customImage
+                    ? speaker.customImage
+                    : speaker.profile_image_url.replace(/_normal/g, '')
+                }
                 alt=""
               />
               {speaker.name && (

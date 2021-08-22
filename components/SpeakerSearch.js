@@ -155,10 +155,15 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
               <div className="flex flex-col flex-1">
                 <span className="mb-2 font-semibold text-gray-500">@{speaker.username}</span>
                 <div className="flex flex-col sm:flex-row ">
-                  <div className="flex items-end mt-auto mr-3 w-[38px] h-[38px] rounded-full border border-gray-300 group">
+                  <div className="flex relative items-end mt-auto mr-3 w-[38px] h-[38px] rounded-full border border-gray-300 group bg-white focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary">
+                    <img
+                      className="absolute top-0 left-0 w-full h-full rounded-full"
+                      src={speaker.customImage ? speaker.customImage : speaker.profile_image_url}
+                      alt=""
+                    />
                     <label
                       htmlFor={`custom-image-${speaker.username}`}
-                      className="items-center justify-center hidden w-full h-full bg-white rounded-full cursor-pointer group-hover:flex"
+                      className="absolute top-0 left-0 flex items-center justify-center w-full h-full transition-opacity bg-white rounded-full opacity-0 cursor-pointer group-hover:opacity-100 focus-within:opacity-100"
                     >
                       <PlusIcon className="w-6 h-6 text-primary-text" />
                       <input
@@ -170,11 +175,6 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                         className="w-[0.1px] h-[0.1px] opacity-0 overflow-hidden absolute z-[-1]"
                       />
                     </label>
-                    <img
-                      className="w-full h-full rounded-full group-hover:hidden"
-                      src={speaker.customImage ? speaker.customImage : speaker.profile_image_url}
-                      alt=""
-                    />
                   </div>
 
                   <div>
