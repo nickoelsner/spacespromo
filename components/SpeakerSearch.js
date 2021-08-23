@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createRef, useEffect, useState, useRef } from 'react'
 import { ExclamationIcon, PlusIcon } from '@heroicons/react/solid'
-import Tooltip from '@material-ui/core/Tooltip'
+// import Tooltip from '@material-ui/core/Tooltip'
 
 const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
   const [handle, setHandle] = useState('')
@@ -195,6 +195,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                           ? 'border-2 border-orange-600 focus:border-orange-600'
                           : ''
                       }`}
+                      maximum-scale="1"
                     />
                     {speaker.name.length > 32 && (
                       <div className="ml-1 text-sm text-orange-600">Long names may get cut off</div>
@@ -218,6 +219,7 @@ const SpeakerSearch = ({ speakers, setSpeakers, numSpeakersError }) => {
                           ? 'border-2 border-orange-600 focus:border-orange-600'
                           : ''
                       }`}
+                      maximum-scale="1"
                     />
                     {speaker.title.length > 55 && (
                       <div className="ml-1 text-sm text-orange-600">

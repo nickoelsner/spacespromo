@@ -6,6 +6,7 @@ import SpaceDetails from './SpaceDetails'
 import LayoutPicker from './LayoutPicker'
 import ColorPickers from './ColorPickers'
 import useStickyState from '../hooks/useStickyState'
+import { SaveIcon, RefreshIcon } from '@heroicons/react/outline'
 
 const download = require('downloadjs')
 
@@ -103,10 +104,13 @@ export default function ImageCreator() {
   const [refAquired, setRefAquired] = useState(false)
   const [numSpeakersError, setNumSpeakersError] = useState(false)
   const [speakerHandles, setSpeakerHandles] = useState('')
+  const [bgImage, setBgImage] = useState(null)
 
   const tweetText = `Join us ${dateTime} for a Twitter Space:%0D%0A${title}%0D%0A%0D%0ASpeakers:%0D%0A${speakerHandles}`
 
   const imageContainer = useRef()
+  const bgImageRef = useRef()
+
   useEffect(() => {
     setRefAquired(true)
   }, [])
@@ -159,20 +163,18 @@ export default function ImageCreator() {
     })
   }
 
-  // const copyToClipboard = (e) => {
+  const onClearImage = () => {
+    setSpeakers([])
+    setTitle('Title')
+    setDateTime('')
+  }
 
-  //   const imageElement = document.getElementById('promo-image')
-  //   const imgScale = 1600 / imageElement.offsetWidth
-  //   const options = { height: 900, width: 1600, style: { transform: `scale(${imgScale})` } }
-  //   htmlToImage.toPng(imageElement, { style: options }).then(function (dataUrl) {
-  //     const img = new Image();
-  //   img.src = dataUrl;
-  //   document.body.appendChild(img);
-  //   })
-  //     textAreaRef.current.select()
-  //     document.execCommand('copy')
-  //     e.target.focus()
-  // }
+  const handleImageUpload = () => {
+    if (bgImageRef.current.files[0]) {
+      setBgImage(URL.createObjectURL(bgImageRef.current.files[0]))
+      setBackgroundColor('')
+    }
+  }
 
   return (
     <div>
@@ -216,6 +218,9 @@ export default function ImageCreator() {
                 setTextColor={setTextColor}
                 textColorPicker={textColorPicker}
                 setTextColorPicker={setTextColorPicker}
+                bgImage={bgImage}
+                bgImageRef={bgImageRef}
+                handleImageUpload={handleImageUpload}
               />
             </div>
           </div>
@@ -252,25 +257,36 @@ export default function ImageCreator() {
                       dateTimeTextSize={dateTimeTextSize}
                       scale={scale}
                       bgColorPicker={bgColorPicker}
+                      bgImage={bgImage}
                     />
                   )}
                 </div>
               </div>
-              <div className="flex flex-row space-x-4">
+              <div className="flex flex-row flex-wrap gap-4 my-8">
+                {/* <div className="space-x-4"> */}
                 <button
-                  className="inline-flex items-center justify-center px-5 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary "
+                  className="inline-flex items-center justify-center px-5 py-2 text-sm font-bold text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary "
                   onClick={onSaveImage}
                 >
+                  <SaveIcon className="w-5 h-5 mr-2" />
                   Save Image
                 </button>
                 <a
-                  className="inline-flex items-center justify-center px-5 py-2 mt-8 mb-8 text-sm font-bold text-white border border-transparent rounded-md shadow-sm bg-[#49A1EB] hover:bg-[#198ae6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#49A1EB] "
+                  className="inline-flex items-center justify-center px-5 py-2 text-sm font-bold text-white border border-transparent rounded-md shadow-sm bg-[#49A1EB] hover:bg-[#198ae6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#49A1EB] "
                   href={`https://twitter.com/intent/tweet?text=${tweetText}`}
                   target="_blank"
                 >
                   <img src="/twitterLogo.svg" className="w-5 h-5 mr-2" />
                   Tweet
                 </a>
+                {/* </div> */}
+                <button
+                  className="inline-flex items-center justify-center px-5 py-2 text-sm font-bold border rounded-md shadow-sm text-primary border-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary "
+                  onClick={onClearImage}
+                >
+                  <RefreshIcon className="w-5 h-5 mr-2" />
+                  Start Over
+                </button>
               </div>
             </div>
           </div>
