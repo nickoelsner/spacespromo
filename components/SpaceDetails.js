@@ -15,7 +15,6 @@ const SpaceDetails = ({
 }) => {
   return (
     <div className="space-y-8 xl:w-full">
-      {/* <h3 className="text-xl font-medium leading-6 text-primary-text">Twitter Space Details</h3> */}
       <div className="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div className="col-span-full">
           <label htmlFor="title" className="block text-sm font-medium text-primary-text">

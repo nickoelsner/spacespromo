@@ -69,7 +69,17 @@ export const ImageLayout2 = ({
   dateTimeTextSize,
   scale,
   bgColorPicker,
+  bgImage,
 }) => {
+  const bgImageStyles =
+    bgImage && !backgroundColor
+      ? {
+          backgroundImage: `url(${bgImage})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+        }
+      : {}
+
   return (
     <div
       id={id}
@@ -79,9 +89,11 @@ export const ImageLayout2 = ({
         transformOrigin: '0 0 0',
         backgroundColor: bgColorPicker,
         color: textColor,
+        ...bgImageStyles,
       }}
     >
-      <div className="flex items-center justify-around w-full h-full">
+      {/* <img src={bgImage} alt="" className="relative z-0 object-cover object-center w-full h-full" /> */}
+      <div className="relative z-10 flex items-center justify-around w-full h-full">
         <div className={layout2Styles[idx].titleContainer}>
           <h1
             className="font-medium leading-tight text-center"
@@ -98,7 +110,11 @@ export const ImageLayout2 = ({
             <li className={layout2Styles[idx].li} key={speaker.id}>
               <img
                 className="w-[5rem] h-[5rem] mx-auto rounded-full"
-                src={speaker.profile_image_url.replace(/_normal/g, '')}
+                src={
+                  speaker.customImage
+                    ? speaker.customImage
+                    : speaker.profile_image_url.replace(/_normal/g, '')
+                }
                 alt=""
               />
               {speaker.name && (

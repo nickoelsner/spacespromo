@@ -21,3 +21,7 @@ input[type='color'] {
   transform-origin: center center;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+input[type='text'] {
+  font-size: 16px;
+}

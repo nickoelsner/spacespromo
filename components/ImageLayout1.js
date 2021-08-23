@@ -116,7 +116,11 @@ export const ImageLayout1 = ({
           <li className={layout1Styles[idx].li} key={speaker.id}>
             <img
               className={layout1Styles[idx].img}
-              src={speaker.profile_image_url.replace(/_normal/g, '')}
+              src={
+                speaker.customImage
+                  ? speaker.customImage
+                  : speaker.profile_image_url.replace(/_normal/g, '')
+              }
               alt=""
             />
             {speaker.name && <h3 className={layout1Styles[idx].name}>{speaker.name}</h3>}
